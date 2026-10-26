@@ -1,0 +1,20 @@
+simulation:
+  seed: 42
+  step_length_s: 1.0
+  vehicle_id: ev_001
+  max_steps: 500
+  network_file: sumo/network/grid.net.xml
+  route_file: sumo/routes/ev.rou.xml
+  config_file: sumo/simulation/ev.sumocfg
+  # SUMO Energy/unknown model; battery capacity and initial charge are in Wh.
+  battery_capacity_wh: 60000
+  initial_charge_wh: 54000
+
+gps:
+  seed: 123
+  # Choose and document normal-noise model during M2
+  noise_model: not_yet_selected
+
+experiments:
+  # Select intensities using documented reasoning, not arbitrary performance tuning.
+  attack_severities: [low, medium, high]

@@ -1,0 +1,15 @@
+<routes>
+    <vType id="electric_car"
+           vClass="passenger"
+           emissionClass="Energy/unknown"
+           accel="2.6"
+           decel="4.5"
+           length="4.5"
+           maxSpeed="13.9"
+           mass="1600">
+        <param key="device.battery.capacity" value="60000"/>
+        <param key="device.battery.chargeLevel" value="54000"/>
+    </vType>
+    <route id="ev_route" edges="A0A1 A1B1"/>
+    <vehicle id="ev_001" type="electric_car" route="ev_route" depart="0"/>
+</routes>
