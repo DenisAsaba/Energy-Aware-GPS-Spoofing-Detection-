@@ -1,0 +1,16 @@
+{
+  "truth_used_to_generate_synthetic_observations": True,
+"truth_used_for_offline_error_evaluation": True,
+"truth_available_to_operational_detector": False,
+  "count": 83,
+  "gps_seed": 123,
+  "noise_model": "independent_gaussian_xy",
+  "per_axis_standard_deviation_m": 3.0,
+  "radial_error_m": {
+    "mean": 3.369836141517615,
+    "median": 3.0235878063980466,
+    "standard_deviation": 1.9272216831066462,
+    "p95_nearest_rank": 6.6011070341328075,
+    "maximum": 8.71879731757698
+  }
+}

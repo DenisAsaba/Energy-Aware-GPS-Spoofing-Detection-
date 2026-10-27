@@ -1,0 +1,40 @@
+{
+  "scenario_type": "jump",
+  "simulation_only": true,
+  "normal_gps_input": "C:\\Users\\Rolly\\Downloads\\ev-gps-agent-starter\\Energy-Aware-GPS-Spoofing-Detection-\\data\\processed\\gps_normal.csv",
+  "truth_reference_for_offline_evaluation": "C:\\Users\\Rolly\\Downloads\\ev-gps-agent-starter\\Energy-Aware-GPS-Spoofing-Detection-\\data\\raw\\truth.csv",
+  "gps_seed": [
+    123
+  ],
+  "attack_random_seed": null,
+  "attack_is_deterministic_given_input_and_parameters": true,
+  "parameters": {
+    "onset_time_s": 30,
+    "duration_s": 5,
+    "magnitude_m": 100,
+    "direction_deg": 45
+  },
+  "interval_semantics": "active when onset_time_s <= time_s < onset_time_s + duration_s; displacement returns to zero at interval end",
+  "direction_convention": "degrees counterclockwise from SUMO +x; 0=+x/east, 90=+y/north",
+  "record_count": 83,
+  "active_record_count": 5,
+  "normal_position_error_offline": {
+    "count": 83,
+    "mean_m": 3.3698361415176135,
+    "median_m": 3.023587806398052,
+    "standard_deviation_m_population": 1.9272216831066438,
+    "p95_m_nearest_rank": 6.601107034132809,
+    "minimum_m": 0.17347942003889824,
+    "maximum_m": 8.71879731757697
+  },
+  "attacked_position_error_offline": {
+    "count": 83,
+    "mean_m": 9.1895161864941,
+    "median_m": 3.2720366341321614,
+    "standard_deviation_m_population": 22.795020276667,
+    "p95_m_nearest_rank": 96.02357405226755,
+    "minimum_m": 0.17347942003889824,
+    "maximum_m": 101.18712055702778
+  },
+  "observation_schema_excludes_truth_and_labels": true
+}

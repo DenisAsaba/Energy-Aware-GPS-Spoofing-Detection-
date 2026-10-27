@@ -12,8 +12,47 @@ simulation:
 
 gps:
   seed: 123
-  # Choose and document normal-noise model during M2
-  noise_model: not_yet_selected
+  # Independent per-axis Gaussian position error in SUMO network meters.
+  noise_model: independent_gaussian_xy
+  position_std_m: 3.0
+  input_file: data/raw/truth.csv
+  output_file: data/processed/gps_normal.csv
+  trajectory_plot: results/figures/ev_trajectory_gps_normal.png
+  error_plot: results/figures/gps_normal_error_distribution.png
+  error_summary: results/tables/gps_normal_error_summary.json
+
+attacks:
+  output_dir: data/attacks
+  figure_dir: results/figures
+  summary_dir: results/tables
+  # Angles use SUMO network axes: 0 degrees is +x/east; 90 degrees is +y/north.
+  interval_convention: "active when onset_time_s <= time_s < onset_time_s + duration_s"
+  scenarios:
+    offset:
+      onset_time_s: 20
+      duration_s: 20
+      magnitude_m: 50
+      direction_deg: 90
+    jump:
+      onset_time_s: 30
+      duration_s: 5
+      magnitude_m: 100
+      direction_deg: 45
+    drift:
+      onset_time_s: 20
+      duration_s: 30
+      drift_rate_mps: 2
+      direction_deg: 0
+  route_deviation:
+    simulation_config: config/route_deviation.yaml
+    expected_route_id: ev_route_alternative
+    expected_route_edges: [A0B0, B0B1]
+    truth_output: data/attacks/route_deviation_truth.csv
+    gps_output: data/attacks/gps_route_deviation.csv
+    labels_output: data/attacks/labels_route_deviation.csv
+    summary_output: results/tables/route_deviation_summary.json
+    trajectory_plot: results/figures/route_deviation_trajectory.png
+    error_plot: results/figures/route_deviation_error_distribution.png
 
 experiments:
   # Select intensities using documented reasoning, not arbitrary performance tuning.
