@@ -1,0 +1,17 @@
+<routes>
+    <vType id="electric_car"
+           vClass="passenger"
+           emissionClass="Energy/unknown"
+           accel="2.6"
+           decel="4.5"
+           length="4.5"
+           maxSpeed="13.9"
+           mass="1600">
+        <param key="has.battery.device" value="true"/>
+        <param key="device.battery.capacity" value="60000"/>
+        <param key="device.battery.chargeLevel" value="54000"/>
+    </vType>
+    <!-- Valid A0-to-B1 alternative to A0A1 A1B1: travel east, then north. -->
+    <route id="ev_route_alternative" edges="A0B0 B0B1"/>
+    <vehicle id="ev_001" type="electric_car" route="ev_route_alternative" depart="0"/>
+</routes>

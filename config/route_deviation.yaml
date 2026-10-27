@@ -1,0 +1,5 @@
+simulation:
+  seed: 42
+  vehicle_id: ev_001
+  max_steps: 500
+  config_file: sumo/simulation/route_deviation.sumocfg
