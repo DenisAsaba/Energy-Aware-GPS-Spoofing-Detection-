@@ -57,3 +57,22 @@ attacks:
 experiments:
   # Select intensities using documented reasoning, not arbitrary performance tuning.
   attack_severities: [low, medium, high]
+
+# M4 observations are new outputs. They are generated from simulator telemetry,
+# with explicit measurement noise and a distinct seed; they are not hardware data.
+motion:
+  seed: 456
+  output_dir: data/m4/sensors
+  speed_std_mps: 0.25
+  heading_std_deg: 2.0
+  acceleration_std_mps2: 0.15
+
+m4:
+  motion_seed: 456
+  motion_dir: data/m4/sensors
+  output_dir: data/m4/estimates
+  figure_dir: results/figures
+  table_dir: results/tables
+  candidate_radius_m: 30.0
+  heading_weight: 16.0
+  process_acceleration_std_mps2: 1.5

@@ -1,6 +1,6 @@
 # Live milestone tracker
 
-**Current milestone:** M3 complete; M4 is next.
+**Current milestone:** M4 complete; M5 is next.
 
 ## M2 acceptance checklist
 
@@ -35,4 +35,20 @@
 
 ## Rules
 
-M0, M1, M2 and M3 acceptance criteria pass in the checked environment. Ground-truth error, labels and attack parameters must not become operational detector inputs.
+M0-M4 acceptance criteria pass in the checked environment. Ground-truth error, labels and attack parameters must not become operational estimator or detector inputs.
+
+## M4 implementation checklist
+
+- [x] Inspect M3 data, SUMO telemetry, road geometry/connectivity, configs, and tests. `docs/PROJECT_SPEC.md` was absent from this checkout; added `docs/IMPLEMENTATION_PLAN.md` and `docs/M4_DESIGN.md` for current roadmap and methods.
+- [x] Generate separate seeded noisy speed, heading, and acceleration observations.
+- [x] Add explainable geometric map matching with heading, speed/time continuity, connectivity, and unmatched records.
+- [x] Add separate GPS/motion constant-velocity Kalman fusion with documented initialization and missing-data behavior.
+- [x] Add offline aligned evaluation and trajectory/error/RMSE figures for all five M3 GPS scenarios.
+- [x] Add synthetic tests for noise reproducibility/schema, map candidates/continuity/connectivity/no match, fusion initialization/missing inputs, and metrics.
+- [x] Run M4 pipeline and full test suite; record measured outcomes and any limitations.
+
+## M4 work log
+
+| Date | Milestone | Changes | Validation | Limitations |
+| --- | --- | --- | --- | --- |
+| 2026-10-29 | M4 | Added seeded synthetic speed/heading/acceleration observations, directed road-geometry matching, GPS/motion Kalman fusion, five-scenario offline evaluation, and 11 figures. Added M4 design documentation and reproduction commands. | `python src/experiments/run_m4.py --stage all --scenario all` generated 5 motion files, 5 map estimates, 5 fused estimates, metrics JSON and 11 PNGs. `python -m unittest discover -s tests -v`: 25 tests passed. Integration test hashed every M0-M3 CSV before/after the full pipeline; all were unchanged. Metrics compare methods on common valid map-match records: normal RMSE raw/map/fusion 3.882/2.779/2.223 m; jump 16.008/17.191/13.441 m. Leakage tests confirmed that added truth/label columns do not affect estimates. | Single short trip per scenario; synthetic noise model. Greedy map matcher can select a wrong road (jump maximum error 111.911 m, exceeding raw GPS maximum on the same records, 100.336 m), and fusion inherits initial GPS error. These runs are not evidence of real-world performance. |

@@ -85,7 +85,7 @@ python src/attacks/route_deviation.py
 
 This runs `src/simulation/run_sumo.py` with `config/route_deviation.yaml` and the separate `sumo/routes/ev_alternative.rou.xml`. The original route is `A0A1 → A1B1`; the alternative is `A0B0 → B0B1`. The runner verifies the observed route ID and both road edges before saving noisy GPS observations. It writes alternative-route truth separately to `data/attacks/route_deviation_truth.csv`; observations and labels go to `data/attacks/`, with separate summary and figures. The label marks the scenario for evaluation; it is not included in GPS observations. Route deviation represents an actual alternate SUMO path, not a forged location presented to a navigation controller.
 
-M3 limits: these deterministic coordinate changes and the alternate-route trip are controlled simulation scenarios, not claims about real adversaries, GNSS receivers, or deployed navigation systems. The route scenario changes the actual simulated path; this implementation does not model an attacker changing route selection from a false location. There is no detector yet. Any future detector must consume only inference-time observation streams and must not read truth, labels, attack parameters, or post-hoc errors.
+M3 limits: these deterministic coordinate changes and the alternate-route trip are controlled simulation scenarios, not claims about real adversaries, GNSS receivers, or deployed navigation systems. The route scenario changes the actual simulated path; this implementation does not model an attacker changing route selection from a false location. Any future detector must consume only inference-time observation streams and must not read truth, labels, attack parameters, or post-hoc errors.
 
 Run only the M3 tests or the complete suite with:
 
@@ -102,4 +102,52 @@ Open the generated figures in Windows PowerShell:
 Get-ChildItem .\results\figures\gps_*_trajectory.png, .\results\figures\gps_*_error_distribution.png, .\results\figures\route_deviation_*.png | ForEach-Object { Start-Process $_.FullName }
 ```
 
-M4 is next. No sensor fusion, machine-learning detector, or energy-aware routing has been added.
+## M4: sensor observations, map matching, and fusion
+
+M4 adds noisy synthetic speed, heading, and acceleration records, a geometry-based directed-road matcher, a GPS-corrected constant-velocity Kalman baseline, and offline evaluation for normal, offset, jump, drift, and alternate-route GPS. It does not use attack labels or truth in estimation. The motion streams are simulated from SUMO outputs with explicit noise; they are not real sensors. The road matcher is a greedy candidate/transition score, not an HMM. The fusion filter initializes position from the first GPS observation, so it inherits that position's error and may be pulled by spoofed GPS. Full assumptions are in [docs/M4_DESIGN.md](docs/M4_DESIGN.md).
+
+From the project directory in PowerShell, run the full M4 pipeline:
+
+```powershell
+python src/experiments/run_m4.py --stage all --scenario all
+```
+
+Individual stages can be rerun independently after their prerequisites exist:
+
+```powershell
+python src/experiments/run_m4.py --stage motion --scenario all
+python src/experiments/run_m4.py --stage map-match --scenario all
+python src/experiments/run_m4.py --stage fusion --scenario all
+python src/experiments/run_m4.py --stage evaluate --scenario all
+```
+
+For one scenario, replace `all` with `normal`, `offset`, `jump`, `drift`, or `route_deviation`. Motion observations are written to `data/m4/sensors/`; map and fused estimates to `data/m4/estimates/`; metrics to `results/tables/m4_metrics.json`; trajectory and error plots to `results/figures/m4_*.png`. Evaluation uses ground truth only after estimates are produced. M4 metrics describe these short synthetic trips and do not establish real-world accuracy.
+
+On the configured seed-42 trips (83 records for the main route and 81 for the alternate route), the recorded RMSEs in meters were:
+
+| Scenario | Raw GPS | Map matched | GPS + motion fusion |
+| --- | ---: | ---: | ---: |
+| Normal | 3.882 | 2.779 | 2.223 |
+| Offset | 23.846 | 22.902 | 20.797 |
+| Jump | 16.008 | 17.191 | 13.441 |
+| Drift | 20.159 | 19.110 | 15.994 |
+| Route deviation | 3.860 | 2.755 | 1.888 |
+
+Each row compares methods on the same records with valid map matches; the report also includes total records and unmatched counts. These are descriptive results from one synthetic trip per scenario, not general performance claims. The map matcher had 80/83 valid matches for the jump case; on those same 80 records its RMSE (17.191 m) exceeded raw GPS (16.008 m), and its worst matched error (111.911 m) exceeded the raw-GPS maximum on those records (100.336 m). Map matching can make estimates worse.
+
+The implemented pipeline and full existing suite were run on 2026-10-29: all 25 tests passed. The integration test verified that the full pipeline leaves every M0-M3 CSV byte-for-byte unchanged.
+
+The M4 tests and full suite:
+
+```powershell
+python -m unittest discover -s tests -p "test_m4.py" -v
+python -m unittest discover -s tests -v
+```
+
+Open M4 figures in Windows PowerShell:
+
+```powershell
+Get-ChildItem .\results\figures\m4_*.png | ForEach-Object { Start-Process $_.FullName }
+```
+
+M5 detection and M6 GPS-dependent eco-routing remain unimplemented.

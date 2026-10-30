@@ -1,7 +1,6 @@
 {
-  "truth_used_to_generate_synthetic_observations": True,
-"truth_used_for_offline_error_evaluation": True,
-"truth_available_to_operational_detector": False,
+  "evaluation_only": true,
+  "ground_truth_used_only_for_offline_evaluation": true,
   "count": 83,
   "gps_seed": 123,
   "noise_model": "independent_gaussian_xy",

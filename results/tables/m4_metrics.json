@@ -1,0 +1,161 @@
+{
+  "evaluation_only": true,
+  "ground_truth_used_only_for_evaluation": true,
+  "scenarios": {
+    "normal": {
+      "comparison_record_count": 83,
+      "input_record_count": 83,
+      "unmatched_record_count": 0,
+      "raw_gps": {
+        "valid_records": 83,
+        "mean_error_m": 3.3698361415176135,
+        "median_error_m": 3.023587806398052,
+        "p95_error_m": 6.601107034132809,
+        "rmse_m": 3.88200708867394,
+        "maximum_error_m": 8.71879731757697
+      },
+      "map_matched": {
+        "valid_records": 83,
+        "mean_error_m": 2.157010226020404,
+        "median_error_m": 1.5349228784902493,
+        "p95_error_m": 6.004518089934891,
+        "rmse_m": 2.7794005060218048,
+        "maximum_error_m": 7.186648749668876,
+        "map_match_success_rate": 1.0,
+        "unmatched_percentage": 0.0
+      },
+      "sensor_fused": {
+        "valid_records": 83,
+        "mean_error_m": 1.7816235145242898,
+        "median_error_m": 1.3368773829057823,
+        "p95_error_m": 4.910219190770284,
+        "rmse_m": 2.2228375994621774,
+        "maximum_error_m": 5.398111351109536
+      }
+    },
+    "offset": {
+      "comparison_record_count": 82,
+      "input_record_count": 83,
+      "unmatched_record_count": 1,
+      "raw_gps": {
+        "valid_records": 82,
+        "mean_error_m": 13.943172487389358,
+        "median_error_m": 3.8180516800457562,
+        "p95_error_m": 50.58314823849787,
+        "rmse_m": 23.845710475155197,
+        "maximum_error_m": 52.576952212122166
+      },
+      "map_matched": {
+        "valid_records": 82,
+        "mean_error_m": 12.586208116355975,
+        "median_error_m": 2.742510332338176,
+        "p95_error_m": 50.54128004605951,
+        "rmse_m": 22.901919370750495,
+        "maximum_error_m": 52.55403323296406,
+        "map_match_success_rate": 0.9879518072289156,
+        "unmatched_percentage": 1.2048192771084338
+      },
+      "sensor_fused": {
+        "valid_records": 82,
+        "mean_error_m": 13.45465880953945,
+        "median_error_m": 5.072017881446998,
+        "p95_error_m": 45.14058692769791,
+        "rmse_m": 20.796974744619163,
+        "maximum_error_m": 46.78707551373615
+      }
+    },
+    "jump": {
+      "comparison_record_count": 80,
+      "input_record_count": 83,
+      "unmatched_record_count": 3,
+      "raw_gps": {
+        "valid_records": 80,
+        "mean_error_m": 5.807418914182967,
+        "median_error_m": 3.227546099170773,
+        "p95_error_m": 7.737303446492003,
+        "rmse_m": 16.008391034276887,
+        "maximum_error_m": 100.33570306220062
+      },
+      "map_matched": {
+        "valid_records": 80,
+        "mean_error_m": 4.868395146468839,
+        "median_error_m": 1.7608958888551172,
+        "p95_error_m": 6.1128795234508,
+        "rmse_m": 17.190711998776894,
+        "maximum_error_m": 111.91087413361652,
+        "map_match_success_rate": 0.963855421686747,
+        "unmatched_percentage": 3.6144578313253013
+      },
+      "sensor_fused": {
+        "valid_records": 80,
+        "mean_error_m": 6.69723199719666,
+        "median_error_m": 1.9432803801739715,
+        "p95_error_m": 33.92873404637234,
+        "rmse_m": 13.441382969583886,
+        "maximum_error_m": 54.86736671364246
+      }
+    },
+    "drift": {
+      "comparison_record_count": 80,
+      "input_record_count": 83,
+      "unmatched_record_count": 3,
+      "raw_gps": {
+        "valid_records": 80,
+        "mean_error_m": 11.998547163173171,
+        "median_error_m": 4.420014184068512,
+        "p95_error_m": 51.052582419534836,
+        "rmse_m": 20.15927995494025,
+        "maximum_error_m": 60.16975456252528
+      },
+      "map_matched": {
+        "valid_records": 80,
+        "mean_error_m": 9.174317374330743,
+        "median_error_m": 2.281040285885119,
+        "p95_error_m": 50.813351250331124,
+        "rmse_m": 19.110176278882474,
+        "maximum_error_m": 60.13457307340501,
+        "map_match_success_rate": 0.963855421686747,
+        "unmatched_percentage": 3.6144578313253013
+      },
+      "sensor_fused": {
+        "valid_records": 80,
+        "mean_error_m": 9.859754214457919,
+        "median_error_m": 2.2042920686142398,
+        "p95_error_m": 35.96196665561201,
+        "rmse_m": 15.994361122367367,
+        "maximum_error_m": 41.089272945437685
+      }
+    },
+    "route_deviation": {
+      "comparison_record_count": 81,
+      "input_record_count": 81,
+      "unmatched_record_count": 0,
+      "raw_gps": {
+        "valid_records": 81,
+        "mean_error_m": 3.3396405406784044,
+        "median_error_m": 3.0232515925928944,
+        "p95_error_m": 6.601107034132815,
+        "rmse_m": 3.86040475374077,
+        "maximum_error_m": 8.718797317576955
+      },
+      "map_matched": {
+        "valid_records": 81,
+        "mean_error_m": 2.124680571388951,
+        "median_error_m": 1.692338935172863,
+        "p95_error_m": 4.936548026087706,
+        "rmse_m": 2.754828848572408,
+        "maximum_error_m": 8.988100248289399,
+        "map_match_success_rate": 1.0,
+        "unmatched_percentage": 0.0
+      },
+      "sensor_fused": {
+        "valid_records": 81,
+        "mean_error_m": 1.5376798305283648,
+        "median_error_m": 1.3039545602629181,
+        "p95_error_m": 4.166302082377046,
+        "rmse_m": 1.888203816890389,
+        "maximum_error_m": 4.898335757417707
+      }
+    }
+  }
+}
