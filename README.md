@@ -64,6 +64,25 @@ python src/simulation/demo_m0_m1.py --gui --keep-open
 
 The plots use the installed Matplotlib dependency (verified version 3.11.2); no dashboard or data-frame package is needed. The workflow produces an X/Y trajectory, speed/time plot, and battery charge/SOC plot when those values are available.
 
+## Local M0/M1 research dashboard
+
+An optional, separate Streamlit dashboard inspects existing files under `data/raw/`. It is read-only: it does not call SUMO or change telemetry CSVs. Install its dependencies separately from the simulation environment requirements:
+
+```powershell
+python -m pip install -r requirements-dashboard.txt
+```
+
+Start it from the repository root:
+
+```powershell
+python -m streamlit run src/dashboard/app.py
+```
+
+Streamlit prints its local URL (normally `http://localhost:8501`). Use **Refresh file list** in the sidebar after a new simulation run, then choose a CSV. The dashboard displays record count, sampled duration, speed range/mean, initial/final battery charge and SOC, separate cumulative consumed and regenerated energy, and interactive trajectory, speed, acceleration, SOC, charge, and energy charts where their source columns are present. The raw table is shown below. Missing optional fields remain unavailable; malformed and empty files produce an error message. Time is seconds, X/Y positions meters in SUMO road coordinates, speed m/s, acceleration m/s², heading degrees, energy/charge Wh, and SOC a fraction. The reported duration is the observed time span, not the total SUMO run duration; no road distance is inferred from coordinate displacement.
+
+Dashboard tests (which do not require Streamlit) run with the existing test command `python -m unittest discover -s tests -v`.
+In the verified Python 3.14.6 environment, dashboard versions were Streamlit 1.66.1, Plotly 6.9.0, and pandas 3.0.6; Streamlit AppTest rendered the page without app exceptions and the local server smoke check returned HTTP 200.
+
 ## Research stages
 
 Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. The first objective is a runnable EV in SUMO; GPS noise and attacks are later milestones.

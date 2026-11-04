@@ -2,6 +2,12 @@
 
 **Current milestone:** M1 complete; M2 is next and remains unstarted.
 
+## Local M0/M1 research dashboard
+- [x] Add isolated read-only CSV discovery/loading, summary metrics, optional-field handling, interactive chart entry point, and refresh control.
+- [x] Add tests for loading, file discovery, empty/malformed files, optional missing columns, metric correctness, and source CSV immutability.
+- [x] Document separate dashboard dependencies, units, and the local launch command.
+- [x] Verify Streamlit server startup and local URL with the installed dashboard dependencies.
+
 ## M0/M1 demonstration workflow
 - [x] Add one documented command to run the existing simulation, summarize its new CSV, and save trajectory, speed, and available battery/SOC plots.
 - [x] Add opt-in `--keep-open` for SUMO-GUI while preserving the default close-on-completion behavior.
@@ -27,6 +33,7 @@
 | 2026-11-03 | M0 | Added one-edge 1,000 m SUMO road, fixed-seed config, Python/TraCI runner and EV route | SUMO 1.28.0 completed ev_001 in 80 steps; integration smoke test passed | pytest absent (unittest used); Git metadata absent |
 | 2026-11-04 | M1 | Enabled battery device and explicit 25,000 Wh initial charge; added per-step truth CSV, per-run metadata/config snapshots, and schema/type/spacing/reproducibility integration test; made GUI mode auto-start | Simulation completed 80 steps and wrote 79 active-state rows; unittest passed; timestamped CSV inspected | SUMO removes vehicle at arrival before TraCI can read its arrival-step state; automated session has no visible GUI window |
 | 2026-11-04 | M0/M1 demo | Added one-command demo runner, CSV-backed summary, three CSV-stem-named plots, opt-in GUI keep-open flag, and overwrite protection | Headless demo produced summary and 3 PNGs; 5 unittest cases passed, including independent recomputation from CSV rows | Visible GUI cannot be inspected in this automation desktop; `--gui --keep-open` command is documented for interactive PowerShell |
+| 2026-11-04 | M0/M1 dashboard | Added separate Streamlit/Plotly read-only dashboard and optional dashboard requirements | Dashboard tests passed; Streamlit AppTest rendered with no exceptions; local HTTP startup returned 200; full suite passed | None observed; dashboard dependency install is separate from simulation requirements |
 
 ## M0 verification (2026-11-03)
 - Environment: Windows; Python 3.14.6; SUMO, sumo-gui, netgenerate, and netconvert 1.28.0; TraCI 1.28.0; PyYAML 6.0.3. SUMO_HOME resolves to `C:\Program Files (x86)\SUMO`.
@@ -55,6 +62,12 @@
 - `python src/simulation/demo_m0_m1.py` passed headlessly. CSV: `data/raw/truth_ev_001_20261104T071429.981247Z.csv`; 79 rows, sampled 1.0 to 79.0 s. Summary from the CSV: sampled duration 78.0 s; speed min/mean/max 12.180/12.724/13.172 m/s; sampled X/Y distance 992.036 m; battery charge 25,000.00 to 24,920.76 Wh (50,000 Wh capacity); SUMO cumulative consumed/regenerated 131.17/51.93 Wh; SOC 50.00% to 49.84%. Tests independently recomputed these summary calculations from the CSV.
 - Generated three non-overwriting plots under `results/figures/m0_m1/`: trajectory X/Y, speed/time, and battery charge/SOC/time. Existing CSV, metadata, config snapshots, and plot paths are protected against overwrite.
 - Matplotlib 3.11.2 was already installed; no new dependency was installed. A visible GUI launch was attempted, but this environment returned zero main-window handles for both Python and SUMO-GUI. The processes were stopped. M0/M1 GUI use is documented for an interactive desktop; no new research milestone was started.
+
+## Local dashboard verification (2026-11-04)
+- Dashboard dependencies are isolated in `requirements-dashboard.txt`; environment verified Streamlit 1.66.1, Plotly 6.9.0, and pandas 3.0.6. SUMO/simulation requirements were not changed.
+- `python -m unittest tests.test_dashboard -v` passed dashboard CSV discovery/loading, empty/malformed inputs, missing optional values, correct metric calculations, chronological initial/final calculations, and source-file immutability checks.
+- `python -m streamlit run src/dashboard/app.py --server.headless true --server.port 8765` was launched as a local startup smoke check and returned HTTP 200 at `http://127.0.0.1:8765`; Streamlit AppTest rendered the full page and reported no app exceptions. The smoke-test server was then stopped.
+- `python -m unittest discover -s tests -v` passed all 10 existing and dashboard tests. The dashboard only reads `data/raw/*.csv`; existing simulation and telemetry generation code was not changed, and M2 remains unstarted.
 
 ## Rules
 Move only to the next incomplete milestone. Keep this file current after every agent session and mark anything not tested as unverified.
