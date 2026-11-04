@@ -6,5 +6,5 @@ simulation:
   vehicle_id: ev_001
   network_file: ../sumo/network/m0.net.xml
   route_file: ../sumo/routes/m0.rou.xml
-  output_dir: ../results/m0
+  telemetry_output_dir: ../data/raw
   depart_s: 0
