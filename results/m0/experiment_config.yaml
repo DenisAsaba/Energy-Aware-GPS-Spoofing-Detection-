@@ -1,0 +1,10 @@
+simulation:
+  seed: 42
+  step_length_s: 1.0
+  begin_s: 0
+  end_s: 600
+  vehicle_id: ev_001
+  network_file: ../sumo/network/m0.net.xml
+  route_file: ../sumo/routes/m0.rou.xml
+  output_dir: ../results/m0
+  depart_s: 0

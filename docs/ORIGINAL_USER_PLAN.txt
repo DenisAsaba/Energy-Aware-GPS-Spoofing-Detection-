@@ -1,0 +1,833 @@
+5. Phase 2 — Build your "truth" dataset
+This is one of the most important parts of the entire project.
+
+Before creating fake GPS, you need to know where the vehicle actually is.
+
+SUMO gives you the ground truth.
+
+For every timestep, save something like:
+
+Time	True X	True Y	Speed	Accel	Heading	Road
+0	...	...	0	0	...	R1
+1	...	...	5	1.2	...	R1
+2	...	...	8	0.8	...	R1
+Then add your EV information.
+
+Eventually:
+
+truth.csv
+might look like:
+
+time,vehicle_id,x,y,speed,acceleration,heading,road_id,energy,soc
+Do not introduce attacks yet.
+First prove:
+
+"I can reproduce a normal EV trip and collect all the measurements I need."
+
+6. Phase 3 — Create your GPS simulator
+Now you deliberately make GPS imperfect.
+
+Real GPS isn't perfectly identical to ground truth.
+
+So create a normal GPS model first.
+
+For example:
+
+True position
+     ↓
+GPS noise model
+     ↓
+Normal GPS measurement
+You might introduce small random errors.
+
+Conceptually:
+
+gps_x = true_x + random_noise
+gps_y = true_y + random_noise
+Don't make the normal GPS error unrealistically tiny.
+
+The detector needs to distinguish:
+
+normal GPS noise
+        vs.
+actual spoofing
+This distinction becomes extremely important later.
+
+7. Phase 4 — Implement the four attacks
+Now create your spoofing module.
+
+I recommend making one Python file responsible for attacks.
+
+Something conceptually like:
+
+spoofing.py
+
+position_offset()
+sudden_jump()
+gradual_drift()
+route_deviation()
+You don't need sophisticated attack code initially.
+
+Attack 1 — Position offset
+Suppose the true position is:
+
+(30.4515, -91.1871)
+Your simulated GPS could report:
+
+(30.4580, -91.1750)
+The vehicle hasn't actually moved there.
+
+Attack 2 — Sudden jump
+Normal:
+
+t1 → location A
+t2 → location B
+t3 → location C
+Attack:
+
+t1 → A
+t2 → B
+t3 → 2 km away
+t4 → 2 km away
+This should be relatively easy for your detector.
+
+That's okay.
+
+It becomes your easy attack baseline.
+
+8. Attack 3 — Gradual drift
+This is one of your most important experiments.
+
+Instead of:
+
+0 m
+500 m
+you do something like:
+
+0 m
+5 m
+10 m
+15 m
+20 m
+...
+The spoofed location slowly diverges from reality.
+
+This creates a much more interesting question:
+
+Can the multi-sensor system detect a GPS attack that individually looks reasonable at each timestep?
+
+This is likely one of the strongest experiments in your thesis.
+
+9. Attack 4 — Route deviation
+This one requires more work.
+
+The attacker should make GPS suggest that the vehicle is on or approaching another legitimate road.
+
+For example:
+
+             Road B
+            /
+True EV ───A
+            \
+             Road C
+The actual EV takes Road B.
+
+The spoofed GPS makes the navigation system believe it is approaching Road C.
+
+This is much more interesting than simply placing the vehicle in an impossible field.
+
+Why?
+
+Because:
+
+A sophisticated attacker can generate GPS coordinates that are individually map-valid.
+
+Your detector therefore needs temporal and physical consistency, not merely:
+
+"Is the GPS point on a road?"
+
+10. Phase 5 — Build the sensor-fusion system
+This is the heart of your project.
+
+You have:
+
+GPS
+Where does GPS say I am?
+Vehicle motion
+Given my previous position, speed, acceleration and heading,
+where should I be now?
+Map
+Can I physically be on this road?
+Energy
+Does the vehicle's observed behavior make sense
+for the claimed route/movement?
+11. Start with a simple motion predictor
+Before using a Kalman Filter, implement the simplest possible prediction model.
+
+For example:
+
+previous position
+      +
+speed × time
+      +
+heading
+      ↓
+predicted position
+Then calculate:
+
+GPS position
+       vs.
+predicted position
+Call this something like:
+
+position_residual
+If the difference becomes unusually large:
+
+GPS ───────────────► X
+                      \
+                       large disagreement
+                      /
+Motion prediction ───► X
+you have evidence of spoofing.
+
+12. Then implement the Kalman Filter
+Once the simple predictor works, replace/improve it with a Kalman Filter.
+
+Conceptually:
+
+                ┌─────────────┐
+GPS ───────────►│             │
+                │   Kalman    │──► Estimated position
+Motion ────────►│   Filter    │
+                │             │
+                └─────────────┘
+The filter predicts where the vehicle should be and updates that estimate using measurements.
+
+You don't need to begin with an extremely complicated vehicle model.
+
+A simple state might contain:
+
+x
+y
+vx
+vy
+and later perhaps:
+
+ax
+ay
+The important thing is to understand what the filter is doing rather than simply importing a library and claiming "sensor fusion."
+
+13. Phase 6 — Map matching
+Now add the road network.
+
+For every GPS measurement, ask:
+
+Question 1
+Is the reported location close to a valid road?
+
+Question 2
+Which road does it correspond to?
+
+Question 3
+Could the vehicle realistically have moved from the previous road to this road?
+
+Question 4
+Does the reported heading agree with the road direction?
+
+Question 5
+Is the reported movement physically plausible?
+
+This gives you additional features.
+
+For example:
+
+distance_to_road
+road_id
+road_transition_valid
+heading_difference
+route_deviation
+14. Phase 7 — Create your detection features
+Now you have enough information to construct your cybersecurity dataset.
+
+For each timestep, calculate features such as:
+
+gps_position_error
+predicted_position_error
+speed_difference
+heading_difference
+distance_to_road
+road_transition_error
+route_deviation
+acceleration_difference
+position_jump
+position_drift
+And potentially:
+
+energy_rate
+energy_deviation
+SOC_change_rate
+Your data might eventually look like:
+
+Feature	Meaning
+gps_position_error	Difference between GPS and expected position
+speed_difference	GPS-derived vs vehicle speed
+heading_difference	GPS movement vs vehicle heading
+distance_to_road	Distance from reported position to road
+road_transition_error	Whether movement between roads is plausible
+prediction_residual	Kalman prediction vs GPS
+route_deviation	Difference from expected route
+energy_rate	Energy consumed per unit time/distance
+Then:
+
+features
+   ↓
+detector
+   ↓
+normal / spoofed
+15. Phase 8 — Build three detectors
+This is where machine learning comes in.
+
+Don't build XGBoost first.
+
+Build them in this order.
+
+Detector 1 — Threshold baseline
+For example:
+
+IF prediction_residual > threshold
+THEN spoofed
+or:
+
+IF heading_difference > threshold
+THEN suspicious
+This gives you a baseline.
+
+You can later demonstrate:
+
+"A simple detector performs well against sudden jumps but poorly against gradual drift."
+
+That's a useful scientific result.
+
+16. Detector 2 — Isolation Forest
+Isolation Forest is useful because it can identify unusual behavior without requiring every attack type to be explicitly represented during training.
+
+Conceptually:
+
+Normal driving
+     ↓
+learn normal behavior
+     ↓
+new observation
+     ↓
+unusual?
+     ↓
+possible spoofing
+This gives you your unsupervised/semi-unsupervised comparison.
+
+17. Detector 3 — Random Forest or XGBoost
+For the first complete version, I recommend:
+
+Random Forest first.
+
+Why?
+
+It's relatively easy to implement and explain.
+
+You can later add XGBoost if you have time.
+
+Train it using:
+
+Normal samples → label 0
+Spoofed samples → label 1
+Then evaluate on different trips/routes, not merely randomly shuffled samples from the exact same trip.
+
+That distinction is extremely important.
+
+18. Your ablation experiment
+This is one of the most important experiments in your project.
+
+You should compare:
+
+Experiment A
+GPS only
+Experiment B
+GPS + vehicle motion
+Experiment C
+GPS + map
+Experiment D
+GPS + motion + map
+Experiment E
+GPS + motion + map + energy
+Then create a table:
+
+System	Precision	Recall	F1	False Positive	Latency
+GPS only					
+GPS + motion					
+GPS + map					
+GPS + motion + map					
+Full system					
+This demonstrates whether your "multi-sensor fusion" actually contributes something.
+
+19. Phase 9 — Build the energy experiment
+This is what separates your project from an ordinary GPS-spoofing project.
+
+You need three major scenarios.
+
+Scenario 1 — Normal
+Normal GPS
+     ↓
+Eco-routing
+     ↓
+Route
+     ↓
+Energy consumption
+Record:
+
+distance
+time
+energy
+SOC
+range
+Scenario 2 — Attack without detection
+Spoofed GPS
+     ↓
+Eco-routing believes it
+     ↓
+Bad route
+     ↓
+Additional energy
+Record the same measurements.
+
+This gives you:
+
+Energy_attack
+Scenario 3 — Attack + detector
+Spoofed GPS
+     ↓
+Detector
+     ↓
+Attack detected
+     ↓
+Safe routing response
+     ↓
+Energy consumption
+Now compare:
+
+Normal energy
+Attack energy
+Attack + detection energy
+20. The key equation
+You want to quantify the damage.
+
+For example:
+
+and:
+
+You can also calculate estimated range loss.
+
+The most compelling result would look conceptually like:
+
+                         Energy
+Normal                   ██████████
+Spoofed/no detection     ██████████████
+Spoofed/detected         ███████████
+You don't need these exact results; your experiments determine what actually happens.
+
+21. Very important: define what "energy" means
+This is something I would clarify before you get too deep into SUMO.
+
+Your project says "energy consumption," but you need a reproducible definition.
+
+You could use SUMO's EV/battery-related outputs if appropriate, or construct an energy model based on:
+
+vehicle mass
+speed
+acceleration
+road grade
+rolling resistance
+aerodynamic drag
+regenerative braking
+auxiliary consumption
+For the first implementation, keep this simple.
+
+A simplified model is acceptable if you clearly document its assumptions.
+
+Your thesis should say exactly how:
+
+is calculated.
+
+22. Phase 10 — Design the routing attack carefully
+This is another critical issue.
+
+Simply moving the GPS location does not automatically mean the EV will consume more energy.
+
+Your simulation needs a causal mechanism:
+
+GPS spoofing
+      ↓
+navigation believes location is different
+      ↓
+routing algorithm chooses different route
+      ↓
+route has different energy characteristics
+      ↓
+EV consumes more energy
+Therefore, you need a SUMO road network with multiple possible routes.
+
+Ideally, construct scenarios such as:
+
+Route A
+Shorter / lower energy:
+
+10 km
+low congestion
+Route B
+Longer / higher energy:
+
+14 km
+more congestion
+Then your spoofing scenario needs to influence the routing decision.
+
+This is probably the hardest conceptual part of the project.
+
+23. Don't assume spoofing automatically changes routing
+This deserves emphasis.
+
+Your research hypothesis is not:
+
+"GPS spoofing causes energy loss."
+
+It is closer to:
+
+"Under an eco-routing system that depends on GPS-derived localization, certain GPS spoofing attacks can manipulate route selection and thereby increase EV energy consumption."
+
+You need to experimentally demonstrate the intermediate steps.
+
+24. Your final experiment matrix
+I would structure your experiments approximately like this:
+
+Attack	Low	Medium	High
+No attack	✓	✓	✓
+Offset	✓	✓	✓
+Jump	✓	✓	✓
+Drift	✓	✓	✓
+Route deviation	✓	✓	✓
+Where "Low/Medium/High" represents attack intensity.
+
+For example, drift might have different rates.
+
+Do not invent arbitrary thresholds without documenting why you selected them.
+
+25. Your train/test strategy
+This is another place where projects can accidentally produce misleadingly high accuracy.
+
+Do not simply generate 10,000 points from one trip, randomly split them, and report 99% accuracy.
+
+Adjacent points from the same trip are highly correlated.
+
+Instead:
+
+Trips 1–N
+    ↓
+Training
+
+Different trips/routes
+    ↓
+Testing
+Even better:
+
+Train:
+Route A, B
+
+Test:
+Route C
+and perhaps:
+
+Train:
+attack intensity 1–2
+
+Test:
+attack intensity 3
+This helps demonstrate generalization.
+
+26. Your week-by-week plan
+The proposal's 14-week plan is good. I'd turn it into actual tasks.
+
+Weeks 1–2
+You must accomplish:
+Install Python
+Install VS Code
+Install SUMO
+Create virtual environment
+Install basic packages
+Learn SUMO basics
+Run first simulation
+Connect Python to SUMO with TraCI
+Deliverable
+A Python script that launches SUMO and controls/observes one vehicle.
+
+Weeks 3–4
+Build:
+
+EV
+road network
+routes
+traffic
+data logger
+ground-truth dataset
+Collect:
+
+position
+speed
+acceleration
+heading
+road
+route
+energy/SOC
+Deliverable
+One clean normal EV dataset.
+
+Weeks 5–6
+Build:
+
+GPS noise
+position offset
+sudden jump
+gradual drift
+route deviation
+Deliverable
+You should be able to run:
+
+python simulate_attack.py --attack drift
+and generate an attacked trajectory.
+
+Weeks 7–8
+Build:
+
+motion prediction
+Kalman Filter
+residual calculation
+sensor-fusion pipeline
+Deliverable
+A graph showing something like:
+
+True position
+GPS position
+Fused/predicted position
+and an obvious residual during an attack.
+
+Week 9
+Build:
+
+road matching
+nearest road calculation
+heading consistency
+road transition checks
+route deviation features
+Deliverable
+A feature dataset ready for ML.
+
+Weeks 10–11
+Build:
+
+Threshold detector
+Isolation Forest
+Random Forest
+Optional XGBoost
+Deliverable
+Performance table:
+
+Model        Precision Recall F1 FPR Latency
+Threshold
+Isolation
+RandomForest
+XGBoost
+Week 12
+Run the energy experiments.
+
+Compare:
+
+Normal
+Attack/no detection
+Attack/detection
+Measure:
+
+distance
+energy
+SOC
+range
+Then run your ablation study.
+
+Weeks 13–14
+Finish:
+
+plots
+statistical analysis
+tables
+paper
+presentation
+code cleanup
+README
+reproducibility instructions
+27. What your project folder should eventually look like
+I'd strongly recommend organizing the project from the beginning:
+
+energy-aware-gps-spoofing/
+│
+├── README.md
+├── requirements.txt
+│
+├── config/
+│   └── experiment_config.yaml
+│
+├── sumo/
+│   ├── network/
+│   ├── routes/
+│   ├── vehicles/
+│   └── simulation/
+│
+├── src/
+│   ├── simulation/
+│   │   └── run_sumo.py
+│   │
+│   ├── sensors/
+│   │   ├── gps.py
+│   │   └── motion.py
+│   │
+│   ├── attacks/
+│   │   └── spoofing.py
+│   │
+│   ├── fusion/
+│   │   └── kalman_filter.py
+│   │
+│   ├── mapping/
+│   │   └── map_matching.py
+│   │
+│   ├── features/
+│   │   └── feature_extraction.py
+│   │
+│   ├── detection/
+│   │   ├── threshold.py
+│   │   ├── isolation_forest.py
+│   │   └── random_forest.py
+│   │
+│   ├── routing/
+│   │   └── eco_routing.py
+│   │
+│   └── energy/
+│       └── energy_model.py
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── attacks/
+│
+├── experiments/
+│   ├── attack_experiments/
+│   ├── detector_experiments/
+│   └── energy_experiments/
+│
+├── results/
+│   ├── figures/
+│   ├── tables/
+│   └── metrics/
+│
+└── paper/
+    ├── figures/
+    └── manuscript/
+This will save you a lot of pain later.
+
+28. What you should NOT do yet
+For now, avoid:
+
+❌ Deep learning
+❌ LSTM
+❌ CNN
+❌ Transformers
+❌ Complex reinforcement learning
+❌ Huge public GPS datasets
+❌ Real vehicle hardware
+❌ Real GPS spoofing equipment
+❌ Complicated sensor models
+
+Your first goal is simply:
+
+SUMO → EV → TraCI → ground truth → GPS
+
+Once that works, we add the attack.
+
+29. What your first 5 milestones should be
+If you're starting today, don't think about the entire thesis.
+
+Think about these five milestones:
+
+Milestone 1
+SUMO runs an EV.
+
+↓
+
+Milestone 2
+Python/TraCI retrieves the EV's position, speed, acceleration, heading and energy information.
+
+↓
+
+Milestone 3
+The information is saved to CSV.
+
+↓
+
+Milestone 4
+You generate realistic noisy GPS from the ground truth.
+
+↓
+
+Milestone 5
+You can plot true GPS vs simulated GPS.
+
+Only after Milestone 5 should you start implementing spoofing.
+
+30. What you personally need to produce
+If you're the student doing this project, your responsibilities can be summarized as:
+
+Research
+Read GPS spoofing literature
+Read EV eco-routing literature
+Read sensor-fusion literature
+Read cyber-physical attack literature
+Identify the research gap
+Define your threat model
+Define research questions
+Engineering
+Build SUMO environment
+Build EV simulation
+Connect TraCI
+Generate datasets
+Build GPS simulator
+Implement attacks
+Implement sensor fusion
+Implement map matching
+Implement detectors
+Implement energy analysis
+Experimentation
+Run normal scenarios
+Run attack scenarios
+Run multiple attack intensities
+Run different routes
+Run different traffic conditions
+Run ablation experiments
+Run train/test experiments
+Measure detection and energy metrics
+Scientific analysis
+You then have to answer:
+
+Did it work?
+
+and, more importantly:
+
+Why did it work or fail?
+
+For example:
+
+Sudden-jump attacks were detected rapidly because their position residuals were large, whereas gradual-drift attacks produced smaller instantaneous residuals and therefore required temporal accumulation of evidence.
+
+That kind of analysis is what turns code into a graduate research project.

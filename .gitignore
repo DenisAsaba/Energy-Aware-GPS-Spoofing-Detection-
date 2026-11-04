@@ -1,0 +1,18 @@
+# Local environments, outputs and caches
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.vscode/*.log
+.DS_Store
+# Generated research artifacts (keep directory placeholders)
+data/raw/*
+data/processed/*
+data/attacks/*
+results/figures/*
+results/tables/*
+results/metrics/*
+!**/.gitkeep

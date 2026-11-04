@@ -1,0 +1,5 @@
+seed: 42
+vehicle_id: ev_001
+timesteps: 80
+trip_completed: true
+sumo_step_length_s: 1.0
