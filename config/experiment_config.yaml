@@ -8,3 +8,11 @@ simulation:
   route_file: ../sumo/routes/m0.rou.xml
   telemetry_output_dir: ../data/raw
   depart_s: 0
+gps_normal:
+  # Independent zero-mean Gaussian error on SUMO road X and Y (meters).
+  noise_std_m: 3.0
+  seed: 2026
+  input_dir: ../data/raw
+  input_file: null
+  output_dir: ../data/processed
+  evaluation_dir: ../reports/m2
