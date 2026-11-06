@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges>
+    <edge id="road_alt_0" from="west" to="north" numLanes="1" speed="13.89" />
+    <edge id="road_alt_1" from="north" to="east" numLanes="1" speed="13.89" />
+</edges>

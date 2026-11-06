@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-11-05T20:56:49.028029-06:00 by Eclipse SUMO netconvert 1.28.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\sumo\network\m3.nod.xml"/>
+        <edge-files value="C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\sumo\network\m3.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\sumo\network\m3.net.xml"/>
+    </output>
+
+</netconvertConfiguration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,0.00,1000.00,450.00" origBoundary="0.00,0.00,1000.00,450.00" projParameter="!"/>
+
+    <edge id=":north_0" function="internal">
+        <lane id=":north_0_0" index="0" speed="3.91" length="2.39" shape="498.93,446.88 499.46,447.25 500.00,447.37 500.54,447.25 501.07,446.88"/>
+    </edge>
+
+    <edge id="road_alt_0" from="west" to="north" priority="-1">
+        <lane id="road_alt_0_0" index="0" speed="13.89" length="669.80" shape="1.07,-1.19 498.93,446.88"/>
+    </edge>
+    <edge id="road_alt_1" from="north" to="east" priority="-1">
+        <lane id="road_alt_1_0" index="0" speed="13.89" length="669.80" shape="501.07,446.88 998.93,-1.19"/>
+    </edge>
+
+    <junction id="east" type="dead_end" x="1000.00" y="0.00" incLanes="road_alt_1_0" intLanes="" shape="997.86,-2.38 1000.00,0.00"/>
+    <junction id="north" type="priority" x="500.00" y="450.00" incLanes="road_alt_0_0" intLanes=":north_0_0" shape="502.14,448.07 500.00,445.69 497.86,448.07 499.29,448.93 500.00,449.04 500.71,448.93 501.43,448.61">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="west" type="dead_end" x="0.00" y="0.00" incLanes="" intLanes="" shape="0.00,0.00 2.14,-2.38"/>
+
+    <connection from="road_alt_0" to="road_alt_1" fromLane="0" toLane="0" via=":north_0_0" dir="r" state="M"/>
+
+    <connection from=":north_0" to="road_alt_1" fromLane="0" toLane="0" dir="r" state="M"/>
+
+</net>

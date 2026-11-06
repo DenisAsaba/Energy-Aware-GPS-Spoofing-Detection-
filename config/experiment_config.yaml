@@ -16,3 +16,32 @@ gps_normal:
   input_file: null
   output_dir: ../data/processed
   evaluation_dir: ../reports/m2
+m3:
+  # Attack intervals use [onset_s, onset_s + duration_s), in SUMO seconds.
+  attacks:
+    offset:
+      attack_id: offset_north_30m
+      onset_s: 20
+      duration_s: 30
+      magnitude_m: 30.0
+      direction_deg: 90.0
+    jump:
+      attack_id: jump_60m_45deg
+      onset_s: 35
+      duration_s: 5
+      magnitude_m: 60.0
+      direction_deg: 45.0
+    drift:
+      attack_id: drift_east_1mps
+      onset_s: 20
+      duration_s: 30
+      rate_mps: 1.0
+      direction_deg: 0.0
+      max_displacement_m: 25.0
+  attacks_output_dir: ../data/attacks
+  evaluation_dir: ../reports/m3
+  route_deviation:
+    config_file: m3_route_deviation.yaml
+    gps_seed_offset: 10000
+    route_id: route_alternative
+    edges: [road_alt_0, road_alt_1]
