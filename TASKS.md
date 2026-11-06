@@ -1,6 +1,6 @@
 # Live milestone tracker
 
-**Current milestone:** M4 complete; M5 has not been started.
+**Current milestone:** M5 complete; M6 has not been started.
 
 ## Local M0/M1 research dashboard
 - [x] Add isolated read-only CSV discovery/loading, summary metrics, optional-field handling, interactive chart entry point, and refresh control.
@@ -45,6 +45,13 @@
 - [x] Write per-observation predictions, per-scenario metrics, combined summary and requested visualizations to a new M4 run directory.
 - [x] Add M4 tests, document oracle status/results/limitations, and run the complete test suite.
 
+## M5 acceptance
+- [x] Implement causal GPS-only temporal features and deterministic configurable thresholds calibrated on a chronological normal M2 prefix.
+- [x] Evaluate held-out normal and M3 offset, jump, and drift separately; keep route deviation excluded and labels evaluation-only.
+- [x] Write per-fix predictions, scenario metrics, comparison with M4, run metadata, confusion matrices, and time-series/PRF plots to a fresh run directory.
+- [x] Add GPS-only feature, exclusion, threshold, reproducibility, metric, and no-leakage tests; run the full test suite.
+- [x] Document M5 method, actual metrics, comparison, commands, and limitations.
+
 ## Work log
 | Date | Milestone | Changes | Validation | Limitations |
 | --- | --- | --- | --- | --- |
@@ -54,6 +61,7 @@
 | 2026-11-04 | M0/M1 dashboard | Added separate Streamlit/Plotly read-only dashboard and optional dashboard requirements | Dashboard tests passed; Streamlit AppTest rendered with no exceptions; local HTTP startup returned 200; full suite passed | None observed; dashboard dependency install is separate from simulation requirements |
 
 | 2026-11-06 | M2-M4 | Confirmed existing M2/M3 inputs, added an oracle-assisted residual-threshold evaluator calibrated only on the M2 normal prefix, and wrote separate M4 prediction/metric/plot outputs | Final M4 runs produced byte-identical predictions, metrics, summaries and plots; 123 protected M0-M3 input/output files retained identical hashes; existing run ID was refused without changes; full suite passed all 36 tests | Single-trip data only; residual uses privileged truth and is not deployable. M5 not started |
+| 2026-11-06 | M5 | Added a GPS-only temporal speed/heading threshold detector; calibrates on normal M2 prefix and evaluates held-out normal plus M3 offset/jump/drift; added separate M5 predictions, metrics, M4 comparison, plots and method docs | `m5_final_01` and `m5_final_02` matched byte-for-byte across 15 non-metadata outputs; `python -m unittest discover -s tests -v` passed all 40 tests | Single 79-row trip, one attack intensity, short calibration/holdout; modest drift and offset recall; thresholds require broader trip/route validation |
 
 ## M0 verification (2026-11-03)
 - Environment: Windows; Python 3.14.6; SUMO, sumo-gui, netgenerate, and netconvert 1.28.0; TraCI 1.28.0; PyYAML 6.0.3. SUMO_HOME resolves to `C:\Program Files (x86)\SUMO`.

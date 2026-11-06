@@ -69,3 +69,24 @@ m4:
         truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
         gps_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z.csv
         labels_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z_labels.csv
+m5:
+  # GPS-only causal temporal rules; thresholds use the first chronological
+  # fraction of normal M2 GPS observations. Labels are evaluation-only.
+  calibration:
+    normal_quantile: 0.99
+    fraction: 0.5
+  output_dir: ../reports/m5
+  m4_reference_dir: ../reports/m4/m4_final_01
+  datasets:
+    normal:
+      gps_file: ../data/processed/gps_normal_ev_001_20261105T035334.847823Z.csv
+    attacks:
+      offset:
+        gps_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z_labels.csv
+      jump:
+        gps_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z_labels.csv
+      drift:
+        gps_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z_labels.csv

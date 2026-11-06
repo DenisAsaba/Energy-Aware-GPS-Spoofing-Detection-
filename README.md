@@ -85,7 +85,7 @@ In the verified Python 3.14.6 environment, dashboard versions were Streamlit 1.6
 
 ## Research stages
 
-Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M4 are implemented; later milestones remain gated by the task tracker.
+Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M5 are implemented; later milestones remain gated by the task tracker.
 
 ## Planned repository directories
 `config/`, `sumo/network/`, `sumo/routes/`, `sumo/vehicles/`, `sumo/simulation/`, `src/simulation/`, `src/sensors/`, `src/attacks/`, `src/fusion/`, `src/mapping/`, `src/features/`, `src/detection/`, `src/routing/`, `src/energy/`, `tests/`, `data/raw/`, `data/processed/`, `data/attacks/`, `experiments/`, `results/figures/`, `results/tables/`, `results/metrics/`, `paper/`.
@@ -94,7 +94,7 @@ Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TA
 The demo was run with Python 3.14.6, SUMO 1.28.0, TraCI 1.28.0, PyYAML 6.0.3, and Matplotlib 3.11.2 on Windows. Tests use `unittest`; `pytest` is optional and was not installed in the verified environment. Pandas and scikit-learn are not needed. Battery energy comes from the SUMO `Energy/unknown` EV model and battery device, not a physical vehicle.
 
 ## Status
-M0-M4 are complete for the documented simulation and offline research baseline. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals; it is not a deployable GPS-only detector. No routing controller or causal energy claim is part of M4. See `TASKS.md` and the M2/M3/M4 method documents for data provenance, results, and limitations.
+M0-M5 are complete for the documented simulation and offline research baseline. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals; it is not a deployable GPS-only detector. M5 is a separate temporal GPS-only baseline and also is not safety-certified. No routing controller or causal energy claim is implemented. See `TASKS.md` and the M2/M3/M4/M5 method documents for data provenance, results, and limitations.
 
 ## M4: GPS spoofing detection
 
@@ -119,3 +119,25 @@ python -m unittest discover -s tests -v
 The workflow writes prediction CSVs, per-scenario metrics, a combined summary,
 confusion matrices, attack-score comparison, and residual/label/prediction
 time series under `reports/m4/m4_run_01/`.
+
+## M5: GPS-only temporal detection
+
+M5 estimates speed, heading, speed changes, and heading changes from each
+vehicle's current and previous GPS positions. Independent upper quantiles are
+calibrated from the chronological first half of normal M2 GPS; a held-out
+normal suffix and each M3 offset, jump, and drift dataset are evaluated
+separately. Labels are read only after predictions for offline evaluation.
+Route deviation is excluded. See
+[M5 method, results and limitations](docs/M5_GPS_ONLY_DETECTION.md).
+
+Run with a fresh output ID:
+
+```powershell
+python -m src.detection.gps_only --config config/experiment_config.yaml --run-id m5_run_01
+python -m unittest discover -s tests -v
+```
+
+The verified `m5_final_01` run uses 99th-percentile thresholds of 23.4725 m/s
+GPS speed, 14.7584 m/s speed change, and 69.8849 degrees heading change.
+Offset, jump, and drift F1 were 0.308, 0.571, and 0.216 respectively. M5 is a
+single-trip research baseline, not a certified production safety detector.
