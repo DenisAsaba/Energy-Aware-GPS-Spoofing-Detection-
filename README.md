@@ -4,7 +4,7 @@ A staged, reproducible, simulation-only research project using Python, SUMO and 
 
 ## M0: run the first EV simulation
 
-M0 established a local 1,000 m, one-edge SUMO road and one passenger EV. SUMO road coordinates are metric x/y; there is no conversion to geographic longitude/latitude. The simulation step is 1 second, the random seed is 42, and the configured simulation end is 600 seconds. M1 now records vehicle ground truth and available battery values as described below. No GPS measurements or spoofing are implemented.
+M0 established a local 1,000 m, one-edge SUMO road and one passenger EV. SUMO road coordinates are metric x/y; there is no conversion to geographic longitude/latitude. The simulation step is 1 second, the random seed is 42, and the configured simulation end is 600 seconds. M1 records vehicle ground truth and available battery values as described below; M2/M3 GPS data and M4 offline evaluation are documented in their milestone sections and docs.
 
 Install Eclipse SUMO (including `sumo`, `sumo-gui`, `netgenerate`, and `netconvert`) and Python. The runner uses TraCI and PyYAML. With the SUMO installer as used on Windows, set and verify the paths in PowerShell:
 
@@ -85,7 +85,7 @@ In the verified Python 3.14.6 environment, dashboard versions were Streamlit 1.6
 
 ## Research stages
 
-Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. The first objective is a runnable EV in SUMO; GPS noise and attacks are later milestones.
+Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M4 are implemented; later milestones remain gated by the task tracker.
 
 ## Planned repository directories
 `config/`, `sumo/network/`, `sumo/routes/`, `sumo/vehicles/`, `sumo/simulation/`, `src/simulation/`, `src/sensors/`, `src/attacks/`, `src/fusion/`, `src/mapping/`, `src/features/`, `src/detection/`, `src/routing/`, `src/energy/`, `tests/`, `data/raw/`, `data/processed/`, `data/attacks/`, `experiments/`, `results/figures/`, `results/tables/`, `results/metrics/`, `paper/`.
@@ -94,4 +94,28 @@ Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TA
 The demo was run with Python 3.14.6, SUMO 1.28.0, TraCI 1.28.0, PyYAML 6.0.3, and Matplotlib 3.11.2 on Windows. Tests use `unittest`; `pytest` is optional and was not installed in the verified environment. Pandas and scikit-learn are not needed. Battery energy comes from the SUMO `Energy/unknown` EV model and battery device, not a physical vehicle.
 
 ## Status
-M0 and M1 complete: Python/TraCI runs the EV and writes reproducible per-step ground-truth telemetry to CSV. See `TASKS.md` for evidence. No GPS sensing, spoofing, sensor fusion, or machine learning has been implemented.
+M0-M4 are complete for the documented simulation and offline research baseline. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals; it is not a deployable GPS-only detector. No routing controller or causal energy claim is part of M4. See `TASKS.md` and the M2/M3/M4 method documents for data provenance, results, and limitations.
+
+## M4: GPS spoofing detection
+
+M4 applies an explainable position-residual threshold to the M2 normal baseline
+and the M3 offset, jump, and drift scenarios. It calibrates a fixed threshold
+from the configured quantile of normal-only M2 residuals, reserves the
+chronological M2 suffix for false-alarm evaluation, and evaluates each attack
+separately. Predictions are generated before labels are loaded for offline
+scoring; prediction CSVs do not include labels. Route deviation remains a
+separate physical-route scenario and is excluded. This baseline uses
+ground-truth coordinates, so document it as oracle-assisted and not deployable.
+See [M4 methods, definitions, results and limitations](docs/M4_GPS_DETECTION.md).
+
+Run M4 using a new output folder name; existing experiment outputs are never
+overwritten:
+
+```powershell
+python -m src.detection.gps_spoofing --config config/experiment_config.yaml --run-id m4_run_01
+python -m unittest discover -s tests -v
+```
+
+The workflow writes prediction CSVs, per-scenario metrics, a combined summary,
+confusion matrices, attack-score comparison, and residual/label/prediction
+time series under `reports/m4/m4_run_01/`.

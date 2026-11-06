@@ -1,6 +1,6 @@
 # Live milestone tracker
 
-**Current milestone:** M1 complete; M2 is next and remains unstarted.
+**Current milestone:** M4 complete; M5 has not been started.
 
 ## Local M0/M1 research dashboard
 - [x] Add isolated read-only CSV discovery/loading, summary metrics, optional-field handling, interactive chart entry point, and refresh control.
@@ -27,6 +27,24 @@
 - [x] Save the ground-truth trace to CSV and test types, monotonic timestamps, and deterministic reproducibility.
 - [x] Keep the ground-truth trace separate from any future GPS observations.
 
+## M2 acceptance
+- [x] Generate seeded Gaussian GPS observations separately from ground truth.
+- [x] Evaluate by `(time_s, vehicle_id)`, report horizontal errors and unmatched records, and plot results.
+- [x] Test reproducibility, zero-noise behavior, schema separation, validation and preservation.
+
+## M3 acceptance
+- [x] Generate offset, jump and drift observations with separate attack-label sidecars.
+- [x] Simulate and validate a separate physical alternative SUMO route with its own truth.
+- [x] Evaluate scenarios separately and generate metrics/plots; preserve M0-M2 inputs.
+- [x] Document that route deviation is not GPS-driven route choice or evidence of causal energy effects.
+
+## M4 acceptance
+- [x] Implement deterministic oracle-assisted position-residual threshold detector; no attack labels enter prediction.
+- [x] Calibrate the fixed threshold from normal-only M2 data and evaluate on a held-out normal suffix plus each M3 attack.
+- [x] Report confusion counts, precision, recall, F1, FPR, accuracy, unmatched records and attack detection delay.
+- [x] Write per-observation predictions, per-scenario metrics, combined summary and requested visualizations to a new M4 run directory.
+- [x] Add M4 tests, document oracle status/results/limitations, and run the complete test suite.
+
 ## Work log
 | Date | Milestone | Changes | Validation | Limitations |
 | --- | --- | --- | --- | --- |
@@ -34,6 +52,8 @@
 | 2026-11-04 | M1 | Enabled battery device and explicit 25,000 Wh initial charge; added per-step truth CSV, per-run metadata/config snapshots, and schema/type/spacing/reproducibility integration test; made GUI mode auto-start | Simulation completed 80 steps and wrote 79 active-state rows; unittest passed; timestamped CSV inspected | SUMO removes vehicle at arrival before TraCI can read its arrival-step state; automated session has no visible GUI window |
 | 2026-11-04 | M0/M1 demo | Added one-command demo runner, CSV-backed summary, three CSV-stem-named plots, opt-in GUI keep-open flag, and overwrite protection | Headless demo produced summary and 3 PNGs; 5 unittest cases passed, including independent recomputation from CSV rows | Visible GUI cannot be inspected in this automation desktop; `--gui --keep-open` command is documented for interactive PowerShell |
 | 2026-11-04 | M0/M1 dashboard | Added separate Streamlit/Plotly read-only dashboard and optional dashboard requirements | Dashboard tests passed; Streamlit AppTest rendered with no exceptions; local HTTP startup returned 200; full suite passed | None observed; dashboard dependency install is separate from simulation requirements |
+
+| 2026-11-06 | M2-M4 | Confirmed existing M2/M3 inputs, added an oracle-assisted residual-threshold evaluator calibrated only on the M2 normal prefix, and wrote separate M4 prediction/metric/plot outputs | Final M4 runs produced byte-identical predictions, metrics, summaries and plots; 123 protected M0-M3 input/output files retained identical hashes; existing run ID was refused without changes; full suite passed all 36 tests | Single-trip data only; residual uses privileged truth and is not deployable. M5 not started |
 
 ## M0 verification (2026-11-03)
 - Environment: Windows; Python 3.14.6; SUMO, sumo-gui, netgenerate, and netconvert 1.28.0; TraCI 1.28.0; PyYAML 6.0.3. SUMO_HOME resolves to `C:\Program Files (x86)\SUMO`.

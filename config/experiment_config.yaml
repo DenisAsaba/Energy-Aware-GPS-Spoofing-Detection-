@@ -45,3 +45,27 @@ m3:
     gps_seed_offset: 10000
     route_id: route_alternative
     edges: [road_alt_0, road_alt_1]
+m4:
+  # Oracle-assisted residual baseline: threshold calibration uses only the
+  # chronological calibration prefix of the normal M2 dataset.
+  threshold:
+    normal_quantile: 0.95
+    calibration_fraction: 0.5
+  output_dir: ../reports/m4
+  datasets:
+    normal:
+      truth_file: ../data/raw/truth_ev_001_20261105T035334.847823Z.csv
+      gps_file: ../data/processed/gps_normal_ev_001_20261105T035334.847823Z.csv
+    attacks:
+      offset:
+        truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
+        gps_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z_labels.csv
+      jump:
+        truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
+        gps_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z_labels.csv
+      drift:
+        truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
+        gps_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z_labels.csv
