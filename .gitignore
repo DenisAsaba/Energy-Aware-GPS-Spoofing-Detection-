@@ -16,3 +16,5 @@ results/figures/*
 results/tables/*
 results/metrics/*
 !**/.gitkeep
+/reports/m6/*
+!/reports/m6/.gitkeep

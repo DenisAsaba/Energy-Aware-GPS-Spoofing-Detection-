@@ -85,7 +85,7 @@ In the verified Python 3.14.6 environment, dashboard versions were Streamlit 1.6
 
 ## Research stages
 
-Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M5 are implemented; later milestones remain gated by the task tracker.
+Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M6 are implemented; later milestones remain gated by the task tracker.
 
 ## Planned repository directories
 `config/`, `sumo/network/`, `sumo/routes/`, `sumo/vehicles/`, `sumo/simulation/`, `src/simulation/`, `src/sensors/`, `src/attacks/`, `src/fusion/`, `src/mapping/`, `src/features/`, `src/detection/`, `src/routing/`, `src/energy/`, `tests/`, `data/raw/`, `data/processed/`, `data/attacks/`, `experiments/`, `results/figures/`, `results/tables/`, `results/metrics/`, `paper/`.
@@ -94,7 +94,7 @@ Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TA
 The demo was run with Python 3.14.6, SUMO 1.28.0, TraCI 1.28.0, PyYAML 6.0.3, and Matplotlib 3.11.2 on Windows. Tests use `unittest`; `pytest` is optional and was not installed in the verified environment. Pandas and scikit-learn are not needed. Battery energy comes from the SUMO `Energy/unknown` EV model and battery device, not a physical vehicle.
 
 ## Status
-M0-M5 are complete for the documented simulation and offline research baseline. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals; it is not a deployable GPS-only detector. M5 is a separate temporal GPS-only baseline and also is not safety-certified. No routing controller or causal energy claim is implemented. See `TASKS.md` and the M2/M3/M4/M5 method documents for data provenance, results, and limitations.
+M0-M6 are complete for the documented simulation and offline research baseline. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals; it is not a deployable GPS-only detector. M5 is a separate temporal GPS-only baseline and also is not safety-certified. No routing controller or causal energy claim is implemented. See `TASKS.md` and the M2-M6 method documents for data provenance, results, and limitations.
 
 ## M4: GPS spoofing detection
 
@@ -141,3 +141,31 @@ The verified `m5_final_01` run uses 99th-percentile thresholds of 23.4725 m/s
 GPS speed, 14.7584 m/s speed change, and 69.8849 degrees heading change.
 Offset, jump, and drift F1 were 0.308, 0.571, and 0.216 respectively. M5 is a
 single-trip research baseline, not a certified production safety detector.
+
+## M6: robustness and generalization evaluation
+
+M6 runs the original M4 oracle-assisted residual rule and M5 GPS-only temporal
+rule across multiple SUMO seeds, both existing route definitions, and
+configurable offset, jump, and drift intensities/durations. Thresholds are
+calibrated from distinct normal training trips only. The campaign writes a
+per-trip experiment matrix and metrics, aggregate summaries, predictions,
+configuration/seed metadata, and comparison plots to a new
+`reports/m6/<run-id>/` directory. Existing run IDs are protected. Generated M6
+reports and simulation data are excluded from Git.
+
+Run a reduced smoke campaign first, then use a different fresh ID for the full
+matrix:
+
+```powershell
+python -m src.experiments.m6_robustness --config config/m6_robustness.yaml --run-id m6_smoke_repro_01 --smoke
+python -m src.experiments.m6_robustness --config config/m6_robustness.yaml --run-id m6_full_repro_01
+python -m unittest discover -s tests -v
+```
+
+The verified `m6_full_02` run contains 52 held-out test configurations and
+104 detector evaluations. Both SUMO routes passed validation. Across the
+16-trip attack-class groups, M4 F1 was 0.894 for offset, 0.592 for jump, and
+0.533 for drift; M5 F1 was 0.080, 0.355, and 0.000. M5's weak offset/drift
+transfer remains visible in the intensity analysis. A second full run
+reproduced all compared CSV, JSON, and PNG outputs exactly. See
+[M6 design, results, plots, and limitations](docs/M6_ROBUSTNESS_EVALUATION.md).

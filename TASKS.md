@@ -1,6 +1,6 @@
 # Live milestone tracker
 
-**Current milestone:** M5 complete; M6 has not been started.
+**Current milestone:** M6 complete; M7 has not been started.
 
 ## Local M0/M1 research dashboard
 - [x] Add isolated read-only CSV discovery/loading, summary metrics, optional-field handling, interactive chart entry point, and refresh control.
@@ -52,6 +52,16 @@
 - [x] Add GPS-only feature, exclusion, threshold, reproducibility, metric, and no-leakage tests; run the full test suite.
 - [x] Document M5 method, actual metrics, comparison, commands, and limitations.
 
+## M6 acceptance
+- [x] Inspect M0-M5 implementations, historical artifacts, configuration, and both existing route definitions before changing files.
+- [x] Define a reproducible multi-seed, multi-route, multi-intensity/duration experiment matrix with trip-level calibration, validation, and final-test groups.
+- [x] Validate both existing routes with SUMO; generate M6 simulations/GPS/attacks only under new M6 report paths.
+- [x] Calibrate unchanged M4/M5 rules from normal calibration trips only; keep M4 oracle-assisted and M5 GPS-only at prediction time.
+- [x] Record per-trip confusion counts, metrics, delays, unmatched/excluded records, metadata, aggregate means/standard deviations, and plots.
+- [x] Add tests for matrix/splits/IDs, routes, intensity semantics, aggregation, reproducibility, no leakage, run-ID protection, and historical-output preservation.
+- [x] Run smoke and full matrices twice for reproducibility; verify M0-M5 artifacts remain unchanged.
+- [x] Document M6 protocol, actual results, commands, plots, and limitations; update README and this tracker.
+
 ## Work log
 | Date | Milestone | Changes | Validation | Limitations |
 | --- | --- | --- | --- | --- |
@@ -62,6 +72,7 @@
 
 | 2026-11-06 | M2-M4 | Confirmed existing M2/M3 inputs, added an oracle-assisted residual-threshold evaluator calibrated only on the M2 normal prefix, and wrote separate M4 prediction/metric/plot outputs | Final M4 runs produced byte-identical predictions, metrics, summaries and plots; 123 protected M0-M3 input/output files retained identical hashes; existing run ID was refused without changes; full suite passed all 36 tests | Single-trip data only; residual uses privileged truth and is not deployable. M5 not started |
 | 2026-11-06 | M5 | Added a GPS-only temporal speed/heading threshold detector; calibrates on normal M2 prefix and evaluates held-out normal plus M3 offset/jump/drift; added separate M5 predictions, metrics, M4 comparison, plots and method docs | `m5_final_01` and `m5_final_02` matched byte-for-byte across 15 non-metadata outputs; `python -m unittest discover -s tests -v` passed all 40 tests | Single 79-row trip, one attack intensity, short calibration/holdout; modest drift and offset recall; thresholds require broader trip/route validation |
+| 2026-11-06 | M6 | Added an isolated multi-seed/multi-route M4/M5 evaluation campaign, pooled normal-only thresholds, 2×2 intensity/duration grids for offset/jump/drift, trip-level summaries, and seven plots | Smoke run completed 4 test scenarios; full run completed 52 test scenarios/104 detector evaluations; `m6_full_02` and `_03` matched across 236 CSV/JSON/PNG files; 278 protected M0-M5 files retained hash `807fd0db79814e8d327f0325023226626000b46c9782ca3071c14061682a28c2`; full suite passed all 48 tests | Two test seeds and two separate network/route definitions; routes are not held out from calibration, so route result is comparative variability rather than leave-one-route-out generalization; M4 is oracle-assisted, M5 remains weak on offset/drift |
 
 ## M0 verification (2026-11-03)
 - Environment: Windows; Python 3.14.6; SUMO, sumo-gui, netgenerate, and netconvert 1.28.0; TraCI 1.28.0; PyYAML 6.0.3. SUMO_HOME resolves to `C:\Program Files (x86)\SUMO`.
