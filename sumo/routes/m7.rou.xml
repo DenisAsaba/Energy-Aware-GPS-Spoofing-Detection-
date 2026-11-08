@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <vType id="m7_ev" vClass="passenger" accel="2.0" decel="4.5" maxSpeed="13.89" length="5.0" emissionClass="Energy/unknown">
+        <param key="has.battery.device" value="true" />
+        <param key="device.battery.capacity" value="50000" />
+        <param key="device.battery.maximumChargeRate" value="100000" />
+        <param key="device.battery.maximumDischargeRate" value="100000" />
+        <param key="device.battery.mass" value="1500" />
+        <param key="device.battery.frontSurfaceArea" value="2.2" />
+        <param key="device.battery.airDragCoefficient" value="0.29" />
+        <param key="device.battery.internalMomentOfInertia" value="0.01" />
+        <param key="device.battery.radialDragCoefficient" value="0.5" />
+        <param key="device.battery.rollDragCoefficient" value="0.01" />
+        <param key="device.battery.constantPowerIntake" value="100" />
+    </vType>
+    <route id="m7_direct" edges="approach direct_a direct_b" />
+    <route id="m7_alternate" edges="approach alternate_a alternate_b" />
+    <vehicle id="m7_ev_001" type="m7_ev" route="m7_direct" depart="0">
+        <param key="device.battery.chargeLevel" value="25000" />
+    </vehicle>
+</routes>

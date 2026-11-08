@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodes>
+    <node id="origin" x="0" y="0" type="priority" />
+    <node id="junction" x="400" y="0" type="priority" />
+    <node id="direct_end" x="1000" y="0" type="priority" />
+    <node id="alt_mid" x="700" y="180" type="priority" />
+    <node id="destination" x="1400" y="0" type="priority" />
+</nodes>

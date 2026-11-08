@@ -1,0 +1,40 @@
+{
+  "attack_type": "none",
+  "condition": "normal_navigation",
+  "navigation_attack_input": "none",
+  "seed": 802,
+  "gps_seed": 20802,
+  "pair_id": "normal_validation_802",
+  "split": "validation",
+  "attack_parameters": {
+    "onset_s": 0,
+    "duration_s": 0,
+    "magnitude_m": 0,
+    "drift_rate_mps": 0
+  },
+  "destination_arrived": true,
+  "travel_time_s": 107.0,
+  "route_distance_m": 1370.9210545494655,
+  "executed_edges": [
+    "approach",
+    "direct_a",
+    "direct_b"
+  ],
+  "final_route_id": "m7_direct",
+  "reroute_count": 0,
+  "route_changes": [],
+  "detector_alert_count": 0,
+  "detector_alert_times_s": [],
+  "attack_observations": 0,
+  "protected_fallback_activated": false,
+  "fallback_events": [],
+  "mitigation_success": false,
+  "energy_consumed_wh": 188.12,
+  "initial_soc": 0.5,
+  "final_soc": 0.49772839999999996,
+  "soc_change": -0.0022716000000000403,
+  "initial_battery_charge_wh": 25000.0,
+  "final_battery_charge_wh": 24886.42,
+  "energy_regenerated_wh": 74.55,
+  "battery_telemetry_available": true
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges>
+    <edge id="approach" from="origin" to="junction" numLanes="1" speed="13.89" />
+    <edge id="direct_a" from="junction" to="direct_end" numLanes="1" speed="13.89" />
+    <edge id="direct_b" from="direct_end" to="destination" numLanes="1" speed="13.89" />
+    <edge id="alternate_a" from="junction" to="alt_mid" numLanes="1" speed="13.89" />
+    <edge id="alternate_b" from="alt_mid" to="destination" numLanes="1" speed="13.89" />
+</edges>

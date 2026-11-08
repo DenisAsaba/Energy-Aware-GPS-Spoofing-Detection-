@@ -1,0 +1,52 @@
+{
+  "milestone": "M7 Stage 2 full paired matrix",
+  "run_id": "m7_full_03",
+  "run_count": 52,
+  "paired_attack_comparisons": 24,
+  "network_validation": {
+    "routes": {
+      "direct": [
+        "approach",
+        "direct_a",
+        "direct_b"
+      ],
+      "alternate": [
+        "approach",
+        "alternate_a",
+        "alternate_b"
+      ]
+    },
+    "endpoints": {
+      "direct": [
+        "origin",
+        "destination"
+      ],
+      "alternate": [
+        "origin",
+        "destination"
+      ]
+    }
+  },
+  "seed_splits": {
+    "calibration": [
+      801
+    ],
+    "validation": [
+      802
+    ],
+    "test": [
+      803,
+      804
+    ]
+  },
+  "final_test_attacks_only": true,
+  "threshold_provenance": "Frozen M5 thresholds from M6 normal calibration trips; M7 calibration/validation/test outputs do not tune thresholds",
+  "attack_detection_definition": "M5 alert during the half-open active attack interval [onset, end); post-attack alerts through end+10s are reported separately and do not count as detection",
+  "false_positive_definition": "M5 alerts divided by eligible GPS fixes in test split normal-GPS runs",
+  "mitigation_definition": "Protected fallback activated and protected run arrives with lower odometer distance by >1 m, or protected arrives while unprotected does not",
+  "protected_fallback": "Oracle-assisted SUMO shortest route from current edge, called only after M5 alert",
+  "attack_labels_outside_m5": true,
+  "outputs_excluded_from_reproducibility_comparison": {
+    "run_metadata.json": "contains intentionally different run_id"
+  }
+}

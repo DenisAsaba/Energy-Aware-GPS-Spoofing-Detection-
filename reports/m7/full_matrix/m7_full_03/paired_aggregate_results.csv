@@ -1,0 +1,13 @@
+attack_type,magnitude_m,duration_s,n_pairs,mitigation_success_rate,protected_arrival_rate,unprotected_arrival_rate,fallback_activation_rate,protected_detection_rate,unprotected_detection_rate,protected_post_attack_alert_rate,unprotected_post_attack_alert_rate,protected_detection_delay_s_mean,protected_detection_delay_s_std,unprotected_detection_delay_s_mean,unprotected_detection_delay_s_std,protected_post_attack_alert_delay_s_mean,protected_post_attack_alert_delay_s_std,delta_route_distance_m_n,delta_route_distance_m_mean,delta_route_distance_m_std,delta_route_distance_m_median,delta_travel_time_s_n,delta_travel_time_s_mean,delta_travel_time_s_std,delta_travel_time_s_median,delta_energy_consumed_wh_n,delta_energy_consumed_wh_mean,delta_energy_consumed_wh_std,delta_energy_consumed_wh_median,delta_energy_regenerated_wh_n,delta_energy_regenerated_wh_mean,delta_energy_regenerated_wh_std,delta_energy_regenerated_wh_median,delta_soc_change_n,delta_soc_change_mean,delta_soc_change_std,delta_soc_change_median
+drift,60.0,30.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,30.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+drift,60.0,90.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,90.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+drift,180.0,30.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,30.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+drift,180.0,90.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,90.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+jump,60.0,2.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,2.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+jump,60.0,10.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,10.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+jump,180.0,2.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,2.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+jump,180.0,10.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,10.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+offset,60.0,30.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,30.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+offset,60.0,90.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,90.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+offset,180.0,30.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,30.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0
+offset,180.0,90.0,2,0.0,1.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,90.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0,2,0.0,0.0,0.0

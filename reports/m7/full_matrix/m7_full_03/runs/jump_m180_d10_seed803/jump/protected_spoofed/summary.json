@@ -1,0 +1,76 @@
+{
+  "attack_type": "jump",
+  "condition": "protected_spoofed",
+  "navigation_attack_input": "jump",
+  "seed": 803,
+  "gps_seed": 20803,
+  "pair_id": "jump_m180_d10_seed803",
+  "split": "test",
+  "attack_parameters": {
+    "onset_s": 1.0,
+    "duration_s": 10.0,
+    "magnitude_m": 180.0,
+    "drift_rate_mps": 0.0,
+    "direction_deg": 0.0
+  },
+  "destination_arrived": true,
+  "travel_time_s": 115.0,
+  "route_distance_m": 1371.5313053217315,
+  "executed_edges": [
+    "approach",
+    ":junction_0",
+    "direct_a",
+    "direct_b"
+  ],
+  "final_route_id": "!m7_ev_001!var#2",
+  "reroute_count": 2,
+  "route_changes": [
+    {
+      "time_s": 1.0,
+      "route": "alternate",
+      "reason": "gps_nearest_route_reference",
+      "from_edge": "approach",
+      "route_edges": [
+        "approach",
+        "alternate_a",
+        "alternate_b"
+      ]
+    },
+    {
+      "time_s": 11.0,
+      "route": "oracle_fallback",
+      "reason": "m5_alert_oracle_fallback",
+      "from_edge": "approach",
+      "route_edges": [
+        "approach",
+        "direct_a",
+        "direct_b"
+      ]
+    }
+  ],
+  "detector_alert_count": 2,
+  "detector_alert_times_s": [
+    11.0,
+    12.0
+  ],
+  "attack_observations": 10,
+  "protected_fallback_activated": true,
+  "fallback_events": [
+    {
+      "time_s": 11.0,
+      "reason": "m5_alert_oracle_fallback",
+      "current_edge": "approach",
+      "target_edge": "direct_b",
+      "action": "reroute_from_current_route_progress"
+    }
+  ],
+  "mitigation_success": true,
+  "energy_consumed_wh": 181.14,
+  "initial_soc": 0.5,
+  "final_soc": 0.4979382,
+  "soc_change": -0.0020618000000000025,
+  "initial_battery_charge_wh": 25000.0,
+  "final_battery_charge_wh": 24896.91,
+  "energy_regenerated_wh": 78.05,
+  "battery_telemetry_available": true
+}

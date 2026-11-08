@@ -2,6 +2,12 @@
 
 A staged, reproducible, simulation-only research project using Python, SUMO and TraCI.
 
+## M7 Stage 1: GPS-responsive route smoke experiment
+
+M7 Stage 1 adds an isolated connected two-route network, an online GPS-driven routing controller, unchanged M5 temporal detector calls, and an explicitly oracle-assisted fallback after an M5 alert. Its paired smoke command and trust-boundary, method, result, and limitation notes are in [docs/M7_GPS_AWARE_ENERGY_ROUTING.md](docs/M7_GPS_AWARE_ENERGY_ROUTING.md). Run `python -m src.experiments.m7_energy_routing --config config/m7_energy_routing.yaml --run-id stage1_smoke_01` from the project root. Each run ID writes only to a new folder below `reports/m7/stage1_smoke/`.
+
+M7 Stage 2 runs the configured paired seed/intensity/duration matrix with frozen M5 thresholds. Reproduce the two independent runs with `python -m src.experiments.m7_matrix --config config/m7_energy_routing.yaml --run-id m7_full_02` and `--run-id m7_full_03`. Outputs are isolated under `reports/m7/full_matrix/`; the full protocol, measured results, and limits are documented in the M7 report.
+
 ## M0: run the first EV simulation
 
 M0 established a local 1,000 m, one-edge SUMO road and one passenger EV. SUMO road coordinates are metric x/y; there is no conversion to geographic longitude/latitude. The simulation step is 1 second, the random seed is 42, and the configured simulation end is 600 seconds. M1 records vehicle ground truth and available battery values as described below; M2/M3 GPS data and M4 offline evaluation are documented in their milestone sections and docs.

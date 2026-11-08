@@ -1,6 +1,20 @@
 # Live milestone tracker
 
-**Current milestone:** M6 complete; M7 has not been started.
+**Current milestone:** M7 Stage 2 full paired matrix complete.
+
+### M7 Stage 1 progress
+- [x] Reconfirm nested M6 workspace, M5 online API, battery telemetry, and protected-file boundary.
+- [x] Add isolated connected network, paired GPS-responsive controller, unchanged M5 calls, oracle-gated fallback, and telemetry runner.
+- [x] Add M7 routing/controller tests and run the paired four-scenario smoke experiment twice.
+- [x] Inspect outputs, run M7 tests and full suite, document the Stage 1 result and limitations.
+- [x] Obtain approval before expanding beyond the Stage 1 smoke experiment.
+
+### M7 Stage 2 progress
+- [x] Preserve Stage 1 outputs and confirm M5/M0-M6 source/config/report boundaries before running.
+- [x] Add a fixed calibration/validation/test seed plan and multiple attack magnitudes/durations without changing M5 thresholds.
+- [x] Run the complete 52-trip matrix and an independent repeat under distinct new run IDs.
+- [x] Validate pair completeness, route connectivity, arrivals, energy telemetry, active-attack detection, post-attack alerts, false positives, paired metrics, and reproducibility.
+- [x] Run the complete repository test suite and document results and limitations.
 
 ## Local M0/M1 research dashboard
 - [x] Add isolated read-only CSV discovery/loading, summary metrics, optional-field handling, interactive chart entry point, and refresh control.
@@ -65,6 +79,7 @@
 ## Work log
 | Date | Milestone | Changes | Validation | Limitations |
 | --- | --- | --- | --- | --- |
+| 2026-11-07 | M7 Stage 2 | Added fixed split seed matrix, offset/jump/drift intensity-duration grid, paired summaries, active versus post-attack detection accounting, and isolated M7 report outputs | Two 52-trip runs completed; 24 pairs and 219 deterministic artifacts matched; 1,848 protected pre-existing files retained identical hashes; `python -m unittest discover -s tests -v` passed all 62 tests | Only two final-test seeds and one simple network; M5 alerts were all post-attack, fallback did not improve paired outcomes |
 | 2026-11-03 | M0 | Added one-edge 1,000 m SUMO road, fixed-seed config, Python/TraCI runner and EV route | SUMO 1.28.0 completed ev_001 in 80 steps; integration smoke test passed | pytest absent (unittest used); Git metadata absent |
 | 2026-11-04 | M1 | Enabled battery device and explicit 25,000 Wh initial charge; added per-step truth CSV, per-run metadata/config snapshots, and schema/type/spacing/reproducibility integration test; made GUI mode auto-start | Simulation completed 80 steps and wrote 79 active-state rows; unittest passed; timestamped CSV inspected | SUMO removes vehicle at arrival before TraCI can read its arrival-step state; automated session has no visible GUI window |
 | 2026-11-04 | M0/M1 demo | Added one-command demo runner, CSV-backed summary, three CSV-stem-named plots, opt-in GUI keep-open flag, and overwrite protection | Headless demo produced summary and 3 PNGs; 5 unittest cases passed, including independent recomputation from CSV rows | Visible GUI cannot be inspected in this automation desktop; `--gui --keep-open` command is documented for interactive PowerShell |

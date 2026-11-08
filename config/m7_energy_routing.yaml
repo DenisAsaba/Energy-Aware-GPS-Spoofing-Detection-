@@ -1,0 +1,58 @@
+# M7-only configuration. Coordinates are SUMO road-network meters.
+simulation:
+  seed: 713
+  step_length_s: 1.0
+  end_s: 300
+  vehicle_id: m7_ev_001
+  network_file: ../sumo/network/m7.net.xml
+  route_file: ../sumo/routes/m7.rou.xml
+  origin_edge: approach
+  destination_edge: direct_b
+  initial_charge_wh: 25000
+gps:
+  noise_std_m: 1.0
+  seed: 2713
+  attacks:
+    none: {onset_s: 0, duration_s: 0, magnitude_m: 0, drift_rate_mps: 0}
+    offset: {onset_s: 1, duration_s: 180, magnitude_m: 180, drift_rate_mps: 0}
+    jump: {onset_s: 1, duration_s: 2, magnitude_m: 180, drift_rate_mps: 0}
+    drift: {onset_s: 1, duration_s: 180, magnitude_m: 180, drift_rate_mps: 2}
+detector:
+  # Frozen M5 thresholds calibrated on M6 normal calibration trips.
+  thresholds:
+    max_heading_change_deg: 108.45527698501837
+    max_speed_change_mps: 18.029596454554305
+    max_speed_mps: 24.06041913028352
+navigation:
+  direct_reference_xy_m: [450, 0]
+  alternate_reference_xy_m: [450, 180]
+  protected_fallback: shortest_connected_route_from_oracle_current_edge
+output:
+  root: ../reports/m7
+  smoke_directory: stage1_smoke
+  matrix_directory: full_matrix
+matrix:
+  # Thresholds remain frozen from M6 normal calibration. These groups are
+  # reported separately; no M7 test results are used to fit detector/policy.
+  seeds:
+    calibration: [801]
+    validation: [802]
+    test: [803, 804]
+  gps_seed_offset: 20000
+  attacks:
+    offset:
+      onset_s: 1
+      magnitudes_m: [60, 180]
+      durations_s: [30, 90]
+      direction_deg: 0
+    jump:
+      onset_s: 1
+      magnitudes_m: [60, 180]
+      durations_s: [2, 10]
+      direction_deg: 0
+    drift:
+      onset_s: 1
+      magnitudes_m: [60, 180]
+      durations_s: [30, 90]
+      direction_deg: 0
+      drift_rate_mps: 2

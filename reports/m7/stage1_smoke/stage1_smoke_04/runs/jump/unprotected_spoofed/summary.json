@@ -1,0 +1,54 @@
+{
+  "attack_type": "jump",
+  "condition": "unprotected_spoofed",
+  "navigation_attack_input": "jump",
+  "seed": 713,
+  "gps_seed": 2713,
+  "destination_arrived": true,
+  "travel_time_s": 105.0,
+  "route_distance_m": 1378.4957146978277,
+  "executed_edges": [
+    "approach",
+    ":junction_0",
+    "direct_a",
+    "direct_b"
+  ],
+  "final_route_id": "!m7_ev_001!var#2",
+  "reroute_count": 2,
+  "route_changes": [
+    {
+      "time_s": 1.0,
+      "route": "alternate",
+      "reason": "gps_nearest_route_reference",
+      "from_edge": "approach",
+      "route_edges": [
+        "approach",
+        "alternate_a",
+        "alternate_b"
+      ]
+    },
+    {
+      "time_s": 3.0,
+      "route": "direct",
+      "reason": "gps_nearest_route_reference",
+      "from_edge": "approach",
+      "route_edges": [
+        "approach",
+        "direct_a",
+        "direct_b"
+      ]
+    }
+  ],
+  "detector_alert_count": 2,
+  "detector_alert_times_s": [
+    3.0,
+    4.0
+  ],
+  "attack_observations": 2,
+  "protected_fallback_activated": false,
+  "mitigation_success": false,
+  "energy_consumed_wh": 162.06,
+  "initial_soc": 0.5,
+  "final_soc": 0.49782980000000004,
+  "battery_telemetry_available": true
+}
