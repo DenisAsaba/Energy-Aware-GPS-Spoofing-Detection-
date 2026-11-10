@@ -309,4 +309,162 @@ python -m unittest tests.test_m8_detector tests.test_m8_evaluation tests.test_m8
 python -m unittest discover -s tests -v
 ```
 
-No final-test execution is authorized by this stage. Stop here pending approval.
+At the close of Stage 2A, the final matrix was still unrun. Stage 2B was
+subsequently approved and its results are reported below.
+
+## Stage 2B: frozen final held-out evaluation
+
+Stage 2B ran only after approval, using reserved seeds 1301 and 1302. The
+Stage 1 final seed assignments and `config/m8_detector.yaml` were not changed.
+The Stage 2B config is a new file with the same reserved seeds and an explicit
+attack matrix. M8 used the frozen Stage 2A thresholds and policy: 2-of-5
+eligible fixes, clearing after 3 clean fixes. M5 used the unchanged M5
+algorithm with its first three frozen thresholds from the same approved Stage
+2A normal calibration trips. No final observations entered calibration or
+validation; the Stage 2B workflow rejects overlap and checks its configured
+thresholds against the approved Stage 2A report before simulation.
+
+Each final seed ran one complete normal trip in each of the three expanded
+profiles. For each of the six seed/profile trips, the same normal GPS file was
+used to derive all attack datasets: two offset magnitudes (30/60 m) by two
+durations (10/25 s), two jump magnitudes (30/60 m) by two durations (1/5 s),
+and two drift rates (0.5/1.0 m/s) by two durations (10/25 s), with a 20 m drift
+cap. Attack onset was 35 s. The final matrix contains 6 normal trips and 72
+attack datasets; both detectors were evaluated on identical observations.
+Outputs include per-trip metrics, separate observation and event summaries,
+paired trip comparisons, predictions, truth/GPS/attack inputs, and plots.
+
+### Normal false alarms
+
+Across 520 eligible normal observations, M8 had 25 false positives and 495
+true negatives (FPR **4.81%**, TNR 95.19%); M5 had 13 false positives and 507
+true negatives (FPR **2.50%**, TNR 97.50%). M8 meets the pooled 5% target, but
+its FPR exceeded 5% in the turns/light and brake/accel profiles:
+
+| Normal scenario | M5 FP / negatives | M5 FPR | M8 FP / negatives | M8 FPR | Alarm episodes per trip, M5 / M8 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Turns/light | 3/172 | 1.74% | 12/172 | 6.98% | 1.00 / 1.00 |
+| Stop/restart | 5/181 | 2.76% | 0/181 | 0.00% | 2.50 / 0.00 |
+| Brake/accel | 5/167 | 2.99% | 13/167 | 7.78% | 2.00 / 1.00 |
+
+Overall, M8 had fewer normal alarm episodes per trip (0.67 vs 1.83), despite
+nearly doubling the count of false-positive observations. The 25 M8 false
+alarm observations were associated with acceleration (11), braking (5),
+turns (3), stops (2), restarts (1), and traffic profiles (13); these categories
+overlap. M5's 13 false alarms overlapped acceleration (3), braking (3), turns
+(2), stops (1), and traffic profiles (10). These associations use truth only
+for post-hoc analysis and do not explain causality.
+
+### Attack results
+
+The following observation-level metrics pool the 24 trips per attack type
+(three profiles × two seeds × four intensity/duration combinations). Event
+detection and delay are reported separately; alerts after the active window
+are not counted as successful detections.
+
+| Attack | Detector | TP | FP | TN | FN | Precision | Recall | F1 | FPR | TNR | Active events | Miss rate | Mean delay, detected events | Post-attack alert rate | Alerts/trip |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Offset | M5 | 58 | 74 | 1586 | 362 | .439 | .138 | .210 | 4.46% | 95.54% | 24/24 | 0.0% | 0.0 s | 7.14% | 3.33 |
+| Offset | M8 | 160 | 226 | 1434 | 260 | .415 | .381 | .397 | 13.61% | 86.39% | 22/24 | 8.3% | 1.0 s | 23.27% | 2.21 |
+| Jump | M5 | 36 | 82 | 1926 | 36 | .305 | .500 | .379 | 4.08% | 95.92% | 24/24 | 0.0% | 0.0 s | 5.76% | 2.96 |
+| Jump | M8 | 48 | 274 | 1734 | 24 | .149 | .667 | .244 | 13.65% | 86.35% | 12/24 | 50.0% | 1.0 s | 20.56% | 1.50 |
+| Drift | M5 | 22 | 37 | 1623 | 398 | .373 | .052 | .092 | 2.23% | 97.77% | 15/24 | 37.5% | 4.7 s | 2.88% | 2.04 |
+| Drift | M8 | 40 | 79 | 1581 | 380 | .336 | .095 | .148 | 4.76% | 95.24% | 7/24 | 70.8% | 8.1 s | 6.34% | 0.79 |
+
+M8 did **not** improve active event detection for any attack type: offset was
+22/24 vs M5's 24/24, jump 12/24 vs 24/24, and drift 7/24 vs 15/24. Its
+observation F1 improved for offset and drift but dropped for jump; all three
+attack types had greater M8 false-positive rates in attack datasets, and M8
+had longer delay for detected events. Jump detection was especially sensitive
+to duration: M8 detected 0/6 one-second jumps at either magnitude, versus 6/6
+for each five-second jump condition. The complete condition breakdown is in
+`condition_summary.csv` and `event_summary.csv`.
+
+Post-attack alert rate is the number of predicted-alert observations at or
+after the configured attack end divided by eligible observations from attack
+end through trip completion. These alerts are reported separately and never
+count toward active event detection.
+
+| Attack condition | M5 active events | M8 active events | M5 F1 | M8 F1 | M5 FPR | M8 FPR | M8 mean delay when detected |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Offset 30 m, 10 s | 6/6 | 5/6 | .283 | .417 | 4.1% | 11.7% | 1.0 s |
+| Offset 30 m, 25 s | 6/6 | 5/6 | .165 | .300 | 4.6% | 13.0% | 1.0 s |
+| Offset 60 m, 10 s | 6/6 | 6/6 | .298 | .523 | 4.3% | 14.6% | 1.0 s |
+| Offset 60 m, 25 s | 6/6 | 6/6 | .174 | .389 | 4.9% | 15.4% | 1.0 s |
+| Jump 30 m, 1 s | 6/6 | 0/6 | .387 | .000 | 3.7% | 14.2% | — |
+| Jump 30 m, 5 s | 6/6 | 6/6 | .393 | .421 | 3.9% | 12.2% | 1.0 s |
+| Jump 60 m, 1 s | 6/6 | 0/6 | .353 | .000 | 4.3% | 14.4% | — |
+| Jump 60 m, 5 s | 6/6 | 6/6 | .375 | .397 | 4.5% | 13.7% | 1.0 s |
+| Drift 0.5 m/s, 10 s | 4/6 | 1/6 | .135 | .141 | 2.0% | 4.1% | 1.0 s |
+| Drift 0.5 m/s, 25 s | 5/6 | 2/6 | .097 | .125 | 1.9% | 4.1% | 10.5 s |
+| Drift 1.0 m/s, 10 s | 2/6 | 1/6 | .083 | .135 | 2.0% | 5.0% | 1.0 s |
+| Drift 1.0 m/s, 25 s | 4/6 | 3/6 | .071 | .180 | 3.2% | 5.9% | 11.3 s |
+
+Active-event detection pooled over all four attack settings, by driving
+profile, was:
+
+| Attack | Turns/light M5 / M8 | Stop/restart M5 / M8 | Brake/accel M5 / M8 |
+| --- | ---: | ---: | ---: |
+| Offset | 8/8 / 6/8 | 8/8 / 8/8 | 8/8 / 8/8 |
+| Jump | 8/8 / 4/8 | 8/8 / 4/8 | 8/8 / 4/8 |
+| Drift | 4/8 / 4/8 | 7/8 / 1/8 | 4/8 / 2/8 |
+
+### Paired seed-level comparison and limitations
+
+Trip-level paired outputs are grouped by scenario and attack condition in
+`paired_trip_comparisons.csv`. For an additional seed-cluster summary, trip
+results were pooled within each reserved seed before calculating M8-minus-M5
+paired differences. Each mean and sample standard deviation below is based on
+**two seed clusters** (1301 and 1302), not individual fixes or repeated
+intensity cases. No confidence interval is reported: two independent seeds do
+not support a useful inferential interval.
+
+| Outcome | Mean paired difference (M8 − M5) | Sample SD across seeds |
+| --- | ---: | ---: |
+| Normal FPR | +2.17 percentage points | 3.06 pp |
+| Offset active event detection | −8.33 pp | 11.79 pp |
+| Offset F1 | +0.190 | 0.047 |
+| Jump active event detection | −50.00 pp | 0.00 pp |
+| Jump F1 | −0.127 | 0.056 |
+| Drift active event detection | −33.33 pp | 0.00 pp |
+| Drift F1 | +0.063 | 0.063 |
+
+Event detection by seed, pooling each seed's three driving profiles and four
+matrix settings per attack type, was: seed 1301, M5/M8 offset 12/12 vs 10/12,
+jump 12/12 vs 6/12, drift 6/12 vs 2/12; seed 1302, offset 12/12 vs 12/12,
+jump 12/12 vs 6/12, drift 9/12 vs 5/12. Per-trip seed rows are retained in
+`trip_metrics.csv`.
+
+M8 meets the pooled 5% normal FPR target but exceeds it in two scenario
+profiles, has higher pooled normal FPR than M5, and detects fewer active attack
+events for all three types. M8 therefore does **not** improve overall
+performance relative to M5 on this held-out matrix. Results are limited to two
+reserved seeds and this simulated network/scenario set. They do not establish
+universal spoofing detection or production readiness.
+
+### Reproducibility and verification
+
+`m8_stage2b_final_01` and `_02` used the same frozen configuration and seeds.
+All **242 of 242** deterministic CSV, JSON, and PNG files matched byte-for-byte.
+Only `metadata.json` is excluded from comparison because it records the run ID
+and preservation-manifest timing. Both runs report unchanged M0–M7 protected
+hashes, unchanged prior M8 report hashes, and unchanged frozen detector/config
+hashes. The Stage 1 final seed config remained unchanged. M8-specific tests
+passed 23 cases and the complete repository suite passed 85 tests. The full
+suite created one new timestamped M1 truth CSV and its config/metadata sidecars;
+they were preserved. Excluding those three test artifacts, the M0-M7 protected
+manifest returned to its exact pre-run 2,552-file hash. The prior M8 Stage 1
+and Stage 2A manifest remained 1,218 files with SHA-256
+`8ff08907edda5ae3aa987523b32c6232038b5d9471a8d2f43bdba0f59cc8c37f`.
+The full M8 final matrix is complete; no later milestone or detector changes
+were made.
+
+Reproduction commands from the nested repository root:
+
+```powershell
+python -m src.experiments.m8_stage2b --config config/m8_stage2b.yaml --run-id m8_stage2b_final_01
+python -m src.experiments.m8_stage2b --config config/m8_stage2b.yaml --run-id m8_stage2b_final_02
+python -c "from pathlib import Path; from src.experiments.m8_evaluation import compare_runs; print(compare_runs(Path('reports/m8/stage2b/m8_stage2b_final_01'), Path('reports/m8/stage2b/m8_stage2b_final_02')))"
+python -m unittest tests.test_m8_detector tests.test_m8_evaluation tests.test_m8_stage2a tests.test_m8_stage2b -v
+python -m unittest discover -s tests -v
+```

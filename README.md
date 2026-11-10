@@ -193,9 +193,16 @@ normal trip (0.50 vs 2.50). Attack results were mixed: offset event detection
 fell from 6/6 for M5 to 5/6 for M8, jump detection tied at 6/6, and drift
 detection fell from 3/6 to 2/6. M8's validation F1 was higher for all three
 attack types, but this does not establish overall improvement or
-production readiness. Neither the full M8 final-test matrix nor final-test
-seeds have been run. See [M8 methods, results, reproduction commands, and
-limitations](docs/M8_IMPROVED_GPS_DETECTION.md).
+production readiness.
+
+Stage 2B completed the frozen held-out matrix using reserved seeds 1301 and
+1302 across all three normal profiles and 72 attack datasets. M8's pooled
+normal FPR was 4.81%, meeting 5%, but it exceeded 5% on turns/light (6.98%)
+and brake/accel (7.78%) and was higher than M5 overall (2.50%). M8 detected
+fewer active events than M5 for offset (22/24 vs 24/24), jump (12/24 vs
+24/24), and drift (7/24 vs 15/24). It did not improve overall performance.
+Full results, paired seed statistics, limitations, and reproduction details
+are in [M8 methods and results](docs/M8_IMPROVED_GPS_DETECTION.md).
 
 Reproduce Stage 2A twice with fresh IDs, compare deterministic outputs, and
 then run the M8-specific and full test suites:
@@ -208,6 +215,19 @@ python -m unittest tests.test_m8_detector tests.test_m8_evaluation tests.test_m8
 python -m unittest discover -s tests -v
 ```
 
-Both repeat runs matched across 89 CSV, JSON, and PNG files. The complete
-repository suite passed 81 tests. Final-test execution requires separate
-approval; do not launch the reserved M8 matrix from this Stage 2A workflow.
+Both Stage 2A repeat runs matched across 89 CSV, JSON, and PNG files. Stage 2B
+repeat runs also matched across 242 CSV, JSON, and PNG files. The M8 tests
+passed 23 cases and the complete repository suite passed 85 tests. Reproduce
+the final held-out evaluation with fresh run IDs:
+
+```powershell
+python -m src.experiments.m8_stage2b --config config/m8_stage2b.yaml --run-id m8_stage2b_final_01
+python -m src.experiments.m8_stage2b --config config/m8_stage2b.yaml --run-id m8_stage2b_final_02
+python -c "from pathlib import Path; from src.experiments.m8_evaluation import compare_runs; print(compare_runs(Path('reports/m8/stage2b/m8_stage2b_final_01'), Path('reports/m8/stage2b/m8_stage2b_final_02')))"
+python -m unittest tests.test_m8_detector tests.test_m8_evaluation tests.test_m8_stage2a tests.test_m8_stage2b -v
+python -m unittest discover -s tests -v
+```
+
+Final outputs are under `reports/m8/stage2b/m8_stage2b_final_01/` and
+`reports/m8/stage2b/m8_stage2b_final_02/`. No detector changes or later
+milestone work were started.
