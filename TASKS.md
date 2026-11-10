@@ -1,6 +1,15 @@
 # Live milestone tracker
 
-**Current milestone:** M7 Stage 2 full paired matrix complete.
+**Current milestone:** M8 Stage 2A expanded normal-driving validation complete; M8 final-test matrix not run.
+
+### M8 Stage 1 and Stage 2A progress
+- [x] Implement the causal GPS-only M8 detector and preserve the M5 baseline.
+- [x] Complete Stage 1 calibration, validation, and paired smoke testing; retain the 8.74% validation FPR (above the 5% target) and mixed M5/M8 findings as historical results.
+- [x] Add isolated M8 normal-driving scenarios for turns, stop/restarts, varied speed, braking/acceleration, and seeded traffic; assign disjoint calibration/validation seeds and record input hashes.
+- [x] Recalibrate from normal calibration trips only; select validation operating configuration against the predeclared 5% FPR target and evaluate M5/M8 on identical observations.
+- [x] Run Stage 2A twice under distinct run IDs; compare deterministic outputs and verify protected M0–M7 files.
+- [x] Add Stage 2A scenario tests; run M8-specific tests and the complete repository suite; update README and M8 methods documentation.
+- [ ] Obtain approval before running the reserved M8 final-test matrix.
 
 ### M7 Stage 1 progress
 - [x] Reconfirm nested M6 workspace, M5 online API, battery telemetry, and protected-file boundary.
@@ -79,6 +88,7 @@
 ## Work log
 | Date | Milestone | Changes | Validation | Limitations |
 | --- | --- | --- | --- | --- |
+| 2026-11-09 | M8 Stage 2A | Added an isolated SUMO loop network with three normal-driving profiles, six calibration and six validation trips, normal-only threshold fitting, validation persistence selection, and paired M5/M8 evaluation; updated M8 docs and README | `m8_stage2a_repro_04` and `_05` matched 89/89 CSV/JSON/PNG outputs; 19 M8 tests and all 81 repository tests passed; Stage 2A protected manifest stayed identical with zero changed paths | Selected M8 normal FPR 4.23% met the 5% target, but exceeded M5's 3.43%; M8 reduced alarm episodes but attack results were mixed. Full final-test matrix not run; await approval |
 | 2026-11-07 | M7 Stage 2 | Added fixed split seed matrix, offset/jump/drift intensity-duration grid, paired summaries, active versus post-attack detection accounting, and isolated M7 report outputs | Two 52-trip runs completed; 24 pairs and 219 deterministic artifacts matched; 1,848 protected pre-existing files retained identical hashes; `python -m unittest discover -s tests -v` passed all 62 tests | Only two final-test seeds and one simple network; M5 alerts were all post-attack, fallback did not improve paired outcomes |
 | 2026-11-03 | M0 | Added one-edge 1,000 m SUMO road, fixed-seed config, Python/TraCI runner and EV route | SUMO 1.28.0 completed ev_001 in 80 steps; integration smoke test passed | pytest absent (unittest used); Git metadata absent |
 | 2026-11-04 | M1 | Enabled battery device and explicit 25,000 Wh initial charge; added per-step truth CSV, per-run metadata/config snapshots, and schema/type/spacing/reproducibility integration test; made GUI mode auto-start | Simulation completed 80 steps and wrote 79 active-state rows; unittest passed; timestamped CSV inspected | SUMO removes vehicle at arrival before TraCI can read its arrival-step state; automated session has no visible GUI window |

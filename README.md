@@ -175,3 +175,39 @@ The verified `m6_full_02` run contains 52 held-out test configurations and
 transfer remains visible in the intensity analysis. A second full run
 reproduced all compared CSV, JSON, and PNG outputs exactly. See
 [M6 design, results, plots, and limitations](docs/M6_ROBUSTNESS_EVALUATION.md).
+
+## M8: improved GPS-only spoofing detection
+
+M8 adds causal GPS motion features and alarm persistence while keeping M5's
+detector implementation unchanged. Stage 1 is complete: its historical
+validation FPR was **8.74%**, above the predeclared 5% target. The mixed smoke
+results showed fewer M8 normal alarms and better offset/jump F1, but M8 missed
+drift detected by M5. No overall detector improvement has been established.
+
+Stage 2A added an isolated M8-only SUMO grid with turn, stop/restart,
+brake/acceleration, speed, and traffic variation. Six complete normal trips
+were used for calibration and six disjoint trips for validation. The selected
+2-of-5 policy met the validation normal FPR target at 4.23%; M8 had a higher
+normal observation FPR than M5 (4.23% vs 3.43%) but fewer alarm episodes per
+normal trip (0.50 vs 2.50). Attack results were mixed: offset event detection
+fell from 6/6 for M5 to 5/6 for M8, jump detection tied at 6/6, and drift
+detection fell from 3/6 to 2/6. M8's validation F1 was higher for all three
+attack types, but this does not establish overall improvement or
+production readiness. Neither the full M8 final-test matrix nor final-test
+seeds have been run. See [M8 methods, results, reproduction commands, and
+limitations](docs/M8_IMPROVED_GPS_DETECTION.md).
+
+Reproduce Stage 2A twice with fresh IDs, compare deterministic outputs, and
+then run the M8-specific and full test suites:
+
+```powershell
+python -m src.experiments.m8_stage2a --config config/m8_stage2a.yaml --run-id m8_stage2a_repro_04
+python -m src.experiments.m8_stage2a --config config/m8_stage2a.yaml --run-id m8_stage2a_repro_05
+python -c "from pathlib import Path; from src.experiments.m8_evaluation import compare_runs; print(compare_runs(Path('reports/m8/stage2a/m8_stage2a_repro_04'), Path('reports/m8/stage2a/m8_stage2a_repro_05')))"
+python -m unittest tests.test_m8_detector tests.test_m8_evaluation tests.test_m8_stage2a -v
+python -m unittest discover -s tests -v
+```
+
+Both repeat runs matched across 89 CSV, JSON, and PNG files. The complete
+repository suite passed 81 tests. Final-test execution requires separate
+approval; do not launch the reserved M8 matrix from this Stage 2A workflow.

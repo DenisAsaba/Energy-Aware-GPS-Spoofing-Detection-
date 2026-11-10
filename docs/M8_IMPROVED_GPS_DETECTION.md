@@ -200,5 +200,113 @@ post-suite manifest reproduces the pre-suite 2,540-file M0-M7 manifest exactly.
 Stage 1 implementation files are isolated to `config/m8_detector.yaml`,
 `src/detection/m8_detector.py`, `src/experiments/m8_evaluation.py`,
 `tests/test_m8_detector.py`, `tests/test_m8_evaluation.py`, and this document.
-README.md and TASKS.md were not changed. Any M8 index/status edits to those
-shared files are proposed separately for approval.
+
+## Stage 2A: expanded normal driving and validation
+
+Stage 2A adds a separate 2x2 M8-only SUMO grid (four 180 m blocks, with
+directed links in both directions) and three normal scenario profiles. Each EV
+completes a 720 m loop with a stop at simulation time zero, turns, and SUMO
+acceleration/deceleration. The `urban_turns_light` profile uses speedFactor
+0.78 and no background traffic. `urban_stop_restart` uses speedFactor 0.88,
+five shared-route passenger vehicles, and a 5 s curbside dwell. The
+`urban_brake_accel` profile uses the reverse loop, speedFactor 1.0, twelve
+shared-route passenger vehicles, and a 3 s curbside dwell. EV parameters are
+accel 1.7 m/s², decel 4.0 m/s², maxSpeed 13.89 m/s; background traffic uses
+accel 2.0 m/s², decel 4.5 m/s² and maxSpeed 13.89 m/s. SUMO step length is
+1 s. Traffic departures use the run seed; observed behavior is from SUMO's
+car-following model. This small network has no traffic lights or lane changes,
+so the dwell events and traffic profiles are controlled simulation cases,
+not a validated model of a specific city.
+
+Each run has six complete calibration trips and six complete validation trips,
+two per scenario. Calibration seeds are 2101–2106 and validation seeds are
+2201–2206, with scenario order turns/light, stop/restart, brake/accel repeated
+twice. Calibration and validation are disjoint from each other and from the
+reserved final-test seeds 1301/1302. M7 final-test seeds 803/804 are not used.
+The reserved final configuration in `config/m8_detector.yaml` was not changed
+or run. `config/m8_stage2a.yaml` sets 3 m per-axis Gaussian GPS noise, GPS seed
+offset 68000, 99th percentile calibration, and a 50% chronological prefix per
+normal calibration trip. Per-trip network, node, edge, and route SHA-256 values
+are recorded in each run's `metadata.json`; the config snapshot is also kept in
+the run directory.
+
+Thresholds use only the six normal calibration trips. M5's detector
+implementation is unchanged and was recalibrated using the same expanded
+normal calibration data. M5 and M8 were scored on identical normal and attack
+GPS observations. Validation operating selection uses the predeclared 5% FPR
+target and then active event detection. The selected policy was 2-of-5 fixes,
+clearing after 3 clean fixes. It had a 4.23% pooled normal FPR. The 2-of-3
+policy had 3.02% FPR and 66.7% mean event detection; 2-of-5 had 4.23% FPR and
+72.2% mean event detection. The more sensitive 1-of-1 policy had 10.69% FPR
+and did not meet the target. The selected policy therefore meets the target on
+this validation sample; this is not final-test evidence.
+
+The fitted Stage 2A 99th-percentile normal thresholds were 21.1433 m/s GPS
+speed, 17.4338 m/s absolute speed change, 170.5981° heading change, 17.4338
+m/s² absolute acceleration, and 6.8332 m/s speed-consistency difference. The
+pooled calibration included 245 speed, 239 speed-change, 239 heading-change,
+239 acceleration, and 221 speed-consistency feature values from the
+chronological calibration prefixes.
+
+Pooled normal results for selected M8 versus unchanged M5 were: M8 21/496
+false-positive observations (4.23%) and 0.50 alarm episodes per trip; M5
+17/496 (3.43%) and 2.50 episodes per trip. M8 had fewer alarm episodes but a
+higher false-positive observation rate. M8's scenario FPRs were 3.90% on
+turns/light, 4.02% on stop/restart, and 4.76% on brake/accel. M5's were 3.25%,
+5.17%, and 1.79%, respectively. Selected M8 alert observations overlapped
+truth-based turn, braking, acceleration, stop, restart, and nonzero-traffic
+conditions as follows: 0 turns, 0 braking, 9 accelerating, 6 stopped, 2
+restarting, and 15 in traffic scenarios. M5 had 2 turns, 3 braking, 7
+accelerating, 5 stopped, 1 restarting, and 12 in traffic scenarios. These
+categories overlap and are descriptive associations, not causal explanations.
+
+Selected M8 attack validation results (six observations per attack type):
+
+| Attack | Active events detected | Precision | Recall | F1 | Mean delay among detected | Post-attack alert observations |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Offset | 5/6 | 0.543 | 0.253 | 0.346 | 1.2 s | 26 |
+| Jump | 6/6 | 0.412 | 0.875 | 0.560 | 0.8 s | 54 |
+| Drift | 2/6 | 0.405 | 0.100 | 0.160 | 8.0 s | 16 |
+
+Active-event detection by normal-driving scenario (two validation trips per
+scenario) was:
+
+| Detector | Attack | Turns/light | Stop/restart | Brake/accel |
+| --- | --- | ---: | ---: | ---: |
+| M5 | Offset | 2/2 | 2/2 | 2/2 |
+| M8 | Offset | 2/2 | 2/2 | 1/2 |
+| M5 | Jump | 2/2 | 2/2 | 2/2 |
+| M8 | Jump | 2/2 | 2/2 | 2/2 |
+| M5 | Drift | 0/2 | 2/2 | 1/2 |
+| M8 | Drift | 0/2 | 1/2 | 1/2 |
+
+For comparison, M5 detected offset 6/6, jump 6/6, and drift 3/6; its pooled
+F1 was 0.174, 0.345, and 0.036 respectively. Attack results are mixed, and
+offset detection regressed for M8. No overall detector improvement has been
+established. Stage 1's historical 2-of-3 selection and 8.74% validation FPR
+(above the 5% target) remain recorded unchanged above; Stage 2A does not
+replace that result.
+
+Two completed Stage 2A workflows (`m8_stage2a_repro_04` and `_05`) matched
+across all 89 CSV, JSON, and PNG outputs. `metadata.json` is excluded because
+run IDs and protected-manifest timing differ; configuration snapshots and
+per-trip hashes remain documented. The protected M0–M7 manifest had 2,546
+files, the same SHA-256 before and after, and no changed paths. All existing
+Stage 1 output directories were preserved. The full test suite generated one
+new timestamped M1 truth CSV and its config/metadata sidecars under
+`data/raw/`; these three test outputs were kept. Excluding just those new test
+paths from the post-suite manifest reproduces the 2,546-file Stage 2A protected
+manifest exactly. The M8-specific tests passed 19 tests; the full repository
+suite passed 81 tests. The full M8 final-test matrix has **not** been run.
+
+Reproduction commands from the nested project root (use new run IDs):
+
+```powershell
+python -m src.experiments.m8_stage2a --config config/m8_stage2a.yaml --run-id m8_stage2a_repro_04
+python -m src.experiments.m8_stage2a --config config/m8_stage2a.yaml --run-id m8_stage2a_repro_05
+python -c "from pathlib import Path; from src.experiments.m8_evaluation import compare_runs; print(compare_runs(Path('reports/m8/stage2a/m8_stage2a_repro_04'), Path('reports/m8/stage2a/m8_stage2a_repro_05')))"
+python -m unittest tests.test_m8_detector tests.test_m8_evaluation tests.test_m8_stage2a -v
+python -m unittest discover -s tests -v
+```
+
+No final-test execution is authorized by this stage. Stop here pending approval.
