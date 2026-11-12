@@ -1,0 +1,567 @@
+{
+  "final_test_opened": false,
+  "historical_analysis": {
+    "normal_false_positive_records": 36,
+    "overlap_observations": 6760,
+    "persistence_transitions": 224,
+    "prediction_datasets": 78
+  },
+  "post_cleanup_verification": {
+    "all_preexisting_project_hashes_unchanged_except_m9_tracker": true,
+    "current_non_m9_file_count": 4558,
+    "expected_m9_tracker_edit": true,
+    "test_generated_m1_artifacts_removed": true
+  },
+  "preservation": {
+    "after_file_count": 4561,
+    "all_preexisting_project_hashes_unchanged_except_m9_tracker": true,
+    "baseline_manifest": "reports\\m9\\m9_stage1_validation_01\\protected_before.json",
+    "before_file_count": 4553,
+    "expected_m9_tracker_edit": true
+  },
+  "stage": "M9 Stage 1 validation only",
+  "validation": {
+    "calibration_trip_count": 6,
+    "candidates": [
+      {
+        "active_events": 18,
+        "active_events_detected": 15,
+        "candidate": "OR",
+        "mean_detection_delay_s_detected": 0.26666666666666666,
+        "meets_5pct_target": true,
+        "normal_eligible": 514,
+        "normal_fp": 20,
+        "normal_fpr": 0.038910505836575876,
+        "selected": false
+      },
+      {
+        "active_events": 18,
+        "active_events_detected": 12,
+        "candidate": "AND",
+        "mean_detection_delay_s_detected": 1.0,
+        "meets_5pct_target": true,
+        "normal_eligible": 514,
+        "normal_fp": 4,
+        "normal_fpr": 0.007782101167315175,
+        "selected": false
+      },
+      {
+        "active_events": 18,
+        "active_events_detected": 15,
+        "candidate": "staged",
+        "mean_detection_delay_s_detected": 0.26666666666666666,
+        "meets_5pct_target": true,
+        "normal_eligible": 514,
+        "normal_fp": 10,
+        "normal_fpr": 0.019455252918287938,
+        "selected": true
+      }
+    ],
+    "prediction_manifest": [
+      {
+        "dataset": "none",
+        "gps_input_sha256": "b23c25197004ff4f26a751f0474e8a4072d09f1e8f6d408b8ed707a8b6228e67",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "9a6dc631c7d62ff96f75f75d73e4a10144ec5f3b805341f1a4ba1a7f65911458",
+        "profile": "urban_turns_light",
+        "seed": 2301,
+        "split": "calibration",
+        "trip_id": "calibration_urban_turns_light_seed2301"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "6d28779bd69ffc79a37bba3e96cb053b79945227e004fbf22696fcb397b4a3cf",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "14cb210130ff14fa347b30e3b324c2984186044c95eec90c63e13828fa9d78e7",
+        "profile": "urban_stop_restart",
+        "seed": 2302,
+        "split": "calibration",
+        "trip_id": "calibration_urban_stop_restart_seed2302"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "faa7476709b95bfe8c99c4df09bc0315077f0160bed714176f0765a6448018be",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "6abbebe80915a87e9bf84cac709e0c69cd36b087ceef3c7cd6c4b5c3811ecca3",
+        "profile": "urban_brake_accel",
+        "seed": 2303,
+        "split": "calibration",
+        "trip_id": "calibration_urban_brake_accel_seed2303"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "fc345e9c5c210793f7087e873c2a97db7bc23fee36d41c30ef9279fcfc9b76d9",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "d042d92f043b437a7f13b456c0884edd6c5467ee912ce9b4df42df30d0fff7a4",
+        "profile": "urban_turns_light",
+        "seed": 2304,
+        "split": "calibration",
+        "trip_id": "calibration_urban_turns_light_seed2304"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "f8ff1142abaac6ec31b180df14a92fd941c9c407d3946c8550663a45d0052a37",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "b49b80a0ffa01b43957234492e01d9c9e7ee1be95b2de2712e9541da99b2de3a",
+        "profile": "urban_stop_restart",
+        "seed": 2305,
+        "split": "calibration",
+        "trip_id": "calibration_urban_stop_restart_seed2305"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "1df7e9b3ba40a8fe23b0dbf638e034d0c531560ce097a418335d2855f7f4192e",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "cfcf8b33890ccbbb0eee1f9ee616092c7171306f2cc80e7b45e64bfa61d173c7",
+        "profile": "urban_brake_accel",
+        "seed": 2306,
+        "split": "calibration",
+        "trip_id": "calibration_urban_brake_accel_seed2306"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "9e9c50954aaebcc1176fd031271dcb38ae7890fb449639cef7c295fbd0171c70",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "9a9adaa267b734d16cc0ce3856f80f5e6b2e2bd9d951e54071f183504cc87bef",
+        "profile": "urban_turns_light",
+        "seed": 2401,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2401"
+      },
+      {
+        "dataset": "offset",
+        "gps_input_sha256": "00cafc121a2591bbde0626edb7914e05ed262b9518cb9ac6c6f4dc131f360cdd",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "3a98e8fb34bb622443f2ba340d8d3779a3f28f7166a4cb6b2e81511201fdc731",
+        "profile": "urban_turns_light",
+        "seed": 2401,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2401"
+      },
+      {
+        "dataset": "jump",
+        "gps_input_sha256": "81a74085bd4448d02101f6c146beee57d1f0a7dd4d44d60be8e552e301d77d64",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "ce9654d3d3ef1f4e684debfb9013ec6ea1d290b35a9494ce332afa3be5b0572d",
+        "profile": "urban_turns_light",
+        "seed": 2401,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2401"
+      },
+      {
+        "dataset": "drift",
+        "gps_input_sha256": "c73b5d3e1c503b9d606e574c81a013599d27e72c8f94067f5888147f41a6268e",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "d2770730ab538c30678d67a105bea948e3a4e58a24a1cbccd73e868dc581103b",
+        "profile": "urban_turns_light",
+        "seed": 2401,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2401"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "7afa6ab1d5d20a294e41573aac94c57f10c9e50cbff9f0fcafa2f57281f4d086",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "5546094f9789b11575fa5323092f0ce02ab329443cc9c05e263cd7a490fa7392",
+        "profile": "urban_stop_restart",
+        "seed": 2402,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2402"
+      },
+      {
+        "dataset": "offset",
+        "gps_input_sha256": "cb8322d2c15d247fff10a349f7690b17567d0ed8a06b0636080b70fe8b61f035",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "0403d3538720212c3dd254d482a33d5b8bd05661567588bbacea451121eb3326",
+        "profile": "urban_stop_restart",
+        "seed": 2402,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2402"
+      },
+      {
+        "dataset": "jump",
+        "gps_input_sha256": "0737df22cbb60ad7d7a6f6efc44d85c6bb3d1ba124288a5a5f0a7e128c864430",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "17871e3a958c74cc98e2817d6b985a2d7e178246c50088b15ec7d43d2d76fd99",
+        "profile": "urban_stop_restart",
+        "seed": 2402,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2402"
+      },
+      {
+        "dataset": "drift",
+        "gps_input_sha256": "5ef23844ed32588bad370d077e206ee764492c94d31058afa90461714fcd811f",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "3bdb4e0a52f1f0ee3acc4273990675850b8687a278c9c6251fdf7222cd417a15",
+        "profile": "urban_stop_restart",
+        "seed": 2402,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2402"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "6bd6fd76f42f4c348bd9fdc74e0f9cbf5ccdae555cbf901d388ffd116d016a1e",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "1f292db42af9d5f90a2a28f049e906b66c3e4708f2ff6ad93123fcba8ae25a71",
+        "profile": "urban_brake_accel",
+        "seed": 2403,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2403"
+      },
+      {
+        "dataset": "offset",
+        "gps_input_sha256": "3935bcddcc69611d83b4cfb3a002ea0a99144b338bb88a56eab3dcaf78c61188",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "af9f943960d29d6d85e8b38f46a9e35880f3049f4f0dc4a4baae279c0db21ab5",
+        "profile": "urban_brake_accel",
+        "seed": 2403,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2403"
+      },
+      {
+        "dataset": "jump",
+        "gps_input_sha256": "88d1ee58087ba92f1254b011e719dd78699561da9ec1bdc49d91f0c6770a07e1",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "1aa7b9356ee60a560c504f88d2819e7152bd4465b145b7af9898167b2f5a911a",
+        "profile": "urban_brake_accel",
+        "seed": 2403,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2403"
+      },
+      {
+        "dataset": "drift",
+        "gps_input_sha256": "b5401051389f6092ec96e362688f113ad3f71099a022058942f4602101f5fb76",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "70ac6df0701a4f40e2559290bca8fa35c6aaa9d2a30f8fbb80248f9be9c2e7f8",
+        "profile": "urban_brake_accel",
+        "seed": 2403,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2403"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "a889d19eba72e3a3f9ec520623620c14b69bb866fe37d9b0473193bd36dfccb9",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "cf02a833eaf4c208124a6c9b577753605bf334a180b06704c016ede53240627f",
+        "profile": "urban_turns_light",
+        "seed": 2404,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2404"
+      },
+      {
+        "dataset": "offset",
+        "gps_input_sha256": "dd9477f6b9f385a0943750407ac13a7180c48ebcceadfa25f513ba8b793c9fc2",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "0c2c8826c5e61ecbf5d4a659dd1d39c4a6d95f1c4f3a8f143d51f1532b409fe3",
+        "profile": "urban_turns_light",
+        "seed": 2404,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2404"
+      },
+      {
+        "dataset": "jump",
+        "gps_input_sha256": "f0c67a014e39a0c33e794509f2a7a5318855224a20340c7bf6f907e344981f60",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "bd59dd4c6edaa675f79e6a34d79f6446937a6a7dab05f1715e1a0f4b4a005ee8",
+        "profile": "urban_turns_light",
+        "seed": 2404,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2404"
+      },
+      {
+        "dataset": "drift",
+        "gps_input_sha256": "39db628da22f11c8308f3e88dee9e9cfdc0d8bacc007ce22dd9e21672ffac302",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "0c97a4bd333b942253d265ed98423b262632e55377926eba0bd99bab8df9408c",
+        "profile": "urban_turns_light",
+        "seed": 2404,
+        "split": "validation",
+        "trip_id": "validation_urban_turns_light_seed2404"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "cb23c1db64e5e7c0e1b7e72eae3aa004122b1db6d09c71defe0ebc2c89d3c86c",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "aa2b89b806ab507e84ae4b8f1b59422e21787578b406dc6d60a6fbf57856af63",
+        "profile": "urban_stop_restart",
+        "seed": 2405,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2405"
+      },
+      {
+        "dataset": "offset",
+        "gps_input_sha256": "9043d4300eb0c7664daa634fc1bf784108b9e6ab4b775cfc62e4328b7e16e68a",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "875c92b3e78a0e5da6cc371838d26930aa7d8af62dae2013ff8d524ddd83da03",
+        "profile": "urban_stop_restart",
+        "seed": 2405,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2405"
+      },
+      {
+        "dataset": "jump",
+        "gps_input_sha256": "930bf6eb0b8de89f3cb1dd492fad0279b25de0d4d9a5d0a720a1d810cc3f7d50",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "75b02e9f14c4c99b4d5b75f93a1d2659f5654c3e7f34a2f59be7d912e2cfbf2b",
+        "profile": "urban_stop_restart",
+        "seed": 2405,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2405"
+      },
+      {
+        "dataset": "drift",
+        "gps_input_sha256": "f7ad839ff43059743c051478b17c5b9667dfc7f925abdf0de4b5ec60a3270660",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "fb391a55d82d2e79cbdde57fb126426892d9df64deec395f496b2b02d12cbc1f",
+        "profile": "urban_stop_restart",
+        "seed": 2405,
+        "split": "validation",
+        "trip_id": "validation_urban_stop_restart_seed2405"
+      },
+      {
+        "dataset": "none",
+        "gps_input_sha256": "5c66392e618acb493e36f4dca36677f12d93e18be0e18a27efbb77b7a931c62a",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "fa94de2a40b8363746ed0aac2d930959bdc507639f80c990f68b20b656496f15",
+        "profile": "urban_brake_accel",
+        "seed": 2406,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2406"
+      },
+      {
+        "dataset": "offset",
+        "gps_input_sha256": "bf64ef7a4327c02fed3f7f02e090c1efe97c28263614f4daf9361bc9029d7fbc",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "abe6ee997e9bd58d5637e7e3dbb95e8e511a1206e466eeba2f43b5cb38fcf3f5",
+        "profile": "urban_brake_accel",
+        "seed": 2406,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2406"
+      },
+      {
+        "dataset": "jump",
+        "gps_input_sha256": "5f393b4610bf23f226ca0cb92f41b752e4e36eba08450a03e214cf0afa11aa6a",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "fb33e0cc103360afd36e49799f357daaf34929a7d267c897a5c065c4a4e4d516",
+        "profile": "urban_brake_accel",
+        "seed": 2406,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2406"
+      },
+      {
+        "dataset": "drift",
+        "gps_input_sha256": "5acd6ee4a6f27d8bbb646a7c68ed733fd99aab59606282f8a4c04ce9beeba634",
+        "labels_joined_after_predictions": true,
+        "prediction_sha256": "d504ce2d894e4c558a6b867aa8340b47689aa38ae8c3c3123b8b4ce0f6f1f4cb",
+        "profile": "urban_brake_accel",
+        "seed": 2406,
+        "split": "validation",
+        "trip_id": "validation_urban_brake_accel_seed2406"
+      }
+    ],
+    "selected_candidate": "staged",
+    "staged_diagnostics": {
+      "corroborated_event_count": 18,
+      "corroborated_events_detected": 12,
+      "corroborated_mean_delay_s": 1.0,
+      "suspect_events_detected": 15,
+      "suspect_normal_fpr": 0.019455252918287938
+    },
+    "trip_manifest": [
+      {
+        "gps_seed": 1842840396,
+        "gps_sha256": "b23c25197004ff4f26a751f0474e8a4072d09f1e8f6d408b8ed707a8b6228e67",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "56975a0453d6951a3cb9e91d214522d5910e8a24c3a4f0ac24797087d4aead46",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "1dbb5ad411a84130045a5d308373b38e0068b1b07b9723ed2d520e57875980e0"
+        },
+        "scenario": "urban_turns_light",
+        "seed": 2301,
+        "split": "calibration",
+        "traffic_vehicles": 0,
+        "trip_id": "calibration_urban_turns_light_seed2301",
+        "truth_sha256": "06ba54c7f63ec076ce5cf228d4190cde8fdc6d081efa0cc954a8892c489c4442"
+      },
+      {
+        "gps_seed": 2232434171,
+        "gps_sha256": "6d28779bd69ffc79a37bba3e96cb053b79945227e004fbf22696fcb397b4a3cf",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "00be8fe71a0db8dda0416fe79aa702ac7ef06f98a17bcbb28ec43adfca5eaca4",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "5fa60396282272184a1f934905deece066b7185568e60211e2fda43b4de8ad6d"
+        },
+        "scenario": "urban_stop_restart",
+        "seed": 2302,
+        "split": "calibration",
+        "traffic_vehicles": 5,
+        "trip_id": "calibration_urban_stop_restart_seed2302",
+        "truth_sha256": "50da489f2f2809c5a12f2bcb74cc3c3ca895bf5175cf1fd058bf163106166c2d"
+      },
+      {
+        "gps_seed": 1223037054,
+        "gps_sha256": "faa7476709b95bfe8c99c4df09bc0315077f0160bed714176f0765a6448018be",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "f79d7a1261bc99c77801c77339c3bc6eff0594d518d825abdbba28fd81b103f1",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "d225de92c15ae470a2201e3c4430709229043ac38549b2f8ba841400f292808c"
+        },
+        "scenario": "urban_brake_accel",
+        "seed": 2303,
+        "split": "calibration",
+        "traffic_vehicles": 12,
+        "trip_id": "calibration_urban_brake_accel_seed2303",
+        "truth_sha256": "a6ddb5d03f7082a4a664d2e58e8be82b67c301c39f73ccd3d620843f1cbb8202"
+      },
+      {
+        "gps_seed": 2570787267,
+        "gps_sha256": "fc345e9c5c210793f7087e873c2a97db7bc23fee36d41c30ef9279fcfc9b76d9",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "50320aac43f4cc3bf6e1a5623ae97dba47873a99f07adeb083644ef6f484e4af",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "1dbb5ad411a84130045a5d308373b38e0068b1b07b9723ed2d520e57875980e0"
+        },
+        "scenario": "urban_turns_light",
+        "seed": 2304,
+        "split": "calibration",
+        "traffic_vehicles": 0,
+        "trip_id": "calibration_urban_turns_light_seed2304",
+        "truth_sha256": "c21c992bb373a3bc56e2e351eb14c652cd1381af6107e3711bf51f8de1223218"
+      },
+      {
+        "gps_seed": 2869751638,
+        "gps_sha256": "f8ff1142abaac6ec31b180df14a92fd941c9c407d3946c8550663a45d0052a37",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "cfc01e12247b0d42f2af4506d0b523a5e204814bf7f73b60d2ca4c0d255cd98b",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "ace96e4792cc61bec91b033c5bd2fbf2ed09de14d1dac8b55accae7803a31488"
+        },
+        "scenario": "urban_stop_restart",
+        "seed": 2305,
+        "split": "calibration",
+        "traffic_vehicles": 5,
+        "trip_id": "calibration_urban_stop_restart_seed2305",
+        "truth_sha256": "a929d633bc3fe3c2be62d0b12bbb14410c0f26a532b5263b76aff9b3c5555476"
+      },
+      {
+        "gps_seed": 2299136434,
+        "gps_sha256": "1df7e9b3ba40a8fe23b0dbf638e034d0c531560ce097a418335d2855f7f4192e",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "91dfe66c68419b7162389f5e8669777f200a0a16f3e97cc56c80d647ff63f49e",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "eafffbe93c1f7f8e83093093f9b8857b3f065139ae5c380db2b6330662b8e044"
+        },
+        "scenario": "urban_brake_accel",
+        "seed": 2306,
+        "split": "calibration",
+        "traffic_vehicles": 12,
+        "trip_id": "calibration_urban_brake_accel_seed2306",
+        "truth_sha256": "bfe18a7f6643213c7b5beef68732268f1ac3d34fce7e05bcd0ac43d892c1bacd"
+      },
+      {
+        "gps_seed": 3413691931,
+        "gps_sha256": "9e9c50954aaebcc1176fd031271dcb38ae7890fb449639cef7c295fbd0171c70",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "3f4a059c20cc2d2b5a0ed7bc0bb81fe82e0b88054d7fdaff052725950fa188ec",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "1dbb5ad411a84130045a5d308373b38e0068b1b07b9723ed2d520e57875980e0"
+        },
+        "scenario": "urban_turns_light",
+        "seed": 2401,
+        "split": "validation",
+        "traffic_vehicles": 0,
+        "trip_id": "validation_urban_turns_light_seed2401",
+        "truth_sha256": "1b136352123d20766364cc855b61441987c44aa41d713f2dedb2dda237c9be6f"
+      },
+      {
+        "gps_seed": 1178524675,
+        "gps_sha256": "7afa6ab1d5d20a294e41573aac94c57f10c9e50cbff9f0fcafa2f57281f4d086",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "2f137068b85ff32a9c1aa02ff5e4807f7a961701aa76f4d46b4396353d418883",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "5fa60396282272184a1f934905deece066b7185568e60211e2fda43b4de8ad6d"
+        },
+        "scenario": "urban_stop_restart",
+        "seed": 2402,
+        "split": "validation",
+        "traffic_vehicles": 5,
+        "trip_id": "validation_urban_stop_restart_seed2402",
+        "truth_sha256": "051e3bc5b0ece8b6e6a6a5742d3b724634204d1a7ddafe8a8ce91d9bcaafeb56"
+      },
+      {
+        "gps_seed": 2462172545,
+        "gps_sha256": "6bd6fd76f42f4c348bd9fdc74e0f9cbf5ccdae555cbf901d388ffd116d016a1e",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "93d90d6a29dcb36ec6ae9d6f9f984d03b782ddb9070863aa5cd640d9ed463315",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "d225de92c15ae470a2201e3c4430709229043ac38549b2f8ba841400f292808c"
+        },
+        "scenario": "urban_brake_accel",
+        "seed": 2403,
+        "split": "validation",
+        "traffic_vehicles": 12,
+        "trip_id": "validation_urban_brake_accel_seed2403",
+        "truth_sha256": "2d691f5a8475fe773c6c026b2bce0eee4d8ef281cb846901dd3069bdede9df38"
+      },
+      {
+        "gps_seed": 3974163321,
+        "gps_sha256": "a889d19eba72e3a3f9ec520623620c14b69bb866fe37d9b0473193bd36dfccb9",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "9d57ba70aec48340bccddd842b58fd6bbac60a77467d8d977ddd3bbb9509c040",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "1dbb5ad411a84130045a5d308373b38e0068b1b07b9723ed2d520e57875980e0"
+        },
+        "scenario": "urban_turns_light",
+        "seed": 2404,
+        "split": "validation",
+        "traffic_vehicles": 0,
+        "trip_id": "validation_urban_turns_light_seed2404",
+        "truth_sha256": "cca6a10643c7d0a3bd84406c45d5d402e53d1e3fc63b2cfd9e68c0d33502d017"
+      },
+      {
+        "gps_seed": 3547792904,
+        "gps_sha256": "cb23c1db64e5e7c0e1b7e72eae3aa004122b1db6d09c71defe0ebc2c89d3c86c",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "b67176df5f292283c5cac1d2537a2ada20004b446255dba9c3f510271e228f91",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "ace96e4792cc61bec91b033c5bd2fbf2ed09de14d1dac8b55accae7803a31488"
+        },
+        "scenario": "urban_stop_restart",
+        "seed": 2405,
+        "split": "validation",
+        "traffic_vehicles": 5,
+        "trip_id": "validation_urban_stop_restart_seed2405",
+        "truth_sha256": "6616d51f258d4211de74ec4d3d75f6f0e885036836aadcd4c60fb57ba9eec8cb"
+      },
+      {
+        "gps_seed": 1198324159,
+        "gps_sha256": "5c66392e618acb493e36f4dca36677f12d93e18be0e18a27efbb77b7a931c62a",
+        "input_hashes": {
+          "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+          "network": "41280ec8415147a26c3a3db7086e76f25fbce689050ddc96ae0f8a5f05485c1e",
+          "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+          "routes": "eafffbe93c1f7f8e83093093f9b8857b3f065139ae5c380db2b6330662b8e044"
+        },
+        "scenario": "urban_brake_accel",
+        "seed": 2406,
+        "split": "validation",
+        "traffic_vehicles": 12,
+        "trip_id": "validation_urban_brake_accel_seed2406",
+        "truth_sha256": "ea52b4f42475943eb828e5c2b2c2fad6657e6fa729d3c5cb6bab7cf27b08d0fd"
+      }
+    ],
+    "validation_datasets": 180,
+    "validation_trip_count": 6
+  }
+}

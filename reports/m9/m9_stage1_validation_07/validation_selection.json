@@ -1,0 +1,66 @@
+{
+  "baseline_reference_metrics": [
+    {
+      "active_events": 18,
+      "active_events_detected": 15,
+      "candidate": "M5",
+      "normal_eligible": 514,
+      "normal_fp": 10,
+      "normal_fpr": 0.019455252918287938
+    },
+    {
+      "active_events": 18,
+      "active_events_detected": 12,
+      "candidate": "M8",
+      "normal_eligible": 514,
+      "normal_fp": 14,
+      "normal_fpr": 0.027237354085603113
+    }
+  ],
+  "candidates": [
+    {
+      "active_events": 18,
+      "active_events_detected": 15,
+      "candidate": "OR",
+      "mean_detection_delay_s_detected": 0.26666666666666666,
+      "meets_5pct_target": true,
+      "normal_eligible": 514,
+      "normal_fp": 20,
+      "normal_fpr": 0.038910505836575876,
+      "selected": false
+    },
+    {
+      "active_events": 18,
+      "active_events_detected": 12,
+      "candidate": "AND",
+      "mean_detection_delay_s_detected": 1.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 514,
+      "normal_fp": 4,
+      "normal_fpr": 0.007782101167315175,
+      "selected": false
+    },
+    {
+      "active_events": 18,
+      "active_events_detected": 15,
+      "candidate": "staged",
+      "mean_detection_delay_s_detected": 0.26666666666666666,
+      "meets_5pct_target": true,
+      "normal_eligible": 514,
+      "normal_fp": 10,
+      "normal_fpr": 0.019455252918287938,
+      "selected": true
+    }
+  ],
+  "final_test_opened": false,
+  "selected_candidate": "staged",
+  "selection_rule": "among OR, AND and staged candidates with validation normal FPR <= 5%, maximize active alert-event detections, then minimize FPR, then mean delay; staged uses its unsuppressed fast-suspect state as its alert while reporting corroboration separately; never select by F1 alone",
+  "staged_diagnostics": {
+    "corroborated_event_count": 18,
+    "corroborated_events_detected": 12,
+    "corroborated_mean_delay_s": 1.0,
+    "suspect_events_detected": 15,
+    "suspect_normal_fpr": 0.019455252918287938
+  },
+  "target_normal_fpr": 0.05
+}

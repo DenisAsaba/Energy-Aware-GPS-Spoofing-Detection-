@@ -1,0 +1,66 @@
+{
+  "baseline_reference_metrics": [
+    {
+      "active_events": 9,
+      "active_events_detected": 7,
+      "candidate": "M5",
+      "normal_eligible": 273,
+      "normal_fp": 5,
+      "normal_fpr": 0.018315018315018316
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 6,
+      "candidate": "M8",
+      "normal_eligible": 273,
+      "normal_fp": 7,
+      "normal_fpr": 0.02564102564102564
+    }
+  ],
+  "candidates": [
+    {
+      "active_events": 9,
+      "active_events_detected": 7,
+      "candidate": "OR",
+      "mean_detection_delay_s_detected": 0.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 10,
+      "normal_fpr": 0.03663003663003663,
+      "selected": false
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 6,
+      "candidate": "AND",
+      "mean_detection_delay_s_detected": 1.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 2,
+      "normal_fpr": 0.007326007326007326,
+      "selected": false
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 7,
+      "candidate": "staged",
+      "mean_detection_delay_s_detected": 0.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 5,
+      "normal_fpr": 0.018315018315018316,
+      "selected": true
+    }
+  ],
+  "final_test_opened": false,
+  "selected_candidate": "staged",
+  "selection_rule": "among OR, AND and staged candidates with validation normal FPR <= 5%, maximize active alert-event detections, then minimize FPR, then mean delay; staged uses its unsuppressed fast-suspect state as its alert while reporting corroboration separately; never select by F1 alone",
+  "staged_diagnostics": {
+    "corroborated_event_count": 9,
+    "corroborated_events_detected": 6,
+    "corroborated_mean_delay_s": 1.0,
+    "suspect_events_detected": 7,
+    "suspect_normal_fpr": 0.018315018315018316
+  },
+  "target_normal_fpr": 0.05
+}

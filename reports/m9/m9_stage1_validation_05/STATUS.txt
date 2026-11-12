@@ -1,0 +1,6 @@
+The full six-seed evaluation and scoring completed, but this run exited at
+preservation verification because the initial guard treated the intentional
+TASKS.md M9 progress update as an unexpected protected-file change. No
+pre-existing project files other than TASKS.md had changed. After updating the
+guard to report that single expected tracker edit, the verified repeat is in
+m9_stage1_validation_06; its independent reproducibility run is _07.

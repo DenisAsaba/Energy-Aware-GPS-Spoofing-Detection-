@@ -1,0 +1,6 @@
+candidate,normal_fp,normal_eligible,normal_fpr,active_events_detected,active_events,mean_detection_delay_s_detected,meets_5pct_target,selected
+M5,5,273,0.018315018315018316,7,9,0.0,True,True
+M8,7,273,0.02564102564102564,6,9,1.0,True,False
+OR,10,273,0.03663003663003663,7,9,0.0,True,False
+AND,2,273,0.007326007326007326,6,9,1.0,True,False
+staged,5,273,0.018315018315018316,7,9,0.0,True,False

@@ -1,0 +1,10 @@
+simulation:
+  begin_s: 0
+  depart_s: 0
+  end_s: 600
+  network_file: C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\Energy-Aware-GPS-Spoofing-Detection-\reports\m9\m9_stage1_validation_07\trips\calibration_urban_brake_accel_seed2303\inputs\grid.net.xml
+  route_file: C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\Energy-Aware-GPS-Spoofing-Detection-\reports\m9\m9_stage1_validation_07\trips\calibration_urban_brake_accel_seed2303\inputs\scenario.rou.xml
+  seed: 2303
+  step_length_s: 1.0
+  telemetry_output_dir: C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\Energy-Aware-GPS-Spoofing-Detection-\reports\m9\m9_stage1_validation_07\trips\calibration_urban_brake_accel_seed2303
+  vehicle_id: ev_001

@@ -1,0 +1,70 @@
+{
+  "candidates": [
+    {
+      "active_events": 9,
+      "active_events_detected": 7,
+      "candidate": "M5",
+      "mean_detection_delay_s_detected": 0.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 5,
+      "normal_fpr": 0.018315018315018316,
+      "selected": true
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 6,
+      "candidate": "M8",
+      "mean_detection_delay_s_detected": 1.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 7,
+      "normal_fpr": 0.02564102564102564,
+      "selected": false
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 7,
+      "candidate": "OR",
+      "mean_detection_delay_s_detected": 0.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 10,
+      "normal_fpr": 0.03663003663003663,
+      "selected": false
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 6,
+      "candidate": "AND",
+      "mean_detection_delay_s_detected": 1.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 2,
+      "normal_fpr": 0.007326007326007326,
+      "selected": false
+    },
+    {
+      "active_events": 9,
+      "active_events_detected": 7,
+      "candidate": "staged",
+      "mean_detection_delay_s_detected": 0.0,
+      "meets_5pct_target": true,
+      "normal_eligible": 273,
+      "normal_fp": 5,
+      "normal_fpr": 0.018315018315018316,
+      "selected": false
+    }
+  ],
+  "final_test_opened": false,
+  "selected_candidate": "M5",
+  "selection_rule": "among candidates with validation normal FPR <= 5%, maximize active event detections then minimize mean delay; never select by F1 alone",
+  "staged_diagnostics": {
+    "corroborated_event_count": 9,
+    "corroborated_events_detected": 6,
+    "corroborated_mean_delay_s": 1.0,
+    "suspect_events_detected": 7,
+    "suspect_normal_fpr": 0.018315018315018316
+  },
+  "target_normal_fpr": 0.05
+}
