@@ -1,0 +1,7 @@
+seed: 2503
+vehicle_id: ev_001
+simulation_steps: 208
+telemetry_rows: 88
+trip_completed: true
+sumo_step_length_s: 1.0
+telemetry_file: truth.csv

@@ -1,0 +1,16 @@
+attack_type: jump
+attack_id: final_urban_turns_light_seed2501_jump_magnitude_m_60_duration_5s
+seed: 1476391944
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 35.0
+duration_s: 5.0
+truth_file: C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\Energy-Aware-GPS-Spoofing-Detection-\reports\m9\m9_stage2_final_01\trips\final_urban_turns_light_seed2501\truth.csv
+gps_file: jump_magnitude_m_60_duration_5s.csv
+labels_file: jump_magnitude_m_60_duration_5s_labels.csv
+attack_parameters:
+  onset_s: 35.0
+  duration_s: 5.0
+  magnitude_m: 60.0
+  direction_deg: 45.0
+labels_are_not_detector_inputs: true

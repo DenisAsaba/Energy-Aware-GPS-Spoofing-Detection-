@@ -237,4 +237,178 @@ python -c "from pathlib import Path; from src.experiments.m9_error_analysis impo
 python -m unittest discover -s tests -v
 ```
 
-M9 Stage 1 stops here. Do not evaluate seeds 2501–2506 until approval.
+M9 Stage 1 validation remains a separate result set. Stage 2 final held-out
+results, run only after explicit approval, are recorded below; validation and
+final-test results are not pooled.
+
+## M9 Stage 2 — Final held-out evaluation
+
+### Frozen setup and allocation
+
+Stage 2 used the approved final seeds 2501–2506, two seeds per profile:
+
+| Profile | Seeds | SUMO trips | Normal controls | Attack events |
+|---|---|---:|---:|---:|
+| `urban_turns_light` | 2501, 2504 | 2 | 2 | 24 |
+| `urban_stop_restart` | 2502, 2505 | 2 | 2 | 24 |
+| `urban_brake_accel` | 2503, 2506 | 2 | 2 | 24 |
+| **Total** | **2501–2506** | **6** | **6** | **72** |
+
+Each of the six route trips supplies one normal GPS control and all 12 approved
+attack variants. Thus the experiment has six simulated trips, six normal
+control datasets, 72 attack datasets/events, and 78 prediction datasets. Each
+seed has four events per attack type; each profile has eight events per type;
+each exact case ID occurs six times overall and twice per profile.
+
+The matrix matches M8 Stage 2B: four offsets (30/60 m by 10/25 s), four jumps
+(30/60 m by **1/5 s**), and four drifts (0.5/1.0 m/s by 10/25 s, capped at
+20 m). Every case begins at 35 s. Directions are 90° for offsets, 45° for
+jumps, and 0° for drift. The M9 Stage 1 60 m / 8 s jump remains unchanged in
+the Stage 1 `attacks` section and was not included in the final matrix because
+it is absent from historical M8 Stage 2B.
+
+M5 thresholds, M8 thresholds and 2-of-5 persistence, and all staged fusion
+windows were frozen. M5 and M8 predictions, followed by keyed OR/AND/staged
+outputs, were written from GPS-only files before labels were read for scoring.
+All systems used matched `(time_s, vehicle_id)` observations. The staged
+fast-suspect result is the unchanged immediate M5 stream; corroboration is
+reported as a separate state.
+
+### Normal-driving false alarms
+
+Normal FPR is computed only on the six normal controls. Pooled rates sum false
+positive and eligible observation counts before division. “Alarm episodes”
+counts rising edges in the normal alert stream; false-positive observations
+and episodes are distinct measures.
+
+| System | Pooled normal FPR (FP / eligible) | Normal alarm episodes | Turns/light FPR | Stop/restart FPR | Brake/accel FPR |
+|---|---:|---:|---:|---:|---:|
+| M5 | 2.98% (16/537) | 15 | 3.54% | 3.49% | 1.80% |
+| M8 | 7.26% (39/537) | 7 | 9.60% | 9.88% | 1.80% |
+| OR | 9.12% (49/537) | 16 | 11.62% | 12.21% | 2.99% |
+| AND | 1.12% (6/537) | 5 | 1.52% | 1.16% | 0.60% |
+| Staged fast suspect | 2.98% (16/537) | 15 | 3.54% | 3.49% | 1.80% |
+| Staged corroborated | 5.77% (31/537) | 4 | 8.59% | 5.23% | 2.99% |
+
+Per-profile eligible denominators were 198 turns/light, 172 stop/restart, and
+167 brake/accel observations for each system. M8, OR, and staged corroborated
+exceeded 5% pooled normal FPR; OR had the highest pooled false-positive count.
+The 5% target is descriptive here and was not used to retune or select a final
+policy.
+
+### Active attack events and delay
+
+| System | Events detected | Mean delay among detected events |
+|---|---:|---:|
+| M5 | 58/72 (80.6%) | 1.33 s |
+| M8 | 60/72 (83.3%) | 0.40 s |
+| OR | 66/72 (91.7%) | 0.65 s |
+| AND | 50/72 (69.4%) | 1.12 s |
+| Staged fast suspect | 58/72 (80.6%) | 1.33 s |
+| Staged corroborated | 52/72 (72.2%) | 0.46 s |
+
+Fast-suspect results exactly equal M5, as defined. They do not show a change in
+M5 recall or delay. By type, M5 detected all 24 offsets, all systems detected
+all offsets, and offset mean delay ranged from 0 s (M5, OR, staged fast) to
+0.33 s (M8, AND, staged corroborated). Detection was weaker for drift: M5
+10/24, M8 16/24, OR 18/24, AND 6/24, staged fast 10/24, and staged
+corroborated 8/24. Exact results by profile, magnitude/rate, duration, and
+system are in `attack_event_summary.csv`; per-event delays are in
+`trip_metrics.csv`.
+
+Per-profile event detection is shown with mean delay among detected events:
+
+| Profile | M5 | M8 | OR | AND | Staged fast | Staged corroborated |
+|---|---:|---:|---:|---:|---:|---:|
+| Turns/light | 18/24 (1.67 s) | 24/24 (0 s) | 24/24 (0 s) | 18/24 (1.78 s) | 18/24 (1.67 s) | 20/24 (0 s) |
+| Stop/restart | 22/24 (0.55 s) | 24/24 (0.50 s) | 24/24 (0.33 s) | 20/24 (0.60 s) | 22/24 (0.55 s) | 20/24 (0.60 s) |
+| Brake/accel | 18/24 (1.94 s) | 12/24 (1.00 s) | 18/24 (1.94 s) | 12/24 (1.00 s) | 18/24 (1.94 s) | 12/24 (1.00 s) |
+
+#### Short and longer jump comparison
+
+Each duration row contains 12 events: two magnitudes across three profiles and
+two seeds per profile.
+
+| System | 1 s jumps detected | Mean delay | 5 s jumps detected | Mean delay |
+|---|---:|---:|---:|---:|
+| M5 | 12/12 | 0 s | 12/12 | 0 s |
+| M8 | 8/12 | 0 s | 12/12 | 0.33 s |
+| OR | 12/12 | 0 s | 12/12 | 0 s |
+| AND | 8/12 | 0 s | 12/12 | 0.33 s |
+| Staged fast suspect | 12/12 | 0 s | 12/12 | 0 s |
+| Staged corroborated | 8/12 | 0 s | 12/12 | 0.33 s |
+
+For both 30 m and 60 m jumps, the 1 s versus 5 s event counts follow the same
+pattern: M5/OR/staged fast detected 6/6 at each duration; M8/AND/staged
+corroborated detected 4/6 at 1 s and 6/6 at 5 s. These are event-level
+descriptive results, not evidence of generalization.
+
+### Prediction overlap, persistence, and coverage
+
+Across matched jointly eligible observations, M5/M8 overlap was:
+
+| Label state | Both alert | M5 only | M8 only | Neither |
+|---|---:|---:|---:|---:|
+| Attack active | 106 | 34 | 235 | 537 |
+| Normal or attack inactive | 123 | 114 | 534 | 5,298 |
+
+The alarm ledger records each activation, clearing observation, and episode
+length separately for all six output streams. In normal controls, the system
+episode counts are listed above. Across attack datasets the episode totals
+were M5 234, M8 113, OR 201, AND 143, staged fast 234, and staged corroborated
+96. Post-attack alert observations across the 72 attack datasets were 161,
+414, 482, 93, 161, and 544 respectively; these are counts, not event recall.
+
+Each prediction dataset had one initial ineligible/warm-up observation;
+eligible denominators exclude it. Across each detector stream this accounts
+for 78 ineligible observations over 78 datasets. There were no unmatched
+predictions on eligible keys. Labels include the ineligible first observation,
+so it appears as one unmatched label per dataset and is excluded from scoring.
+The detailed per-dataset counts are in `prediction_coverage.csv`.
+
+### Reproducibility, preservation, and limits
+
+The first two runs (`m9_stage2_final_01` and `_02`) compared byte-for-byte on
+242 CSV files. During review, the attack summary’s episode grouping was found
+to pool cases incorrectly, the normal alarm episode count counted datasets
+with an alarm instead of alarm episodes, and an inactive-observation rate was
+labeled as normal FPR. No predictions, labels, thresholds, or detector
+policies changed. The reporting aggregation was corrected; the complete
+evaluation was repeated as `_03` and `_04`, which also matched byte-for-byte on
+242 CSV files. The 222
+attack/GPS/prediction CSV files in `_01` and `_03` are byte-identical. Use
+`_03` and `_04` as the canonical corrected report runs; the earlier runs remain
+preserved as audit history.
+
+All 105 repository tests passed, including 20 M9-specific tests. The M0–M8
+protected baseline had no hash changes (4,552 baseline files excluding the
+M9 tracker edit). All 1,658 pre-existing M9 report files were unchanged at the
+start of the canonical run, and all frozen code/input hashes matched after
+evaluation. The protected baseline manifest digest, excluding the tracker,
+was `052b8ec5689a6e70c40d738cd9b3852880dc809a1af6c6ad2ed24b0ad53f6620`.
+
+Frozen hashes for the canonical run include:
+
+| Artifact | SHA-256 |
+|---|---|
+| `config/m9_analysis.yaml` | `4916eb391982592e1c01afb177f893475991e53f6096fe3562056ff26cdf8a77` |
+| `config/m8_stage2b.yaml` | `24a21860864b60c96a9a73b1a029c9a457cb052506468e35fd2fa94ec53faaaa` |
+| `src/detection/m8_detector.py` | `65c4323e40328f0f1f0493a5a0c9afebc420b1cfdede067cb424f8a38d36ba7d` |
+| `src/detection/m9_hybrid.py` | `b8d72f1f61f7373c64ca51f1b77918a6f96a80723ccd6665a373c28158371cdd` |
+| `src/experiments/m9_final_evaluation.py` | `51411049e11692351b916d89080220b9a46d73422534a227c1ebadea5136106e` |
+| Historical M8 Stage 2B `metadata.json` | `816a70833c1d8e1ad2e4a0f028afb43aee00ccd5ef5bb162dad8a214fc60b2ab` |
+
+Reproduction commands (use a new run ID because existing outputs are protected):
+
+```powershell
+python -m src.experiments.m9_final_evaluation --config config/m9_analysis.yaml --run-id m9_stage2_reproduction_01
+python -m src.experiments.m9_final_evaluation --config config/m9_analysis.yaml --run-id m9_stage2_reproduction_02
+python -c "from pathlib import Path; from src.experiments.m9_final_evaluation import compare_runs; r=compare_runs(Path('reports/m9/m9_stage2_reproduction_01'), Path('reports/m9/m9_stage2_reproduction_02')); print(r); assert r['byte_identical']"
+python -m unittest discover -s tests -v
+```
+
+The six trips support descriptive comparisons only; no confidence intervals
+or claims of broad generalization are made. A GPS motion anomaly does not
+prove spoofing. Smooth constant translation and plausible slow drift can be
+unobservable from GPS motion alone. Corroboration is not confirmed spoofing,
+and these results do not establish production readiness. M9 Stage 2 ends here.

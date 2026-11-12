@@ -1,0 +1,17 @@
+attack_type: drift
+attack_id: final_urban_turns_light_seed2504_drift_rate_mps_0.5_duration_25s
+seed: 41554643
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 35.0
+duration_s: 25.0
+truth_file: C:\Users\Rolly\Downloads\ev-gps-agent-starter (1)\ev-gps-agent-starter\Energy-Aware-GPS-Spoofing-Detection-\reports\m9\m9_stage2_final_03\trips\final_urban_turns_light_seed2504\truth.csv
+gps_file: drift_rate_mps_0.5_duration_25s.csv
+labels_file: drift_rate_mps_0.5_duration_25s_labels.csv
+attack_parameters:
+  onset_s: 35.0
+  duration_s: 25.0
+  rate_mps: 0.5
+  direction_deg: 0.0
+  max_displacement_m: 20.0
+labels_are_not_detector_inputs: true

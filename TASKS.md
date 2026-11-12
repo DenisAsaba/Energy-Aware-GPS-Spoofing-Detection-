@@ -1,6 +1,21 @@
 # Live milestone tracker
 
-**Current milestone:** M8 Stage 2B frozen final held-out evaluation complete. Stop before M9.
+**Current milestone:** M9 Stage 2 final held-out evaluation complete; stop before M10 or detector tuning.
+
+### M9 Stage 1: detector error analysis and hybrid fusion
+- [x] Audit proposed calibration/validation/final seed ranges against existing configs and reports; preserve a pre-implementation hash manifest.
+- [x] Read existing M5/M8 prediction records by keyed observation and report joint overlap, normal false positives, attack misses/delay, post-attack alerts, and M8 persistence transitions.
+- [x] Implement isolated OR, AND, and staged fusion; retain immediate M5 suspect alerts and separately expose M8 corroboration/corroborated state.
+- [x] Add tests for keyed alignment, fusion truth tables, event association/expiry, missing and ineligible fixes, multiple vehicles, clearing, short events, causal prefix behavior, ignored truth/label fields, deterministic outputs, and no-overwrite behavior.
+- [x] Run three-seed-per-split calibration/validation smoke across all three driving profiles; join labels only after prediction files are written.
+- [x] Select staged as the validation-smoke candidate under the predeclared 5% fast-suspect FPR limit; report corroborated-state errors separately.
+- [x] Repeat Stage 1 smoke under a distinct run ID; compare deterministic input, prediction, label, metric, and selection CSV files.
+- [x] Run all six calibration and six validation seeds (two trips per profile) without opening final-test data; select staged fast-suspect with separate corroboration reporting.
+- [x] Repeat the full calibration/validation split; verify 98/98 comparable CSV outputs match byte-for-byte.
+- [x] Run the complete repository unittest suite and verify the pre-existing protected-file hashes.
+- [x] After explicit approval of the historical M8 Stage 2B matrix, run the frozen M9 final evaluation on seeds 2501–2506; preserve Stage 1 settings and keep validation separate.
+- [x] Repeat the final evaluation independently, verify deterministic outputs, run the complete test suite, and check M0–M8 and prior M9 hashes.
+- [x] Report pooled/per-profile false alarms, attack-event detection/delay, 1 s versus 5 s jumps, overlap, staged corroboration, coverage, limitations, hashes, and exact reproduction commands; stop after Stage 2.
 
 ### M8 Stage 1, Stage 2A, and Stage 2B progress
 - [x] Implement the causal GPS-only M8 detector and preserve the M5 baseline.
@@ -93,6 +108,8 @@
 ## Work log
 | Date | Milestone | Changes | Validation | Limitations |
 | --- | --- | --- | --- | --- |
+| 2026-11-12 | M9 Stage 2 | Added a separate approved 12-case historical M8 final matrix and isolated final evaluator; evaluated seeds 2501–2506 and documented pooled/per-profile results, overlap, jump durations, episodes, coverage, hashes, and limitations | Canonical `_03`/`_04` runs matched 242/242 CSVs; first `_01`/`_02` pair also matched; 222 attack/GPS/prediction CSVs matched across reporting correction; all 105 repository tests passed; protected M0–M8 baseline and all pre-existing M9 report hashes unchanged | Six trips/two per profile are descriptive only; M8/OR/corroborated staged pooled normal FPR exceeded 5%; corroboration is not confirmation; no M10/tuning started |
+| 2026-11-11 | M9 Stage 1 | Added isolated keyed M5/M8 error analysis and OR/AND/staged fusion; added new disjoint seed config, validation metrics, overlap/persistence reports, tests, and methods documentation | 14 M9 tests and 99 repository tests passed; full 6+6 calibration/validation split repeated with 98/98 CSV outputs matching; all pre-existing project hashes unchanged except intentional M9 TASKS update | Validation uses six trips and a synthetic SUMO map; staged fast alerts equal M5 and corroboration does not establish spoofing; final seeds 2501–2506 remain unopened |
 | 2026-11-09 | M8 Stage 2B | Ran the frozen M5/M8 paired final matrix across 2 reserved seeds, 3 normal-driving profiles, and 12 attack intensity/duration cases; added event/observation summaries and paired seed statistics | `_final_01` and `_final_02` matched 242/242 CSV/JSON/PNG files; 23 M8 tests and all 85 repository tests passed; protected M0-M7, prior M8 reports, and frozen code/config hashes verified | Pooled M8 normal FPR met 5% at 4.81% but exceeded it for two profiles and was above M5's 2.50%; M8 active event detection was lower for offset, jump, and drift; only 2 independent seeds |
 | 2026-11-09 | M8 Stage 2A | Added an isolated SUMO loop network with three normal-driving profiles, six calibration and six validation trips, normal-only threshold fitting, validation persistence selection, and paired M5/M8 evaluation; updated M8 docs and README | `m8_stage2a_repro_04` and `_05` matched 89/89 CSV/JSON/PNG outputs; 19 M8 tests and all 81 repository tests passed; Stage 2A protected manifest stayed identical with zero changed paths | Selected M8 normal FPR 4.23% met the 5% target, but exceeded M5's 3.43%; M8 reduced alarm episodes but attack results were mixed. Full final-test matrix not run; await approval |
 | 2026-11-07 | M7 Stage 2 | Added fixed split seed matrix, offset/jump/drift intensity-duration grid, paired summaries, active versus post-attack detection accounting, and isolated M7 report outputs | Two 52-trip runs completed; 24 pairs and 219 deterministic artifacts matched; 1,848 protected pre-existing files retained identical hashes; `python -m unittest discover -s tests -v` passed all 62 tests | Only two final-test seeds and one simple network; M5 alerts were all post-attack, fallback did not improve paired outcomes |

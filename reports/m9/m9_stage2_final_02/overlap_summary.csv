@@ -1,0 +1,9 @@
+label_state,overlap_category,observations
+attack_active,both,106
+attack_active,m5_only,34
+attack_active,m8_only,235
+attack_active,neither,537
+normal_or_inactive,both,123
+normal_or_inactive,m5_only,114
+normal_or_inactive,m8_only,534
+normal_or_inactive,neither,5298

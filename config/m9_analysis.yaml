@@ -26,6 +26,27 @@ attacks:
   offset: {onset_s: 35, duration_s: 25, magnitude_m: 30.0, direction_deg: 90.0}
   jump: {onset_s: 35, duration_s: 8, magnitude_m: 60.0, direction_deg: 45.0}
   drift: {onset_s: 35, duration_s: 25, rate_mps: 1.0, direction_deg: 0.0, max_displacement_m: 20.0}
+final_test:
+  seeds: [2501, 2502, 2503, 2504, 2505, 2506]
+  profile_assignment:
+    urban_turns_light: [2501, 2504]
+    urban_stop_restart: [2502, 2505]
+    urban_brake_accel: [2503, 2506]
+  attack_onset_s: 35
+  matrix:
+    offset:
+      magnitudes_m: [30.0, 60.0]
+      durations_s: [10, 25]
+      direction_deg: 90.0
+    jump:
+      magnitudes_m: [30.0, 60.0]
+      durations_s: [1, 5]
+      direction_deg: 45.0
+    drift:
+      rates_mps: [0.5, 1.0]
+      durations_s: [10, 25]
+      direction_deg: 0.0
+      max_displacement_m: 20.0
 historical_analysis:
   source_run: reports/m8/stage2b/m8_stage2b_final_02
   source_seeds: [1301, 1302]
