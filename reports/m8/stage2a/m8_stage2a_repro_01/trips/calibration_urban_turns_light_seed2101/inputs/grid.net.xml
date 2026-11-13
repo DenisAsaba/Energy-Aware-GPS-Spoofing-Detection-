@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-11-09T21:36:39.627002-06:00 by Eclipse SUMO netconvert 1.28.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="reports/m8/stage2a/m8_stage2a_repro_01/trips/calibration_urban_turns_light_seed2101/inputs/grid.nod.xml"/>
+        <edge-files value="reports/m8/stage2a/m8_stage2a_repro_01/trips/calibration_urban_turns_light_seed2101/inputs/grid.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="reports/m8/stage2a/m8_stage2a_repro_01/trips/calibration_urban_turns_light_seed2101/inputs/grid.net.xml"/>
+    </output>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+</netconvertConfiguration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,0.00,180.00,180.00" origBoundary="0.00,0.00,180.00,180.00" projParameter="!"/>
+
+    <edge id=":ne_0" function="internal">
+        <lane id=":ne_0_0" index="0" speed="3.90" length="2.58" shape="181.60,180.00 181.50,180.70 181.20,181.20 180.70,181.50 180.00,181.60"/>
+    </edge>
+    <edge id=":nw_0" function="internal">
+        <lane id=":nw_0_0" index="0" speed="3.90" length="2.58" shape="0.00,181.60 -0.70,181.50 -1.20,181.20 -1.50,180.70 -1.60,180.00"/>
+    </edge>
+    <edge id=":se_0" function="internal">
+        <lane id=":se_0_0" index="0" speed="3.90" length="2.58" shape="180.00,-1.60 180.70,-1.50 181.20,-1.20 181.50,-0.70 181.60,0.00"/>
+    </edge>
+    <edge id=":sw_0" function="internal">
+        <lane id=":sw_0_0" index="0" speed="3.90" length="2.58" shape="-1.60,0.00 -1.50,-0.70 -1.20,-1.20 -0.70,-1.50 0.00,-1.60"/>
+    </edge>
+
+    <edge id="east" from="se" to="ne" priority="-1" length="180.00">
+        <lane id="east_0" index="0" speed="13.89" length="180.00" shape="181.60,0.00 181.60,180.00"/>
+    </edge>
+    <edge id="north" from="ne" to="nw" priority="-1" length="180.00">
+        <lane id="north_0" index="0" speed="13.89" length="180.00" shape="180.00,181.60 0.00,181.60"/>
+    </edge>
+    <edge id="south" from="nw" to="sw" priority="-1" length="180.00">
+        <lane id="south_0" index="0" speed="13.89" length="180.00" shape="-1.60,180.00 -1.60,0.00"/>
+    </edge>
+    <edge id="west" from="sw" to="se" priority="-1" length="180.00">
+        <lane id="west_0" index="0" speed="13.89" length="180.00" shape="0.00,-1.60 180.00,-1.60"/>
+    </edge>
+
+    <junction id="ne" type="priority" x="180.00" y="180.00" incLanes="east_0" intLanes=":ne_0_0" shape="183.20,180.00 180.00,180.00 180.00,183.20 181.78,182.84 182.40,182.40 182.84,181.78 183.11,180.98">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="nw" type="priority" x="0.00" y="180.00" incLanes="north_0" intLanes=":nw_0_0" shape="0.00,183.20 0.00,180.00 -3.20,180.00 -2.84,181.78 -2.40,182.40 -1.78,182.84 -0.98,183.11">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="se" type="priority" x="180.00" y="0.00" incLanes="west_0" intLanes=":se_0_0" shape="180.00,0.00 183.20,0.00 182.84,-1.78 182.40,-2.40 181.78,-2.84 180.98,-3.11 180.00,-3.20">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="sw" type="priority" x="0.00" y="0.00" incLanes="south_0" intLanes=":sw_0_0" shape="-3.20,0.00 0.00,0.00 0.00,-3.20 -1.78,-2.84 -2.40,-2.40 -2.84,-1.78 -3.11,-0.98">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+
+    <connection from="east" to="north" fromLane="0" toLane="0" via=":ne_0_0" dir="l" state="M"/>
+    <connection from="north" to="south" fromLane="0" toLane="0" via=":nw_0_0" dir="l" state="M"/>
+    <connection from="south" to="west" fromLane="0" toLane="0" via=":sw_0_0" dir="l" state="M"/>
+    <connection from="west" to="east" fromLane="0" toLane="0" via=":se_0_0" dir="l" state="M"/>
+
+    <connection from=":ne_0" to="north" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":nw_0" to="south" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":se_0" to="east" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":sw_0" to="west" fromLane="0" toLane="0" dir="l" state="M"/>
+
+</net>

@@ -1,0 +1,17 @@
+attack_type: drift
+attack_id: drift_0.5mps_30s_m0_route_seed604
+seed: 993861855
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 20.0
+duration_s: 30.0
+truth_file: reports/m6/m6_full_02/datasets/trips/m0_route_seed604/truth.csv
+gps_file: gps.csv
+labels_file: gps_labels.csv
+attack_parameters:
+  onset_s: 20.0
+  duration_s: 30.0
+  direction_deg: 90.0
+  rate_mps: 0.5
+  max_displacement_m: 15.0
+labels_are_not_detector_inputs: true

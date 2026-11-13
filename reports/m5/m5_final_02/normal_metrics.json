@@ -1,0 +1,28 @@
+{
+  "scenario": "normal",
+  "true_positive": 0,
+  "false_positive": 2,
+  "true_negative": 38,
+  "false_negative": 0,
+  "precision": 0.0,
+  "recall": 0.0,
+  "f1": 0.0,
+  "false_positive_rate": 0.05,
+  "accuracy": 0.95,
+  "matched_observations": 40,
+  "unmatched_prediction_records": 0,
+  "unmatched_label_records": 0,
+  "detection_delay_s": null,
+  "detection_delay_definition": "first eligible active-label true positive time minus first active-label time; null if undetected",
+  "input_observations": 79,
+  "eligible_observations": 40,
+  "excluded_observations": 39,
+  "excluded_labeled_observations": 39,
+  "unmatched_observations": 0,
+  "calibration_observations": 39,
+  "thresholds": {
+    "max_speed_mps": 23.472519845137263,
+    "max_speed_change_mps": 14.758371965604201,
+    "max_heading_change_deg": 69.8848509792546
+  }
+}

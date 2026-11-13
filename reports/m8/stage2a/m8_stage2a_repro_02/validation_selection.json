@@ -1,0 +1,50 @@
+{
+  "candidate_meeting_target": true,
+  "candidate_summaries": [
+    {
+      "candidate_index": 0,
+      "mean_attack_event_detection": 0.9444444444444444,
+      "meets_5pct": false,
+      "normal_fpr": 0.10685483870967742,
+      "policy": {
+        "clear_after_clean_fixes": 3,
+        "trigger_count": 1,
+        "trigger_window": 1
+      }
+    },
+    {
+      "candidate_index": 1,
+      "mean_attack_event_detection": 0.6666666666666666,
+      "meets_5pct": true,
+      "normal_fpr": 0.03024193548387097,
+      "policy": {
+        "clear_after_clean_fixes": 3,
+        "trigger_count": 2,
+        "trigger_window": 3
+      }
+    },
+    {
+      "candidate_index": 2,
+      "mean_attack_event_detection": 0.7222222222222222,
+      "meets_5pct": true,
+      "normal_fpr": 0.04233870967741935,
+      "policy": {
+        "clear_after_clean_fixes": 3,
+        "trigger_count": 2,
+        "trigger_window": 5
+      }
+    }
+  ],
+  "criterion": "predeclared normal FPR <=5%; tie-break by event detection",
+  "selected": {
+    "candidate_index": 2,
+    "mean_attack_event_detection": 0.7222222222222222,
+    "meets_5pct": true,
+    "normal_fpr": 0.04233870967741935,
+    "policy": {
+      "clear_after_clean_fixes": 3,
+      "trigger_count": 2,
+      "trigger_window": 5
+    }
+  }
+}

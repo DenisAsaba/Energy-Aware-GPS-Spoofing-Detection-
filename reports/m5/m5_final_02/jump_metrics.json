@@ -1,0 +1,28 @@
+{
+  "scenario": "jump",
+  "true_positive": 4,
+  "false_positive": 5,
+  "true_negative": 68,
+  "false_negative": 1,
+  "precision": 0.4444444444444444,
+  "recall": 0.8,
+  "f1": 0.5714285714285714,
+  "false_positive_rate": 0.0684931506849315,
+  "accuracy": 0.9230769230769231,
+  "matched_observations": 78,
+  "unmatched_prediction_records": 0,
+  "unmatched_label_records": 0,
+  "detection_delay_s": 0.0,
+  "detection_delay_definition": "first eligible active-label true positive time minus first active-label time; null if undetected",
+  "input_observations": 79,
+  "eligible_observations": 78,
+  "excluded_observations": 1,
+  "excluded_labeled_observations": 1,
+  "unmatched_observations": 0,
+  "calibration_observations": 0,
+  "thresholds": {
+    "max_speed_mps": 23.472519845137263,
+    "max_speed_change_mps": 14.758371965604201,
+    "max_heading_change_deg": 69.8848509792546
+  }
+}

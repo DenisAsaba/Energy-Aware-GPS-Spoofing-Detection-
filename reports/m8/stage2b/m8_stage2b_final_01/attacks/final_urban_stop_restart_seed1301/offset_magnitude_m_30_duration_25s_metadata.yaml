@@ -1,0 +1,16 @@
+attack_type: offset
+attack_id: final_urban_stop_restart_seed1301_offset_magnitude_m_30_duration_25s
+seed: 2402176513
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 35.0
+duration_s: 25.0
+truth_file: reports/m8/stage2b/m8_stage2b_final_01/trips/final_urban_stop_restart_seed1301/truth.csv
+gps_file: offset_magnitude_m_30_duration_25s.csv
+labels_file: offset_magnitude_m_30_duration_25s_labels.csv
+attack_parameters:
+  onset_s: 35.0
+  duration_s: 25.0
+  magnitude_m: 30.0
+  direction_deg: 90.0
+labels_are_not_detector_inputs: true

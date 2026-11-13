@@ -1,0 +1,37 @@
+# M6-only settings. M0-M5 configuration and data are not modified.
+sumo_step_length_s: 1.0
+gps_noise_std_m: 3.0
+gps_seed_offset: 26000
+attack_direction_deg: 90.0
+routes:
+  m0_route:
+    network_file: ../sumo/network/m0.net.xml
+    route_file: ../sumo/routes/m0.rou.xml
+    route_id: route_0
+    edges: [road_0]
+  m3_alternative:
+    network_file: ../sumo/network/m3.net.xml
+    route_file: ../sumo/routes/m3_route_deviation.rou.xml
+    route_id: route_alternative
+    edges: [road_alt_0, road_alt_1]
+seeds:
+  calibration: [601, 602]
+  validation: [603]
+  test: [604, 605]
+thresholds:
+  m4_normal_quantile: 0.95
+  m5_normal_quantile: 0.99
+attack_matrix:
+  offset:
+    onset_s: 20.0
+    magnitudes_m: [10.0, 30.0]
+    durations_s: [10.0, 30.0]
+  jump:
+    onset_s: 35.0
+    magnitudes_m: [20.0, 60.0]
+    durations_s: [1.0, 5.0]
+  drift:
+    onset_s: 20.0
+    rates_mps: [0.5, 1.0]
+    durations_s: [10.0, 30.0]
+output_root: ../reports/m6

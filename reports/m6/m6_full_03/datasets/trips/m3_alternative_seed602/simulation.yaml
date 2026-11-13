@@ -1,0 +1,10 @@
+simulation:
+  seed: 602
+  step_length_s: 1.0
+  begin_s: 0
+  end_s: 600
+  vehicle_id: ev_001
+  network_file: external_historical_root_project/sumo/network/m3.net.xml
+  route_file: external_historical_root_project/sumo/routes/m3_route_deviation.rou.xml
+  telemetry_output_dir: unused
+  depart_s: 0

@@ -1,0 +1,5 @@
+scenario,true_positive,false_positive,true_negative,false_negative,precision,recall,f1,false_positive_rate,accuracy,detection_delay_s,input_observations,eligible_observations,excluded_observations,excluded_labeled_observations,unmatched_observations,unmatched_label_records,calibration_observations
+normal,0,2,38,0,0.0,0.0,0.0,0.05,0.95,,79,40,39,39,0,0,39
+offset,6,3,45,24,0.6666666666666666,0.2,0.30769230769230765,0.0625,0.6538461538461539,0.0,79,78,1,1,0,0,0
+jump,4,5,68,1,0.4444444444444444,0.8,0.5714285714285714,0.0684931506849315,0.9230769230769231,0.0,79,78,1,1,0,0,0
+drift,4,3,45,26,0.5714285714285714,0.13333333333333333,0.21621621621621623,0.0625,0.6282051282051282,6.0,79,78,1,1,0,0,0

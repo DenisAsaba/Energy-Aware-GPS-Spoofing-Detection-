@@ -1,0 +1,16 @@
+attack_type: offset
+attack_id: offset_30m_30s_m0_route_seed605
+seed: 3633745243
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 20.0
+duration_s: 30.0
+truth_file: reports/m6/m6_full_03/datasets/trips/m0_route_seed605/truth.csv
+gps_file: gps.csv
+labels_file: gps_labels.csv
+attack_parameters:
+  onset_s: 20.0
+  duration_s: 30.0
+  direction_deg: 90.0
+  magnitude_m: 30.0
+labels_are_not_detector_inputs: true

@@ -1,0 +1,92 @@
+simulation:
+  seed: 42
+  step_length_s: 1.0
+  begin_s: 0
+  end_s: 600
+  vehicle_id: ev_001
+  network_file: ../sumo/network/m0.net.xml
+  route_file: ../sumo/routes/m0.rou.xml
+  telemetry_output_dir: ../data/raw
+  depart_s: 0
+gps_normal:
+  # Independent zero-mean Gaussian error on SUMO road X and Y (meters).
+  noise_std_m: 3.0
+  seed: 2026
+  input_dir: ../data/raw
+  input_file: null
+  output_dir: ../data/processed
+  evaluation_dir: ../reports/m2
+m3:
+  # Attack intervals use [onset_s, onset_s + duration_s), in SUMO seconds.
+  attacks:
+    offset:
+      attack_id: offset_north_30m
+      onset_s: 20
+      duration_s: 30
+      magnitude_m: 30.0
+      direction_deg: 90.0
+    jump:
+      attack_id: jump_60m_45deg
+      onset_s: 35
+      duration_s: 5
+      magnitude_m: 60.0
+      direction_deg: 45.0
+    drift:
+      attack_id: drift_east_1mps
+      onset_s: 20
+      duration_s: 30
+      rate_mps: 1.0
+      direction_deg: 0.0
+      max_displacement_m: 25.0
+  attacks_output_dir: ../data/attacks
+  evaluation_dir: ../reports/m3
+  route_deviation:
+    config_file: m3_route_deviation.yaml
+    gps_seed_offset: 10000
+    route_id: route_alternative
+    edges: [road_alt_0, road_alt_1]
+m4:
+  # Oracle-assisted residual baseline: threshold calibration uses only the
+  # chronological calibration prefix of the normal M2 dataset.
+  threshold:
+    normal_quantile: 0.95
+    calibration_fraction: 0.5
+  output_dir: ../reports/m4
+  datasets:
+    normal:
+      truth_file: ../data/raw/truth_ev_001_20261105T035334.847823Z.csv
+      gps_file: ../data/processed/gps_normal_ev_001_20261105T035334.847823Z.csv
+    attacks:
+      offset:
+        truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
+        gps_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z_labels.csv
+      jump:
+        truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
+        gps_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z_labels.csv
+      drift:
+        truth_file: ../data/raw/truth_ev_001_20261106T041622.998504Z.csv
+        gps_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z_labels.csv
+m5:
+  # GPS-only causal temporal rules; thresholds use the first chronological
+  # fraction of normal M2 GPS observations. Labels are evaluation-only.
+  calibration:
+    normal_quantile: 0.99
+    fraction: 0.5
+  output_dir: ../reports/m5
+  m4_reference_dir: ../reports/m4/m4_final_01
+  datasets:
+    normal:
+      gps_file: ../data/processed/gps_normal_ev_001_20261105T035334.847823Z.csv
+    attacks:
+      offset:
+        gps_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z_labels.csv
+      jump:
+        gps_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z_labels.csv
+      drift:
+        gps_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z.csv
+        labels_file: ../data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z_labels.csv

@@ -1,0 +1,10 @@
+simulation:
+  seed: 1201
+  step_length_s: 1.0
+  begin_s: 0
+  end_s: 600
+  vehicle_id: m7_ev_001
+  network_file: sumo/network/m7.net.xml
+  route_file: reports/m8/m8_stage1_smoke_04/trips/smoke_m7_alternate_seed1201/m8_selected_route.rou.xml
+  telemetry_output_dir: reports/m8/m8_stage1_smoke_04/trips/smoke_m7_alternate_seed1201/unused
+  depart_s: 0

@@ -1,0 +1,60 @@
+{
+  "milestone": "M7 Stage 1 smoke",
+  "run_id": "stage1_smoke_01",
+  "coordinate_frame": "SUMO local X/Y meters",
+  "time_unit": "seconds",
+  "sumo_seed": 713,
+  "paired_conditions": [
+    "normal_navigation",
+    "unprotected_spoofed",
+    "protected_spoofed"
+  ],
+  "attack_types": [
+    "none",
+    "offset",
+    "jump",
+    "drift"
+  ],
+  "network_validation": {
+    "routes": {
+      "direct": [
+        "approach",
+        "direct_a",
+        "direct_b"
+      ],
+      "alternate": [
+        "approach",
+        "alternate_a",
+        "alternate_b"
+      ]
+    },
+    "endpoints": {
+      "direct": [
+        "origin",
+        "destination"
+      ],
+      "alternate": [
+        "origin",
+        "destination"
+      ]
+    }
+  },
+  "m5_interface": "extract_gps_features(prefix_csv); apply_temporal_thresholds(features, frozen M6 thresholds)",
+  "m5_inputs": [
+    "time_s",
+    "vehicle_id",
+    "gps_x_m",
+    "gps_y_m"
+  ],
+  "m5_excludes": [
+    "SUMO truth",
+    "attack labels",
+    "future GPS fixes"
+  ],
+  "protected_fallback": "oracle-assisted: after M5 alert, query SUMO shortest connected route from current edge to destination",
+  "battery_model": "SUMO battery device matching M0 configuration; absent values remain null",
+  "paired_control": "same network, vehicle/type, departure, initial charge, SUMO/GPS seed and attack parameters per scenario",
+  "outputs_are_deterministic_except": [
+    "SUMO ephemeral port/log metadata not included in result files"
+  ]
+}

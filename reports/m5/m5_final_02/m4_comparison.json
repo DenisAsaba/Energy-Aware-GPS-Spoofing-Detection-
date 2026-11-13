@@ -1,0 +1,54 @@
+[
+  {
+    "scenario": "normal",
+    "m5_precision": 0.0,
+    "m5_recall": 0.0,
+    "m5_f1": 0.0,
+    "m4_precision": 0.0,
+    "m4_recall": 0.0,
+    "m4_f1": 0.0,
+    "m5_eligible_observations": 40,
+    "m4_matched_observations": 40,
+    "m5_detector": "GPS-only temporal rules",
+    "m4_detector": "oracle-assisted position residual"
+  },
+  {
+    "scenario": "offset",
+    "m5_precision": 0.6666666666666666,
+    "m5_recall": 0.2,
+    "m5_f1": 0.30769230769230765,
+    "m4_precision": 0.9090909090909091,
+    "m4_recall": 1.0,
+    "m4_f1": 0.9523809523809523,
+    "m5_eligible_observations": 78,
+    "m4_matched_observations": 79,
+    "m5_detector": "GPS-only temporal rules",
+    "m4_detector": "oracle-assisted position residual"
+  },
+  {
+    "scenario": "jump",
+    "m5_precision": 0.4444444444444444,
+    "m5_recall": 0.8,
+    "m5_f1": 0.5714285714285714,
+    "m4_precision": 0.5555555555555556,
+    "m4_recall": 1.0,
+    "m4_f1": 0.7142857142857143,
+    "m5_eligible_observations": 78,
+    "m4_matched_observations": 79,
+    "m5_detector": "GPS-only temporal rules",
+    "m4_detector": "oracle-assisted position residual"
+  },
+  {
+    "scenario": "drift",
+    "m5_precision": 0.5714285714285714,
+    "m5_recall": 0.13333333333333333,
+    "m5_f1": 0.21621621621621623,
+    "m4_precision": 0.9,
+    "m4_recall": 0.9,
+    "m4_f1": 0.9,
+    "m5_eligible_observations": 78,
+    "m4_matched_observations": 79,
+    "m5_detector": "GPS-only temporal rules",
+    "m4_detector": "oracle-assisted position residual"
+  }
+]

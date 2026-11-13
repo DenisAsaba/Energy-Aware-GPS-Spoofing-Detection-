@@ -1,0 +1,22 @@
+# Stage 2A adds normal scenario evidence; reserved Stage 1 final seeds/config stay frozen.
+simulation: {step_length_s: 1.0, begin_s: 0, end_s: 600}
+gps: {noise_std_m_per_axis: 3.0, seed_offset: 68000, noise_model: independent_zero_mean_gaussian_per_axis}
+detector:
+  normal_quantile: 0.99
+  calibration_fraction_per_trip: 0.5
+  rolling_speed_window: 4
+  maximum_normal_false_positive_rate: 0.05
+  persistence_candidates:
+    - {trigger_count: 1, trigger_window: 1, clear_after_clean_fixes: 3}
+    - {trigger_count: 2, trigger_window: 3, clear_after_clean_fixes: 3}
+    - {trigger_count: 2, trigger_window: 5, clear_after_clean_fixes: 3}
+splits:
+  calibration: [2101, 2102, 2103, 2104, 2105, 2106]
+  validation: [2201, 2202, 2203, 2204, 2205, 2206]
+  reserved_final_test_reference: [1301, 1302]
+scenarios: [urban_turns_light, urban_stop_restart, urban_brake_accel]
+attacks:
+  offset: {onset_s: 35, duration_s: 25, magnitude_m: 30.0, direction_deg: 90.0}
+  jump: {onset_s: 35, duration_s: 8, magnitude_m: 60.0, direction_deg: 45.0}
+  drift: {onset_s: 35, duration_s: 25, rate_mps: 1.0, direction_deg: 0.0, max_displacement_m: 20.0}
+outputs: {root: ../reports/m8/stage2a}

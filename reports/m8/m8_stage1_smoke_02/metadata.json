@@ -1,0 +1,223 @@
+{
+  "m5_calibration": {
+    "calibration_fraction_per_trip": 0.5,
+    "method": "pooled NumPy linear quantiles from each normal trip's chronological prefix",
+    "normal_quantile": 0.99,
+    "pooled_feature_counts": {
+      "abs_acceleration_mps2": 77,
+      "estimated_speed_mps": 79,
+      "heading_change_deg": 77,
+      "speed_change_mps": 77,
+      "speed_consistency_mps": 71
+    },
+    "threshold_units": {
+      "max_abs_acceleration_mps2": "m/s^2",
+      "max_heading_change_deg": "degrees",
+      "max_speed_change_mps": "m/s",
+      "max_speed_consistency_mps": "m/s",
+      "max_speed_mps": "m/s"
+    },
+    "trips": [
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 43,
+            "heading_change_deg": 42,
+            "speed_change_mps": 42
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 44,
+          "evaluation_observations": 45,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 89,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 115.22302284349527,
+          "max_speed_change_mps": 15.687884589292503,
+          "max_speed_mps": 19.846499616775283
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 42,
+          "estimated_speed_mps": 43,
+          "heading_change_deg": 42,
+          "speed_change_mps": 42,
+          "speed_consistency_mps": 39
+        },
+        "trip_index": 0
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 36,
+            "heading_change_deg": 35,
+            "speed_change_mps": 35
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 37,
+          "evaluation_observations": 38,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 75,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 60.75060607517309,
+          "max_speed_change_mps": 14.673404800689553,
+          "max_speed_mps": 21.855957909856976
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 35,
+          "estimated_speed_mps": 36,
+          "heading_change_deg": 35,
+          "speed_change_mps": 35,
+          "speed_consistency_mps": 32
+        },
+        "trip_index": 1
+      }
+    ]
+  },
+  "m7_final_test_seed_reuse": false,
+  "milestone": "M8 Stage 1",
+  "normal_traffic_variation_limitation": "Available routes provide a straight M0 calibration route, a bent two-edge M3 validation route, and an M7 alternate-branch smoke route. There is no varied traffic demand or broad stop/turn library; the Stage 1 smoke is a pipeline check, not representative normal-driving validation.",
+  "prediction_contract": {
+    "allowed_columns": [
+      "time_s",
+      "vehicle_id",
+      "gps_x_m",
+      "gps_y_m"
+    ],
+    "allowed_temporal_context": "prior valid GPS fixes for the same vehicle only",
+    "forbidden_fields": [
+      "acceleration_mps2",
+      "attack_active",
+      "attack_id",
+      "attack_intensity",
+      "attack_type",
+      "gps_position_error_m",
+      "heading_deg",
+      "m4_residual_m",
+      "position_error_m",
+      "road_id",
+      "route_id",
+      "speed_mps",
+      "x_m",
+      "y_m"
+    ],
+    "labels_opened_only_after_predictions": true
+  },
+  "preservation": {
+    "changed_protected_paths": [],
+    "m0_m7_preserved": true,
+    "protected_file_count_after": 2540,
+    "protected_file_count_before": 2540,
+    "protected_manifest_sha256_after": "bd52c2963f60ce780e395be119677214fbdd5e1f5f2092b3eb14abf03d4e33f5",
+    "protected_manifest_sha256_before": "bd52c2963f60ce780e395be119677214fbdd5e1f5f2092b3eb14abf03d4e33f5"
+  },
+  "protected_m0_m7_before": {
+    "file_count": 2540,
+    "manifest_sha256": "bd52c2963f60ce780e395be119677214fbdd5e1f5f2092b3eb14abf03d4e33f5"
+  },
+  "reserved_final_test_executed": false,
+  "run_id": "m8_stage1_smoke_02",
+  "selected_persistence": {
+    "clear_after_clean_fixes": 3,
+    "trigger_count": 2,
+    "trigger_window": 3
+  },
+  "smoke_trip": {
+    "gps_seed": 3290047970,
+    "network_file": "../sumo/network/m7.net.xml",
+    "normal_gps_sha256": "42e549e2ed6091cf840392a1dedb32e723cee2a16952e86461d86d98a2dec2c3",
+    "ordered_edges": [
+      "approach",
+      "alternate_a",
+      "alternate_b"
+    ],
+    "route_file": "../sumo/routes/m7.rou.xml",
+    "route_group": "m7_alternate_branch_smoke",
+    "route_id": "m7_alternate",
+    "seed": 1201,
+    "split": "smoke",
+    "sumo_route_validation": "passed",
+    "sumo_seed": 1201,
+    "trip_data_dir": "trips\\smoke_m7_alternate_seed1201",
+    "trip_id": "smoke_m7_alternate_seed1201",
+    "truth_file_sha256": "43b974a17b5206a84f23dbbc7ae91b2d07b905efb26b990e72688062f90635a0"
+  },
+  "split_manifest": {
+    "calibration": {
+      "route_groups": [
+        "m0_straight"
+      ],
+      "sumo_seeds": [
+        1001,
+        1002
+      ],
+      "trip_ids": [
+        "cal_m0_seed1001",
+        "cal_m0_seed1002"
+      ]
+    },
+    "final_test": {
+      "route_groups": [
+        "m7_direct_branch_reserved"
+      ],
+      "sumo_seeds": [
+        1301,
+        1302
+      ],
+      "trip_ids": [
+        "final_m7_seed1301",
+        "final_m7_seed1302"
+      ]
+    },
+    "smoke": {
+      "route_groups": [
+        "m7_alternate_branch_smoke"
+      ],
+      "sumo_seeds": [
+        1201
+      ],
+      "trip_ids": [
+        "smoke_m7_alternate_seed1201"
+      ]
+    },
+    "validation": {
+      "route_groups": [
+        "m3_two_segment"
+      ],
+      "sumo_seeds": [
+        1101
+      ],
+      "trip_ids": [
+        "val_m3_seed1101"
+      ]
+    }
+  },
+  "thresholds": {
+    "max_abs_acceleration_mps2": 15.614915407972108,
+    "max_heading_change_deg": 113.54028889049354,
+    "max_speed_change_mps": 15.614915407972108,
+    "max_speed_consistency_mps": 5.967278810068009,
+    "max_speed_mps": 21.546648321135724
+  },
+  "validation_trip": {
+    "gps_seed": 4053932522,
+    "network_file": "../sumo/network/m3.net.xml",
+    "normal_gps_sha256": "c7fc95cd3fc5626d2257d1033f052b40d304878a083400936a4bc8edcb02c28f",
+    "ordered_edges": [
+      "road_alt_0",
+      "road_alt_1"
+    ],
+    "route_file": "../sumo/routes/m3_route_deviation.rou.xml",
+    "route_group": "m3_two_segment",
+    "route_id": "route_alternative",
+    "seed": 1101,
+    "split": "validation",
+    "sumo_route_validation": "passed",
+    "sumo_seed": 1101,
+    "trip_data_dir": "trips\\val_m3_seed1101",
+    "trip_id": "val_m3_seed1101",
+    "truth_file_sha256": "a5f5638c02007f2080b0ce1e04b97bf3c74278d114044da1beff5489033dd0b1"
+  }
+}

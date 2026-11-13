@@ -1,0 +1,37 @@
+# Frozen M8 Stage 2B final test. Do not tune or revise after opening test results.
+simulation: {step_length_s: 1.0, begin_s: 0, end_s: 600}
+gps: {noise_std_m_per_axis: 3.0, seed_offset: 68000, noise_model: independent_zero_mean_gaussian_per_axis}
+detector:
+  rolling_speed_window: 4
+  m8_thresholds:
+    max_speed_mps: 21.143275132946187
+    max_speed_change_mps: 17.433801896153664
+    max_heading_change_deg: 170.59814632079238
+    max_abs_acceleration_mps2: 17.433801896153664
+    max_speed_consistency_mps: 6.833179913102611
+  m8_persistence: {trigger_count: 2, trigger_window: 5, clear_after_clean_fixes: 3}
+  m5_thresholds:
+    max_speed_mps: 21.143275132946187
+    max_speed_change_mps: 17.433801896153664
+    max_heading_change_deg: 170.59814632079238
+  frozen_source_run: m8_stage2a_repro_04
+  calibration_trip_seeds: [2101, 2102, 2103, 2104, 2105, 2106]
+final_test:
+  seeds: [1301, 1302]
+  scenarios: [urban_turns_light, urban_stop_restart, urban_brake_accel]
+  attack_onset_s: 35
+  matrix:
+    offset:
+      magnitudes_m: [30.0, 60.0]
+      durations_s: [10, 25]
+      direction_deg: 90.0
+    jump:
+      magnitudes_m: [30.0, 60.0]
+      durations_s: [1, 5]
+      direction_deg: 45.0
+    drift:
+      rates_mps: [0.5, 1.0]
+      durations_s: [10, 25]
+      direction_deg: 0.0
+      max_displacement_m: 20.0
+outputs: {root: ../reports/m8/stage2b}

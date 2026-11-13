@@ -1,0 +1,28 @@
+{
+  "scenario": "drift",
+  "true_positive": 4,
+  "false_positive": 3,
+  "true_negative": 45,
+  "false_negative": 26,
+  "precision": 0.5714285714285714,
+  "recall": 0.13333333333333333,
+  "f1": 0.21621621621621623,
+  "false_positive_rate": 0.0625,
+  "accuracy": 0.6282051282051282,
+  "matched_observations": 78,
+  "unmatched_prediction_records": 0,
+  "unmatched_label_records": 0,
+  "detection_delay_s": 6.0,
+  "detection_delay_definition": "first eligible active-label true positive time minus first active-label time; null if undetected",
+  "input_observations": 79,
+  "eligible_observations": 78,
+  "excluded_observations": 1,
+  "excluded_labeled_observations": 1,
+  "unmatched_observations": 0,
+  "calibration_observations": 0,
+  "thresholds": {
+    "max_speed_mps": 23.472519845137263,
+    "max_speed_change_mps": 14.758371965604201,
+    "max_heading_change_deg": 69.8848509792546
+  }
+}

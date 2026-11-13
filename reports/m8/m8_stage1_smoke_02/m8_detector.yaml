@@ -1,0 +1,78 @@
+# M8-only protocol. SUMO coordinates are local X/Y meters; time is seconds.
+# Final-test assignments are reserved and are not run by the Stage 1 workflow.
+simulation:
+  step_length_s: 1.0
+  begin_s: 0
+  end_s: 600
+  initial_charge_wh: 25000
+  sumo_seed_groups:
+    calibration: [1001, 1002]
+    validation: [1101]
+    smoke: [1201]
+    final_test: [1301, 1302]
+gps:
+  noise_std_m_per_axis: 3.0
+  seed_offset: 58000
+  noise_model: independent_zero_mean_gaussian_per_axis
+detector:
+  normal_quantile: 0.99
+  calibration_fraction_per_trip: 0.5
+  rolling_speed_window: 4
+  validation_operating_criterion:
+    maximum_normal_false_positive_rate: 0.05
+    tie_breaker: highest_active_attack_event_detection_rate_then_lowest_alerts_per_trip
+  persistence_candidates:
+    - {trigger_count: 1, trigger_window: 1, clear_after_clean_fixes: 3}
+    - {trigger_count: 2, trigger_window: 3, clear_after_clean_fixes: 3}
+    - {trigger_count: 2, trigger_window: 5, clear_after_clean_fixes: 3}
+  final_persistence: {trigger_count: 1, trigger_window: 1, clear_after_clean_fixes: 3}
+routes:
+  calibration:
+    key: m0_straight
+    network_file: ../sumo/network/m0.net.xml
+    route_file: ../sumo/routes/m0.rou.xml
+    vehicle_id: ev_001
+    route_id: route_0
+    edges: [road_0]
+  validation:
+    key: m3_two_segment
+    network_file: ../sumo/network/m3.net.xml
+    route_file: ../sumo/routes/m3_route_deviation.rou.xml
+    vehicle_id: ev_001
+    route_id: route_alternative
+    edges: [road_alt_0, road_alt_1]
+  smoke:
+    key: m7_alternate_branch_smoke
+    network_file: ../sumo/network/m7.net.xml
+    route_file: ../sumo/routes/m7.rou.xml
+    vehicle_id: m7_ev_001
+    route_id: m7_alternate
+    edges: [approach, alternate_a, alternate_b]
+  final_test:
+    key: m7_direct_branch_reserved
+    network_file: ../sumo/network/m7.net.xml
+    route_file: ../sumo/routes/m7.rou.xml
+    vehicle_id: m7_ev_001
+    route_id: m7_direct
+    edges: [approach, direct_a, direct_b]
+attacks:
+  offset: {onset_s: 15, duration_s: 20, magnitude_m: 30.0, direction_deg: 90.0}
+  jump: {onset_s: 15, duration_s: 5, magnitude_m: 60.0, direction_deg: 45.0}
+  drift: {onset_s: 15, duration_s: 20, rate_mps: 1.0, direction_deg: 0.0, max_displacement_m: 20.0}
+splits:
+  calibration:
+    trips:
+      - {trip_id: cal_m0_seed1001, route_group: m0_straight, seed: 1001}
+      - {trip_id: cal_m0_seed1002, route_group: m0_straight, seed: 1002}
+  validation:
+    trips:
+      - {trip_id: val_m3_seed1101, route_group: m3_two_segment, seed: 1101}
+  smoke:
+    trips:
+      - {trip_id: smoke_m7_alternate_seed1201, route_group: m7_alternate_branch_smoke, seed: 1201}
+  final_test:
+    trips:
+      - {trip_id: final_m7_seed1301, route_group: m7_direct_branch_reserved, seed: 1301}
+      - {trip_id: final_m7_seed1302, route_group: m7_direct_branch_reserved, seed: 1302}
+outputs:
+  root: ../reports/m8

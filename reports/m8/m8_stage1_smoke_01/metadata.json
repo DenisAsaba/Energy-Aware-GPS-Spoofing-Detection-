@@ -1,0 +1,87 @@
+{
+  "m7_final_test_seed_reuse": false,
+  "milestone": "M8 Stage 1",
+  "normal_traffic_variation_limitation": "Available routes provide a straight M0 calibration route, a bent two-edge M3 validation route, and an M7 alternate-branch smoke route. There is no varied traffic demand or broad stop/turn library; the Stage 1 smoke is a pipeline check, not representative normal-driving validation.",
+  "prediction_contract": {
+    "allowed_columns": [
+      "time_s",
+      "vehicle_id",
+      "gps_x_m",
+      "gps_y_m"
+    ],
+    "allowed_temporal_context": "prior valid GPS fixes for the same vehicle only",
+    "forbidden_fields": [
+      "acceleration_mps2",
+      "attack_active",
+      "attack_id",
+      "attack_intensity",
+      "attack_type",
+      "gps_position_error_m",
+      "heading_deg",
+      "m4_residual_m",
+      "position_error_m",
+      "road_id",
+      "route_id",
+      "speed_mps",
+      "x_m",
+      "y_m"
+    ],
+    "labels_opened_only_after_predictions": true
+  },
+  "protected_m0_m7_before": {
+    "file_count": 2540,
+    "manifest_sha256": "bd52c2963f60ce780e395be119677214fbdd5e1f5f2092b3eb14abf03d4e33f5"
+  },
+  "reserved_final_test_executed": false,
+  "run_id": "m8_stage1_smoke_01",
+  "split_manifest": {
+    "calibration": {
+      "route_groups": [
+        "m0_straight"
+      ],
+      "sumo_seeds": [
+        1001,
+        1002
+      ],
+      "trip_ids": [
+        "cal_m0_seed1001",
+        "cal_m0_seed1002"
+      ]
+    },
+    "final_test": {
+      "route_groups": [
+        "m7_direct_branch_reserved"
+      ],
+      "sumo_seeds": [
+        1301,
+        1302
+      ],
+      "trip_ids": [
+        "final_m7_seed1301",
+        "final_m7_seed1302"
+      ]
+    },
+    "smoke": {
+      "route_groups": [
+        "m7_alternate_branch_smoke"
+      ],
+      "sumo_seeds": [
+        1201
+      ],
+      "trip_ids": [
+        "smoke_m7_alternate_seed1201"
+      ]
+    },
+    "validation": {
+      "route_groups": [
+        "m3_two_segment"
+      ],
+      "sumo_seeds": [
+        1101
+      ],
+      "trip_ids": [
+        "val_m3_seed1101"
+      ]
+    }
+  }
+}

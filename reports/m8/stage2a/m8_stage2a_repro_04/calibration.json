@@ -1,0 +1,200 @@
+{
+  "calibration_trips": 6,
+  "details": {
+    "calibration_fraction_per_trip": 0.5,
+    "method": "pooled NumPy linear quantiles from each normal trip's chronological prefix",
+    "normal_quantile": 0.99,
+    "pooled_feature_counts": {
+      "abs_acceleration_mps2": 239,
+      "estimated_speed_mps": 245,
+      "heading_change_deg": 239,
+      "speed_change_mps": 239,
+      "speed_consistency_mps": 221
+    },
+    "threshold_units": {
+      "max_abs_acceleration_mps2": "m/s^2",
+      "max_heading_change_deg": "degrees",
+      "max_speed_change_mps": "m/s",
+      "max_speed_consistency_mps": "m/s",
+      "max_speed_mps": "m/s"
+    },
+    "trips": [
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 37,
+            "heading_change_deg": 36,
+            "speed_change_mps": 36
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 38,
+          "evaluation_observations": 39,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 77,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 170.31464265208447,
+          "max_speed_change_mps": 16.97923662225224,
+          "max_speed_mps": 21.07082688277974
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 36,
+          "estimated_speed_mps": 37,
+          "heading_change_deg": 36,
+          "speed_change_mps": 36,
+          "speed_consistency_mps": 33
+        },
+        "trip_index": 0
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 45,
+            "heading_change_deg": 44,
+            "speed_change_mps": 44
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 46,
+          "evaluation_observations": 46,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 92,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 169.6910833804679,
+          "max_speed_change_mps": 18.90982416672199,
+          "max_speed_mps": 19.824217275440358
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 44,
+          "estimated_speed_mps": 45,
+          "heading_change_deg": 44,
+          "speed_change_mps": 44,
+          "speed_consistency_mps": 41
+        },
+        "trip_index": 1
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 39,
+            "heading_change_deg": 38,
+            "speed_change_mps": 38
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 40,
+          "evaluation_observations": 40,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 80,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 153.93575583717598,
+          "max_speed_change_mps": 12.858798221400576,
+          "max_speed_mps": 20.465610978033745
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 38,
+          "estimated_speed_mps": 39,
+          "heading_change_deg": 38,
+          "speed_change_mps": 38,
+          "speed_consistency_mps": 35
+        },
+        "trip_index": 2
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 42,
+            "heading_change_deg": 41,
+            "speed_change_mps": 41
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 43,
+          "evaluation_observations": 44,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 87,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 160.06806115067653,
+          "max_speed_change_mps": 17.164819605384718,
+          "max_speed_mps": 20.9074342807419
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 41,
+          "estimated_speed_mps": 42,
+          "heading_change_deg": 41,
+          "speed_change_mps": 41,
+          "speed_consistency_mps": 38
+        },
+        "trip_index": 3
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 41,
+            "heading_change_deg": 40,
+            "speed_change_mps": 40
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 42,
+          "evaluation_observations": 43,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 85,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 169.77572558174145,
+          "max_speed_change_mps": 12.33466092499105,
+          "max_speed_mps": 17.705509265585953
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 40,
+          "estimated_speed_mps": 41,
+          "heading_change_deg": 40,
+          "speed_change_mps": 40,
+          "speed_consistency_mps": 37
+        },
+        "trip_index": 4
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 41,
+            "heading_change_deg": 40,
+            "speed_change_mps": 40
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 42,
+          "evaluation_observations": 43,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 85,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 169.0688512778169,
+          "max_speed_change_mps": 14.746770451140739,
+          "max_speed_mps": 18.91942341515648
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 40,
+          "estimated_speed_mps": 41,
+          "heading_change_deg": 40,
+          "speed_change_mps": 40,
+          "speed_consistency_mps": 37
+        },
+        "trip_index": 5
+      }
+    ]
+  },
+  "thresholds": {
+    "max_abs_acceleration_mps2": 17.433801896153664,
+    "max_heading_change_deg": 170.59814632079238,
+    "max_speed_change_mps": 17.433801896153664,
+    "max_speed_consistency_mps": 6.833179913102611,
+    "max_speed_mps": 21.143275132946187
+  },
+  "training_only_normal_data": true
+}

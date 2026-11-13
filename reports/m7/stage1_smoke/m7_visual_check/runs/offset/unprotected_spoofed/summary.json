@@ -1,0 +1,53 @@
+{
+  "attack_type": "offset",
+  "condition": "unprotected_spoofed",
+  "navigation_attack_input": "offset",
+  "seed": 713,
+  "gps_seed": 2713,
+  "pair_id": "",
+  "split": "smoke",
+  "attack_parameters": {
+    "onset_s": 1,
+    "duration_s": 180,
+    "magnitude_m": 180,
+    "drift_rate_mps": 0
+  },
+  "destination_arrived": true,
+  "travel_time_s": 113.0,
+  "route_distance_m": 1449.6460190203438,
+  "executed_edges": [
+    "approach",
+    ":junction_1",
+    "alternate_a",
+    "alternate_b"
+  ],
+  "final_route_id": "!m7_ev_001!var#1",
+  "reroute_count": 1,
+  "route_changes": [
+    {
+      "time_s": 1.0,
+      "route": "alternate",
+      "reason": "gps_nearest_route_reference",
+      "from_edge": "approach",
+      "route_edges": [
+        "approach",
+        "alternate_a",
+        "alternate_b"
+      ]
+    }
+  ],
+  "detector_alert_count": 0,
+  "detector_alert_times_s": [],
+  "attack_observations": 112,
+  "protected_fallback_activated": false,
+  "fallback_events": [],
+  "mitigation_success": false,
+  "energy_consumed_wh": 224.53,
+  "initial_soc": 0.5,
+  "final_soc": 0.4976136,
+  "soc_change": -0.0023864000000000107,
+  "initial_battery_charge_wh": 25000.0,
+  "final_battery_charge_wh": 24880.68,
+  "energy_regenerated_wh": 105.21,
+  "battery_telemetry_available": true
+}

@@ -1,0 +1,9 @@
+split,trip_id,route_group,sumo_seed,scenario,attack_type,attack_magnitude,attack_duration_s,attack_onset_s,attack_end_s,detector,tp,fp,tn,fn,precision,recall,f1,false_positive_rate,true_negative_rate,active_attack_detected,active_attack_detection_rate,missed_attack_rate,detection_delay_s,post_attack_alerts,alerts_per_trip,eligible_observations,excluded_observations
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,normal,none,,,,,M5,0,6,105,0,0.0,0.0,0.0,0.05405405405405406,0.9459459459459459,,,,,0,6,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,normal,none,,,,,M8,0,0,111,0,0.0,0.0,0.0,0.0,1.0,,,,,0,0,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,offset,offset,30.0,20,15.0,35.0,M5,3,4,87,17,0.42857142857142855,0.15,0.2222222222222222,0.04395604395604396,0.9560439560439561,1,1.0,0.0,0.0,4,6,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,offset,offset,30.0,20,15.0,35.0,M8,4,5,86,16,0.4444444444444444,0.2,0.2758620689655173,0.054945054945054944,0.945054945054945,1,1.0,0.0,1.0,5,2,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,jump,jump,60.0,5,15.0,20.0,M5,2,7,99,3,0.2222222222222222,0.4,0.2857142857142857,0.0660377358490566,0.9339622641509434,1,1.0,0.0,0.0,7,7,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,jump,jump,60.0,5,15.0,20.0,M8,4,6,100,1,0.4,0.8,0.5333333333333333,0.05660377358490566,0.9433962264150944,1,1.0,0.0,1.0,6,1,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,drift,drift,1.0,20,15.0,35.0,M5,2,3,88,18,0.4,0.1,0.16000000000000003,0.03296703296703297,0.967032967032967,1,1.0,0.0,1.0,3,5,111,1
+smoke,smoke_m7_alternate_seed1201,m7_alternate_branch_smoke,1201,drift,drift,1.0,20,15.0,35.0,M8,0,0,91,20,0.0,0.0,0.0,0.0,1.0,0,0.0,1.0,,0,0,111,1

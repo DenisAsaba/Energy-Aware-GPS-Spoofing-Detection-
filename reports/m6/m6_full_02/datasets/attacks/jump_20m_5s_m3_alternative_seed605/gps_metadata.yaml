@@ -1,0 +1,16 @@
+attack_type: jump
+attack_id: jump_20m_5s_m3_alternative_seed605
+seed: 2458081420
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 35.0
+duration_s: 5.0
+truth_file: reports/m6/m6_full_02/datasets/trips/m3_alternative_seed605/truth.csv
+gps_file: gps.csv
+labels_file: gps_labels.csv
+attack_parameters:
+  onset_s: 35.0
+  duration_s: 5.0
+  direction_deg: 90.0
+  magnitude_m: 20.0
+labels_are_not_detector_inputs: true

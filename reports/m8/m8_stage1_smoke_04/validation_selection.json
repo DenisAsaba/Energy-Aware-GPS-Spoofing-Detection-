@@ -1,0 +1,51 @@
+{
+  "candidate_summaries": [
+    {
+      "active_event_detection_rate": 1.0,
+      "alerts_per_trip": 7.75,
+      "candidate_index": 0,
+      "meets_normal_fpr_criterion": false,
+      "normal_false_positive_rate": 0.2621359223300971,
+      "policy": {
+        "clear_after_clean_fixes": 3,
+        "trigger_count": 1,
+        "trigger_window": 1
+      }
+    },
+    {
+      "active_event_detection_rate": 0.6666666666666666,
+      "alerts_per_trip": 2.75,
+      "candidate_index": 1,
+      "meets_normal_fpr_criterion": false,
+      "normal_false_positive_rate": 0.08737864077669903,
+      "policy": {
+        "clear_after_clean_fixes": 3,
+        "trigger_count": 2,
+        "trigger_window": 3
+      }
+    },
+    {
+      "active_event_detection_rate": 0.6666666666666666,
+      "alerts_per_trip": 2.75,
+      "candidate_index": 2,
+      "meets_normal_fpr_criterion": false,
+      "normal_false_positive_rate": 0.17475728155339806,
+      "policy": {
+        "clear_after_clean_fixes": 3,
+        "trigger_count": 2,
+        "trigger_window": 5
+      }
+    }
+  ],
+  "criterion": {
+    "maximum_normal_false_positive_rate": 0.05,
+    "tie_breaker": "highest_active_attack_event_detection_rate_then_lowest_alerts_per_trip"
+  },
+  "selected_candidate_index": 1,
+  "selected_persistence": {
+    "clear_after_clean_fixes": 3,
+    "trigger_count": 2,
+    "trigger_window": 3
+  },
+  "selection_reason": "No candidate met validation normal-FPR criterion; selected lowest validation FPR, then highest event detection."
+}

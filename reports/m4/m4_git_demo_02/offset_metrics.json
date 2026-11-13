@@ -1,0 +1,20 @@
+{
+  "scenario": "offset",
+  "threshold_m": 6.9999073205108715,
+  "true_positive": 30,
+  "false_positive": 3,
+  "true_negative": 46,
+  "false_negative": 0,
+  "precision": 0.9090909090909091,
+  "recall": 1.0,
+  "f1": 0.9523809523809523,
+  "false_positive_rate": 0.061224489795918366,
+  "accuracy": 0.9620253164556962,
+  "matched_observations": 79,
+  "unmatched_prediction_records": 0,
+  "unmatched_label_records": 0,
+  "unmatched_gps_without_truth": 0,
+  "unmatched_truth_without_gps": 0,
+  "detection_delay_s": 0.0,
+  "detection_delay_definition": "first active-sample true positive time minus first active-label time; null if undetected"
+}

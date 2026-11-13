@@ -1,0 +1,101 @@
+{
+  "details": {
+    "calibration_fraction_per_trip": 0.5,
+    "method": "pooled NumPy linear quantiles from each normal trip's chronological prefix",
+    "normal_quantile": 0.99,
+    "pooled_feature_counts": {
+      "abs_acceleration_mps2": 77,
+      "estimated_speed_mps": 79,
+      "heading_change_deg": 77,
+      "speed_change_mps": 77,
+      "speed_consistency_mps": 71
+    },
+    "threshold_units": {
+      "max_abs_acceleration_mps2": "m/s^2",
+      "max_heading_change_deg": "degrees",
+      "max_speed_change_mps": "m/s",
+      "max_speed_consistency_mps": "m/s",
+      "max_speed_mps": "m/s"
+    },
+    "trips": [
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 43,
+            "heading_change_deg": 42,
+            "speed_change_mps": 42
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 44,
+          "evaluation_observations": 45,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 89,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 115.22302284349527,
+          "max_speed_change_mps": 15.687884589292503,
+          "max_speed_mps": 19.846499616775283
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 42,
+          "estimated_speed_mps": 43,
+          "heading_change_deg": 42,
+          "speed_change_mps": 42,
+          "speed_consistency_mps": 39
+        },
+        "trip_index": 0
+      },
+      {
+        "m5_calibration": {
+          "calibration_eligible_features": {
+            "estimated_speed_mps": 36,
+            "heading_change_deg": 35,
+            "speed_change_mps": 35
+          },
+          "calibration_fraction": 0.5,
+          "calibration_observations": 37,
+          "evaluation_observations": 38,
+          "normal_quantile": 0.99,
+          "normal_valid_observations": 75,
+          "threshold_method": "independent configured NumPy quantile per temporal feature"
+        },
+        "m5_thresholds_from_existing_api": {
+          "max_heading_change_deg": 60.75060607517309,
+          "max_speed_change_mps": 14.673404800689553,
+          "max_speed_mps": 21.855957909856976
+        },
+        "prefix_feature_counts": {
+          "abs_acceleration_mps2": 35,
+          "estimated_speed_mps": 36,
+          "heading_change_deg": 35,
+          "speed_change_mps": 35,
+          "speed_consistency_mps": 32
+        },
+        "trip_index": 1
+      }
+    ]
+  },
+  "historical_m6_thresholds_reference_only": {
+    "max_heading_change_deg": 108.45527698501837,
+    "max_speed_change_mps": 18.029596454554305,
+    "max_speed_mps": 24.06041913028352
+  },
+  "m5_thresholds_primary": {
+    "max_heading_change_deg": 113.54028889049354,
+    "max_speed_change_mps": 15.614915407972108,
+    "max_speed_mps": 21.546648321135724
+  },
+  "split": "calibration",
+  "thresholds": {
+    "max_abs_acceleration_mps2": 15.614915407972108,
+    "max_heading_change_deg": 113.54028889049354,
+    "max_speed_change_mps": 15.614915407972108,
+    "max_speed_consistency_mps": 5.967278810068009,
+    "max_speed_mps": 21.546648321135724
+  },
+  "training_sources": [
+    "normal_gps",
+    "normal_gps"
+  ]
+}

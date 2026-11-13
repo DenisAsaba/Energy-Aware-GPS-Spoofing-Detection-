@@ -1,0 +1,101 @@
+{
+  "aggregate_unit": "one simulation trip/scenario configuration; GPS fixes are not treated as independent experiments",
+  "coordinate_frame": "SUMO local road-network X/Y meters; time in seconds; step length 1 s",
+  "detector_evaluations": 104,
+  "gps_noise": {
+    "distribution": "independent zero-mean Gaussian per X/Y axis",
+    "std_m_per_axis": 3.0
+  },
+  "m4_status": "oracle-assisted; uses truth coordinates for residual calculation",
+  "m5_labels_loaded_after_prediction_for_scoring": true,
+  "m5_prediction_excludes": [
+    "ground truth",
+    "attack labels",
+    "future GPS fixes"
+  ],
+  "m5_prediction_inputs": [
+    "time_s",
+    "vehicle_id",
+    "gps_x_m",
+    "gps_y_m",
+    "previous GPS fix"
+  ],
+  "matrix_rows": 58,
+  "milestone": "M6",
+  "plots": [
+    "m4_vs_m5_f1.png",
+    "prf_by_attack_intensity.png",
+    "normal_test_fpr.png",
+    "detection_delay.png",
+    "seed_variability.png",
+    "route_variability.png",
+    "aggregate_confusion.png"
+  ],
+  "protected_m0_m5_snapshot": {
+    "file_count": 278,
+    "manifest_sha256": "807fd0db79814e8d327f0325023226626000b46c9782ca3071c14061682a28c2"
+  },
+  "protected_m0_m5_unchanged": true,
+  "routes_validated": {
+    "m0_route": {
+      "edges": [
+        "road_0"
+      ],
+      "network_file": "external_historical_root_project/sumo/network/m0.net.xml",
+      "route_file": "external_historical_root_project/sumo/routes/m0.rou.xml",
+      "route_id": "route_0",
+      "sumo_route_check": "passed"
+    },
+    "m3_alternative": {
+      "edges": [
+        "road_alt_0",
+        "road_alt_1"
+      ],
+      "network_file": "external_historical_root_project/sumo/network/m3.net.xml",
+      "route_file": "external_historical_root_project/sumo/routes/m3_route_deviation.rou.xml",
+      "route_id": "route_alternative",
+      "sumo_route_check": "passed"
+    }
+  },
+  "run_id": "m6_full_02",
+  "seed_groups": {
+    "calibration": [
+      601,
+      602
+    ],
+    "test": [
+      604,
+      605
+    ],
+    "validation": [
+      603
+    ]
+  },
+  "smoke": false,
+  "statistical_method": "mean, sample standard deviation (ddof=1; 0 for n=1), min/max over per-trip metrics; delay excludes missed attacks",
+  "test_experiments": 52,
+  "threshold_calibration": {
+    "m4_normal_residual_observations": 374,
+    "m4_quantile": 0.95,
+    "m4_threshold_m": 7.379797203521751,
+    "m5_normal_feature_observations": {
+      "estimated_speed_mps": 370,
+      "heading_change_deg": 366,
+      "speed_change_mps": 366
+    },
+    "m5_quantile": 0.99,
+    "m5_thresholds": {
+      "max_heading_change_deg": 108.45527698501837,
+      "max_speed_change_mps": 18.029596454554305,
+      "max_speed_mps": 24.06041913028352
+    },
+    "method": "NumPy linear quantile over pooled normal calibration trips; attack/validation/test data excluded",
+    "training_trip_ids": [
+      "m0_route_seed601",
+      "m0_route_seed602",
+      "m3_alternative_seed601",
+      "m3_alternative_seed602"
+    ]
+  },
+  "validation_detector_evaluations": 4
+}

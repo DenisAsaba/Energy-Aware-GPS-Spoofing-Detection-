@@ -1,0 +1,30 @@
+{
+  "milestone": "M4",
+  "detector": "position_residual_threshold",
+  "detector_type": "oracle-assisted offline research baseline; not GPS-only/deployable",
+  "inputs_to_prediction": [
+    "SUMO ground truth x_m/y_m",
+    "GPS gps_x_m/gps_y_m"
+  ],
+  "attack_labels_used_for_prediction": false,
+  "coordinate_units": "SUMO local X/Y meters",
+  "threshold_calibration": {
+    "mean_error_m": 3.9957364748489796,
+    "mae_m": 3.9957364748489796,
+    "rmse_m": 4.504651445881754,
+    "p95_error_m": 6.999907320510871,
+    "matched_observations": 79,
+    "unmatched_observations": 0,
+    "unmatched_truth_records": 0,
+    "units": "meters",
+    "calibration_observations": 39,
+    "normal_evaluation_observations": 40,
+    "calibration_fraction": 0.5,
+    "threshold_quantile": 0.95,
+    "threshold_method": "numpy.quantile linear interpolation",
+    "threshold_m": 6.9999073205108715
+  },
+  "threshold_fixed_m": 6.9999073205108715,
+  "configuration_file": "config/experiment_config.yaml",
+  "run_id": "m4_final_02"
+}

@@ -1,0 +1,20 @@
+{
+  "scenario": "jump",
+  "threshold_m": 6.9999073205108715,
+  "true_positive": 5,
+  "false_positive": 4,
+  "true_negative": 70,
+  "false_negative": 0,
+  "precision": 0.5555555555555556,
+  "recall": 1.0,
+  "f1": 0.7142857142857143,
+  "false_positive_rate": 0.05405405405405406,
+  "accuracy": 0.9493670886075949,
+  "matched_observations": 79,
+  "unmatched_prediction_records": 0,
+  "unmatched_label_records": 0,
+  "unmatched_gps_without_truth": 0,
+  "unmatched_truth_without_gps": 0,
+  "detection_delay_s": 0.0,
+  "detection_delay_definition": "first active-sample true positive time minus first active-label time; null if undetected"
+}

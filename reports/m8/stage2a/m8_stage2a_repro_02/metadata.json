@@ -1,0 +1,246 @@
+{
+  "final_test_executed": false,
+  "m7_test_seeds_used": false,
+  "milestone": "M8 Stage 2A",
+  "protected_changes": [],
+  "protected_count_after": 2546,
+  "protected_count_before": 2546,
+  "protected_manifest_after_sha256": "0cef3440550dde45258178d0cfb49156b4a174e982a867aba9a58ad313af0c1e",
+  "protected_manifest_before_sha256": "0cef3440550dde45258178d0cfb49156b4a174e982a867aba9a58ad313af0c1e",
+  "reserved_final_test_seeds_unchanged": [
+    1301,
+    1302
+  ],
+  "run_id": "m8_stage2a_repro_02",
+  "scenario_assignments": [
+    {
+      "gps_seed": 1786385198,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "4b9ffd1122535ab91155818851bf092bfde8e29de746efbd789870520073f47e",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "2729089c57b09447f58be7bf29f2527dcc9b5dd052d6ead65f4d4fbfd513c5e3"
+      },
+      "scenario": "urban_turns_light",
+      "seed": 2101,
+      "split": "calibration",
+      "traffic_vehicles": 0,
+      "trip_id": "calibration_urban_turns_light_seed2101"
+    },
+    {
+      "gps_seed": 3646546418,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "27b4eb93597d91b8d655b5ccfb1cd9bb3bc847df9214b588080800dc453887ab",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "506b7feb08648a91d4dc5e64a1a810eb8fbe9a9694b1d12d2f2c6397cabaab81"
+      },
+      "scenario": "urban_stop_restart",
+      "seed": 2102,
+      "split": "calibration",
+      "traffic_vehicles": 5,
+      "trip_id": "calibration_urban_stop_restart_seed2102"
+    },
+    {
+      "gps_seed": 2690511367,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "46e960e8ac9d67b2fdaae6637192a53373f362f65b45eead944ccb4ba7918ace",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "4d4b2dd7f5c9628741cd0c0182b5cee35015ecdda19c4d5e757d07691050ac3a"
+      },
+      "scenario": "urban_brake_accel",
+      "seed": 2103,
+      "split": "calibration",
+      "traffic_vehicles": 12,
+      "trip_id": "calibration_urban_brake_accel_seed2103"
+    },
+    {
+      "gps_seed": 3524012225,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "55257373d18e600dc85e432c970c8cc26819cbb72f6905e0e162e1ea9bc98fab",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "2729089c57b09447f58be7bf29f2527dcc9b5dd052d6ead65f4d4fbfd513c5e3"
+      },
+      "scenario": "urban_turns_light",
+      "seed": 2104,
+      "split": "calibration",
+      "traffic_vehicles": 0,
+      "trip_id": "calibration_urban_turns_light_seed2104"
+    },
+    {
+      "gps_seed": 2862675307,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "32f41af421de9864f0a748332f81fd831284f3ba2010698b96d55d2be592dc8d",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "1d57e73dc62b5aabddf1b834402fed8068ca99d597b57526b59f12a28685ddb5"
+      },
+      "scenario": "urban_stop_restart",
+      "seed": 2105,
+      "split": "calibration",
+      "traffic_vehicles": 5,
+      "trip_id": "calibration_urban_stop_restart_seed2105"
+    },
+    {
+      "gps_seed": 2653175899,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "68f745f221b82051576d14695d22be9a8d95ba446d35fef1d7ea94bf5245e455",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "5e809aa702916f0a767ff7e1b9d0226299df6abab9cde63a914393821bd4e825"
+      },
+      "scenario": "urban_brake_accel",
+      "seed": 2106,
+      "split": "calibration",
+      "traffic_vehicles": 12,
+      "trip_id": "calibration_urban_brake_accel_seed2106"
+    },
+    {
+      "gps_seed": 683753843,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "6d777947d17aaf0aba12936bfb4c9487fa8dcc15276f9077853beeabecef1017",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "2729089c57b09447f58be7bf29f2527dcc9b5dd052d6ead65f4d4fbfd513c5e3"
+      },
+      "scenario": "urban_turns_light",
+      "seed": 2201,
+      "split": "validation",
+      "traffic_vehicles": 0,
+      "trip_id": "validation_urban_turns_light_seed2201"
+    },
+    {
+      "gps_seed": 3249461566,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "77d2b8469f52fc6f166d12df06d2cfdc04645f05d979141bf8e208d30cc00dcf",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "506b7feb08648a91d4dc5e64a1a810eb8fbe9a9694b1d12d2f2c6397cabaab81"
+      },
+      "scenario": "urban_stop_restart",
+      "seed": 2202,
+      "split": "validation",
+      "traffic_vehicles": 5,
+      "trip_id": "validation_urban_stop_restart_seed2202"
+    },
+    {
+      "gps_seed": 720693910,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "040aef66a86a7741df0b7494c1c20a55323f27ca10d89a8c493dd047340cbec6",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "4d4b2dd7f5c9628741cd0c0182b5cee35015ecdda19c4d5e757d07691050ac3a"
+      },
+      "scenario": "urban_brake_accel",
+      "seed": 2203,
+      "split": "validation",
+      "traffic_vehicles": 12,
+      "trip_id": "validation_urban_brake_accel_seed2203"
+    },
+    {
+      "gps_seed": 1703509073,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "c3cf74ca785a1605f6a33d3106ed8f5e25159400eec861b3c9f05e85f3ce7ea5",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "2729089c57b09447f58be7bf29f2527dcc9b5dd052d6ead65f4d4fbfd513c5e3"
+      },
+      "scenario": "urban_turns_light",
+      "seed": 2204,
+      "split": "validation",
+      "traffic_vehicles": 0,
+      "trip_id": "validation_urban_turns_light_seed2204"
+    },
+    {
+      "gps_seed": 3067975708,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "a0ab700d7e326584f08587d40b97e30a1db40ae3ae2c1a48c44fb6235ee02dad",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "1d57e73dc62b5aabddf1b834402fed8068ca99d597b57526b59f12a28685ddb5"
+      },
+      "scenario": "urban_stop_restart",
+      "seed": 2205,
+      "split": "validation",
+      "traffic_vehicles": 5,
+      "trip_id": "validation_urban_stop_restart_seed2205"
+    },
+    {
+      "gps_seed": 1136413999,
+      "hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "9e048a5adabe826c8d35098f8ae75061c4a381697ac24162fe4586a25a2b960b",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "5e809aa702916f0a767ff7e1b9d0226299df6abab9cde63a914393821bd4e825"
+      },
+      "scenario": "urban_brake_accel",
+      "seed": 2206,
+      "split": "validation",
+      "traffic_vehicles": 12,
+      "trip_id": "validation_urban_brake_accel_seed2206"
+    }
+  ],
+  "scenario_definitions": {
+    "urban_brake_accel": {
+      "route": [
+        "south_r",
+        "north_r",
+        "east_r",
+        "west_r"
+      ],
+      "speed_factor": 1.0,
+      "stop": [
+        "east_r",
+        75,
+        3
+      ],
+      "traffic": 12
+    },
+    "urban_stop_restart": {
+      "route": [
+        "west",
+        "east",
+        "north",
+        "south"
+      ],
+      "speed_factor": 0.88,
+      "stop": [
+        "east",
+        65,
+        5
+      ],
+      "traffic": 5
+    },
+    "urban_turns_light": {
+      "route": [
+        "west",
+        "east",
+        "north",
+        "south"
+      ],
+      "speed_factor": 0.78,
+      "stop": null,
+      "traffic": 0
+    }
+  },
+  "split_seeds": {
+    "calibration": [
+      2101,
+      2102,
+      2103,
+      2104,
+      2105,
+      2106
+    ],
+    "validation": [
+      2201,
+      2202,
+      2203,
+      2204,
+      2205,
+      2206
+    ]
+  }
+}

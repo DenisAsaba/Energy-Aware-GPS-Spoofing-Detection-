@@ -1,0 +1,327 @@
+{
+  "attack_matrix": [
+    {
+      "attack_type": "offset",
+      "case_id": "offset_magnitude_m_30_duration_10s",
+      "direction_deg": 90.0,
+      "duration_s": 10.0,
+      "magnitude_m": 30.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "offset",
+      "case_id": "offset_magnitude_m_30_duration_25s",
+      "direction_deg": 90.0,
+      "duration_s": 25.0,
+      "magnitude_m": 30.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "offset",
+      "case_id": "offset_magnitude_m_60_duration_10s",
+      "direction_deg": 90.0,
+      "duration_s": 10.0,
+      "magnitude_m": 60.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "offset",
+      "case_id": "offset_magnitude_m_60_duration_25s",
+      "direction_deg": 90.0,
+      "duration_s": 25.0,
+      "magnitude_m": 60.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "jump",
+      "case_id": "jump_magnitude_m_30_duration_1s",
+      "direction_deg": 45.0,
+      "duration_s": 1.0,
+      "magnitude_m": 30.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "jump",
+      "case_id": "jump_magnitude_m_30_duration_5s",
+      "direction_deg": 45.0,
+      "duration_s": 5.0,
+      "magnitude_m": 30.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "jump",
+      "case_id": "jump_magnitude_m_60_duration_1s",
+      "direction_deg": 45.0,
+      "duration_s": 1.0,
+      "magnitude_m": 60.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "jump",
+      "case_id": "jump_magnitude_m_60_duration_5s",
+      "direction_deg": 45.0,
+      "duration_s": 5.0,
+      "magnitude_m": 60.0,
+      "onset_s": 35.0
+    },
+    {
+      "attack_type": "drift",
+      "case_id": "drift_rate_mps_0.5_duration_10s",
+      "direction_deg": 0.0,
+      "duration_s": 10.0,
+      "max_displacement_m": 20.0,
+      "onset_s": 35.0,
+      "rate_mps": 0.5
+    },
+    {
+      "attack_type": "drift",
+      "case_id": "drift_rate_mps_0.5_duration_25s",
+      "direction_deg": 0.0,
+      "duration_s": 25.0,
+      "max_displacement_m": 20.0,
+      "onset_s": 35.0,
+      "rate_mps": 0.5
+    },
+    {
+      "attack_type": "drift",
+      "case_id": "drift_rate_mps_1_duration_10s",
+      "direction_deg": 0.0,
+      "duration_s": 10.0,
+      "max_displacement_m": 20.0,
+      "onset_s": 35.0,
+      "rate_mps": 1.0
+    },
+    {
+      "attack_type": "drift",
+      "case_id": "drift_rate_mps_1_duration_25s",
+      "direction_deg": 0.0,
+      "duration_s": 25.0,
+      "max_displacement_m": 20.0,
+      "onset_s": 35.0,
+      "rate_mps": 1.0
+    }
+  ],
+  "confidence_intervals": "Not reported: only two independent reserved seeds; descriptive paired trip summaries only.",
+  "deterministic_comparison_excludes": [
+    "metadata.json"
+  ],
+  "final_test_executed": true,
+  "frozen": {
+    "calibration_trip_seeds": [
+      2101,
+      2102,
+      2103,
+      2104,
+      2105,
+      2106
+    ],
+    "calibration_validation_overlap": false,
+    "frozen_source_run": "m8_stage2a_repro_04",
+    "m5_thresholds": {
+      "max_heading_change_deg": 170.59814632079238,
+      "max_speed_change_mps": 17.433801896153664,
+      "max_speed_mps": 21.143275132946187
+    },
+    "m7_final_seed_reuse": false,
+    "m8_persistence": {
+      "clear_after_clean_fixes": 3,
+      "trigger_count": 2,
+      "trigger_window": 5
+    },
+    "m8_thresholds": {
+      "max_abs_acceleration_mps2": 17.433801896153664,
+      "max_heading_change_deg": 170.59814632079238,
+      "max_speed_change_mps": 17.433801896153664,
+      "max_speed_consistency_mps": 6.833179913102611,
+      "max_speed_mps": 21.143275132946187
+    },
+    "reserved_final_seeds": [
+      1301,
+      1302
+    ],
+    "stage1_final_seed_config_sha256": "051ca94de9a8248e78c46de9df62878634abd8acaf94ba1d434e6c493daa2acd"
+  },
+  "frozen_code_config_changed_paths": [],
+  "frozen_code_config_manifest_after": {
+    "config/m8_detector.yaml": "051ca94de9a8248e78c46de9df62878634abd8acaf94ba1d434e6c493daa2acd",
+    "config/m8_stage2a.yaml": "9857029d9d2f642dd3ca8f5d7248823d6b9e6a787d247e81ce664d7cea4eefd1",
+    "config/m8_stage2b.yaml": "24a21860864b60c96a9a73b1a029c9a457cb052506468e35fd2fa94ec53faaaa",
+    "src/detection/gps_only.py": "1a22ce038fac4134792e1b241001646cf3fddd3fbadf75302d69fccef84e9f1f",
+    "src/detection/m8_detector.py": "65c4323e40328f0f1f0493a5a0c9afebc420b1cfdede067cb424f8a38d36ba7d",
+    "src/experiments/m8_evaluation.py": "ea7798b74c797fafb1d6300d2e48423bd08de62a0d382c686bafa5fed9604902",
+    "src/experiments/m8_stage2a.py": "152b6266d1ac3779917e7f17e03491fd2d373482b572c252541546909ee2a819",
+    "src/experiments/m8_stage2a_scenarios.py": "edcfb76f01e406321ffbaabe37c7c5fba8c640d2fdbaee72d49bf678e4a93d36",
+    "src/experiments/m8_stage2b.py": "5896c9e380c9e1a4371f87cc17ccfe35b9fdc51a9b33f779f2b3ddbdc90f65b0",
+    "tests/test_m8_detector.py": "e43f692a797d1d2c9efce2f1e592198a7e39c64cfa5322b537550bb13ad300bb",
+    "tests/test_m8_evaluation.py": "659d3c23ea4e0370676aaf68ebf7e90e99556339f3263655704e755cb0a97d79",
+    "tests/test_m8_stage2a.py": "a93f927debf3e7c4c6bab2379c6e016798d67c0d0ca3da20c47d86cccbd8ce0b"
+  },
+  "frozen_code_config_manifest_before": {
+    "config/m8_detector.yaml": "051ca94de9a8248e78c46de9df62878634abd8acaf94ba1d434e6c493daa2acd",
+    "config/m8_stage2a.yaml": "9857029d9d2f642dd3ca8f5d7248823d6b9e6a787d247e81ce664d7cea4eefd1",
+    "config/m8_stage2b.yaml": "24a21860864b60c96a9a73b1a029c9a457cb052506468e35fd2fa94ec53faaaa",
+    "src/detection/gps_only.py": "1a22ce038fac4134792e1b241001646cf3fddd3fbadf75302d69fccef84e9f1f",
+    "src/detection/m8_detector.py": "65c4323e40328f0f1f0493a5a0c9afebc420b1cfdede067cb424f8a38d36ba7d",
+    "src/experiments/m8_evaluation.py": "ea7798b74c797fafb1d6300d2e48423bd08de62a0d382c686bafa5fed9604902",
+    "src/experiments/m8_stage2a.py": "152b6266d1ac3779917e7f17e03491fd2d373482b572c252541546909ee2a819",
+    "src/experiments/m8_stage2a_scenarios.py": "edcfb76f01e406321ffbaabe37c7c5fba8c640d2fdbaee72d49bf678e4a93d36",
+    "src/experiments/m8_stage2b.py": "5896c9e380c9e1a4371f87cc17ccfe35b9fdc51a9b33f779f2b3ddbdc90f65b0",
+    "tests/test_m8_detector.py": "e43f692a797d1d2c9efce2f1e592198a7e39c64cfa5322b537550bb13ad300bb",
+    "tests/test_m8_evaluation.py": "659d3c23ea4e0370676aaf68ebf7e90e99556339f3263655704e755cb0a97d79",
+    "tests/test_m8_stage2a.py": "a93f927debf3e7c4c6bab2379c6e016798d67c0d0ca3da20c47d86cccbd8ce0b"
+  },
+  "input_config_sha256": "24a21860864b60c96a9a73b1a029c9a457cb052506468e35fd2fa94ec53faaaa",
+  "milestone": "M8 Stage 2B",
+  "prior_m8_changed_paths": [],
+  "prior_m8_file_count": 1576,
+  "prior_m8_file_count_after": 1576,
+  "prior_m8_manifest_after_sha256": "e17dbefe908c46eb1b684a5f4a508f7560afadf82275ef140f4024758ed0a5a0",
+  "prior_m8_manifest_sha256": "e17dbefe908c46eb1b684a5f4a508f7560afadf82275ef140f4024758ed0a5a0",
+  "protected_m0_m7_after_count": 2552,
+  "protected_m0_m7_after_sha256": "d2e1458be933057f67e103ad99f86eecfaab08286f2d8a0918c0812c46bee0c7",
+  "protected_m0_m7_before_count": 2552,
+  "protected_m0_m7_before_sha256": "d2e1458be933057f67e103ad99f86eecfaab08286f2d8a0918c0812c46bee0c7",
+  "protected_m0_m7_changed_paths": [],
+  "run_id": "m8_stage2b_final_02",
+  "scenario_definitions": {
+    "urban_brake_accel": {
+      "route": [
+        "south_r",
+        "north_r",
+        "east_r",
+        "west_r"
+      ],
+      "speed_factor": 1.0,
+      "stop": [
+        "east_r",
+        75,
+        3
+      ],
+      "traffic": 12
+    },
+    "urban_stop_restart": {
+      "route": [
+        "west",
+        "east",
+        "north",
+        "south"
+      ],
+      "speed_factor": 0.88,
+      "stop": [
+        "east",
+        65,
+        5
+      ],
+      "traffic": 5
+    },
+    "urban_turns_light": {
+      "route": [
+        "west",
+        "east",
+        "north",
+        "south"
+      ],
+      "speed_factor": 0.78,
+      "stop": null,
+      "traffic": 0
+    }
+  },
+  "trip_manifest": [
+    {
+      "gps_seed": 1983654055,
+      "input_hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "6ef193306c20a03774c5539c2044f4cefca73c0d09875e0dbb8b35eb0a8104d2",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "1dbb5ad411a84130045a5d308373b38e0068b1b07b9723ed2d520e57875980e0"
+      },
+      "normal_gps_sha256": "6a8811e3a200db6d0cce9dfeb3ee810e97f0296c9ee48223c3a189350ebfb03a",
+      "route_group": "urban_turns_light",
+      "scenario_type": "urban_turns_light",
+      "seed": 1301,
+      "traffic_vehicles": 0,
+      "trip_id": "final_urban_turns_light_seed1301",
+      "truth_sha256": "5a730a6517a3a8dbd0d641ef7a670227207f56e96e0feab4cea95c3c44171efa"
+    },
+    {
+      "gps_seed": 2402176513,
+      "input_hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "6cd0d8f2460c8beb9b08f557798f507372c7ae8b9acc643a80098c0d87b74167",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "340850be829d4dd715e3dccb3b0ab4545e75c387230e2f010498eb86a73063a2"
+      },
+      "normal_gps_sha256": "b1d2e68292003dc81aa3674ae2784f28f7652c259bd2dd0057f577df7e32ba57",
+      "route_group": "urban_stop_restart",
+      "scenario_type": "urban_stop_restart",
+      "seed": 1301,
+      "traffic_vehicles": 5,
+      "trip_id": "final_urban_stop_restart_seed1301",
+      "truth_sha256": "0929f21535f5abb8fda7666ff5da6aada6e290b1dabe5bb60d24ae3ac7b8aa46"
+    },
+    {
+      "gps_seed": 4023930367,
+      "input_hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "7aa6968b04d1dde555f1802f90a50babceaa5df18a677061b3d1c0a67061d7a6",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "eafffbe93c1f7f8e83093093f9b8857b3f065139ae5c380db2b6330662b8e044"
+      },
+      "normal_gps_sha256": "fbd3f2cfb5e211d5a912ed9d07792e6cd262b4c65a9050573e5b81fbda364fa7",
+      "route_group": "urban_brake_accel",
+      "scenario_type": "urban_brake_accel",
+      "seed": 1301,
+      "traffic_vehicles": 12,
+      "trip_id": "final_urban_brake_accel_seed1301",
+      "truth_sha256": "917b04adcf3f4bc6fface641c52c82a72f48ff56ca59c7d4dc72caef27f7df98"
+    },
+    {
+      "gps_seed": 2398863459,
+      "input_hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "f7cc513512cb7c28638c1f9f4cb79d87bdddb550c4a3696837b0aae20b9bb97a",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "1dbb5ad411a84130045a5d308373b38e0068b1b07b9723ed2d520e57875980e0"
+      },
+      "normal_gps_sha256": "00e96b760e7102a61bd48a2efca2eec18cdfad732d075bc5bd63572330eaf638",
+      "route_group": "urban_turns_light",
+      "scenario_type": "urban_turns_light",
+      "seed": 1302,
+      "traffic_vehicles": 0,
+      "trip_id": "final_urban_turns_light_seed1302",
+      "truth_sha256": "34748edd1ede0f8d08c1adc259765595448aa6281eca2948f3129efe67e78f51"
+    },
+    {
+      "gps_seed": 148598783,
+      "input_hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "1f12ae382dd9459f7396af3b7bd0d8f3ed1d779a5c2c363e55762a55d912ae30",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "5fa60396282272184a1f934905deece066b7185568e60211e2fda43b4de8ad6d"
+      },
+      "normal_gps_sha256": "b61c7e93ad4c3614a5fe3a6fe134536a7735e2337e215c0e6200c4b0f401422b",
+      "route_group": "urban_stop_restart",
+      "scenario_type": "urban_stop_restart",
+      "seed": 1302,
+      "traffic_vehicles": 5,
+      "trip_id": "final_urban_stop_restart_seed1302",
+      "truth_sha256": "48612864d6ceff2dc5715126595e5adfae526ebebda60edd531c67d2891445b4"
+    },
+    {
+      "gps_seed": 3701642994,
+      "input_hashes": {
+        "edges": "33859400a7685da63069aadc890c270b239c89a8ed958f9d4dbc769e1a3ea2f9",
+        "network": "3e0a6aa01be7b2212eba7fcc82923e6be09e40a2bd4db5b8a825bb9b051a1244",
+        "nodes": "fb19d0a00bcfa320afa5a9529413daf3fb34168eea94c29042fdd65c6f4ca81d",
+        "routes": "14826a9aba3f748311749ef0aac4bb2e57ec32fcc8d5a338771b01af209eb054"
+      },
+      "normal_gps_sha256": "a16f4317b49be040cb3bc4b7d3ab8967d761b629c789089f1e9bb1fa62a29df0",
+      "route_group": "urban_brake_accel",
+      "scenario_type": "urban_brake_accel",
+      "seed": 1302,
+      "traffic_vehicles": 12,
+      "trip_id": "final_urban_brake_accel_seed1302",
+      "truth_sha256": "47ace78d284476ef6cace78cbff3ce05da64e9bdbb7fdb33eccb917db1369d9f"
+    }
+  ]
+}

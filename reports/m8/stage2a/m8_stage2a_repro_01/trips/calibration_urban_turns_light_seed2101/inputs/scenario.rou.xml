@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes><vType id="ev" vClass="passenger" accel="1.7" decel="4.0" maxSpeed="13.89" speedFactor="0.78" emissionClass="Energy/unknown" has.battery.device="true" device.battery.capacity="50000" device.battery.chargeLevel="25000" /><vType id="traffic" vClass="passenger" accel="2.0" decel="4.5" maxSpeed="13.89" /><route id="evroute" edges="west east north south" /><vehicle id="ev_001" type="ev" route="evroute" depart="0" departSpeed="0" /></routes>

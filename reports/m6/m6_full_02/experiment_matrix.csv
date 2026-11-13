@@ -1,0 +1,59 @@
+experiment_id,trip_id,split,scenario,attack_type,attack_intensity,attack_intensity_value,attack_intensity_unit,attack_duration_s,seed,route,gps_seed,attack_onset_s
+normal_calibration_m0_route_seed601,m0_route_seed601,calibration,normal,none,none,0.0,none,0.0,601,m0_route,1650927483,
+normal_calibration_m0_route_seed602,m0_route_seed602,calibration,normal,none,none,0.0,none,0.0,602,m0_route,442877294,
+normal_calibration_m3_alternative_seed601,m3_alternative_seed601,calibration,normal,none,none,0.0,none,0.0,601,m3_alternative,241945399,
+normal_calibration_m3_alternative_seed602,m3_alternative_seed602,calibration,normal,none,none,0.0,none,0.0,602,m3_alternative,4274952488,
+normal_validation_m0_route_seed603,m0_route_seed603,validation,normal,none,none,0.0,none,0.0,603,m0_route,1010083749,
+normal_validation_m3_alternative_seed603,m3_alternative_seed603,validation,normal,none,none,0.0,none,0.0,603,m3_alternative,1037214925,
+normal_test_m0_route_seed604,m0_route_seed604,test,normal,none,none,0.0,none,0.0,604,m0_route,993861855,
+normal_test_m0_route_seed605,m0_route_seed605,test,normal,none,none,0.0,none,0.0,605,m0_route,3633745243,
+normal_test_m3_alternative_seed604,m3_alternative_seed604,test,normal,none,none,0.0,none,0.0,604,m3_alternative,373840296,
+normal_test_m3_alternative_seed605,m3_alternative_seed605,test,normal,none,none,0.0,none,0.0,605,m3_alternative,2458081420,
+offset_10m_10s_m0_route_seed604,m0_route_seed604,test,offset,offset,10 m,10.0,m,10.0,604,m0_route,993861855,20.0
+offset_10m_30s_m0_route_seed604,m0_route_seed604,test,offset,offset,10 m,10.0,m,30.0,604,m0_route,993861855,20.0
+offset_30m_10s_m0_route_seed604,m0_route_seed604,test,offset,offset,30 m,30.0,m,10.0,604,m0_route,993861855,20.0
+offset_30m_30s_m0_route_seed604,m0_route_seed604,test,offset,offset,30 m,30.0,m,30.0,604,m0_route,993861855,20.0
+jump_20m_1s_m0_route_seed604,m0_route_seed604,test,jump,jump,20 m,20.0,m,1.0,604,m0_route,993861855,35.0
+jump_20m_5s_m0_route_seed604,m0_route_seed604,test,jump,jump,20 m,20.0,m,5.0,604,m0_route,993861855,35.0
+jump_60m_1s_m0_route_seed604,m0_route_seed604,test,jump,jump,60 m,60.0,m,1.0,604,m0_route,993861855,35.0
+jump_60m_5s_m0_route_seed604,m0_route_seed604,test,jump,jump,60 m,60.0,m,5.0,604,m0_route,993861855,35.0
+drift_0.5mps_10s_m0_route_seed604,m0_route_seed604,test,drift,drift,0.5 mps,0.5,mps,10.0,604,m0_route,993861855,20.0
+drift_0.5mps_30s_m0_route_seed604,m0_route_seed604,test,drift,drift,0.5 mps,0.5,mps,30.0,604,m0_route,993861855,20.0
+drift_1mps_10s_m0_route_seed604,m0_route_seed604,test,drift,drift,1 mps,1.0,mps,10.0,604,m0_route,993861855,20.0
+drift_1mps_30s_m0_route_seed604,m0_route_seed604,test,drift,drift,1 mps,1.0,mps,30.0,604,m0_route,993861855,20.0
+offset_10m_10s_m0_route_seed605,m0_route_seed605,test,offset,offset,10 m,10.0,m,10.0,605,m0_route,3633745243,20.0
+offset_10m_30s_m0_route_seed605,m0_route_seed605,test,offset,offset,10 m,10.0,m,30.0,605,m0_route,3633745243,20.0
+offset_30m_10s_m0_route_seed605,m0_route_seed605,test,offset,offset,30 m,30.0,m,10.0,605,m0_route,3633745243,20.0
+offset_30m_30s_m0_route_seed605,m0_route_seed605,test,offset,offset,30 m,30.0,m,30.0,605,m0_route,3633745243,20.0
+jump_20m_1s_m0_route_seed605,m0_route_seed605,test,jump,jump,20 m,20.0,m,1.0,605,m0_route,3633745243,35.0
+jump_20m_5s_m0_route_seed605,m0_route_seed605,test,jump,jump,20 m,20.0,m,5.0,605,m0_route,3633745243,35.0
+jump_60m_1s_m0_route_seed605,m0_route_seed605,test,jump,jump,60 m,60.0,m,1.0,605,m0_route,3633745243,35.0
+jump_60m_5s_m0_route_seed605,m0_route_seed605,test,jump,jump,60 m,60.0,m,5.0,605,m0_route,3633745243,35.0
+drift_0.5mps_10s_m0_route_seed605,m0_route_seed605,test,drift,drift,0.5 mps,0.5,mps,10.0,605,m0_route,3633745243,20.0
+drift_0.5mps_30s_m0_route_seed605,m0_route_seed605,test,drift,drift,0.5 mps,0.5,mps,30.0,605,m0_route,3633745243,20.0
+drift_1mps_10s_m0_route_seed605,m0_route_seed605,test,drift,drift,1 mps,1.0,mps,10.0,605,m0_route,3633745243,20.0
+drift_1mps_30s_m0_route_seed605,m0_route_seed605,test,drift,drift,1 mps,1.0,mps,30.0,605,m0_route,3633745243,20.0
+offset_10m_10s_m3_alternative_seed604,m3_alternative_seed604,test,offset,offset,10 m,10.0,m,10.0,604,m3_alternative,373840296,20.0
+offset_10m_30s_m3_alternative_seed604,m3_alternative_seed604,test,offset,offset,10 m,10.0,m,30.0,604,m3_alternative,373840296,20.0
+offset_30m_10s_m3_alternative_seed604,m3_alternative_seed604,test,offset,offset,30 m,30.0,m,10.0,604,m3_alternative,373840296,20.0
+offset_30m_30s_m3_alternative_seed604,m3_alternative_seed604,test,offset,offset,30 m,30.0,m,30.0,604,m3_alternative,373840296,20.0
+jump_20m_1s_m3_alternative_seed604,m3_alternative_seed604,test,jump,jump,20 m,20.0,m,1.0,604,m3_alternative,373840296,35.0
+jump_20m_5s_m3_alternative_seed604,m3_alternative_seed604,test,jump,jump,20 m,20.0,m,5.0,604,m3_alternative,373840296,35.0
+jump_60m_1s_m3_alternative_seed604,m3_alternative_seed604,test,jump,jump,60 m,60.0,m,1.0,604,m3_alternative,373840296,35.0
+jump_60m_5s_m3_alternative_seed604,m3_alternative_seed604,test,jump,jump,60 m,60.0,m,5.0,604,m3_alternative,373840296,35.0
+drift_0.5mps_10s_m3_alternative_seed604,m3_alternative_seed604,test,drift,drift,0.5 mps,0.5,mps,10.0,604,m3_alternative,373840296,20.0
+drift_0.5mps_30s_m3_alternative_seed604,m3_alternative_seed604,test,drift,drift,0.5 mps,0.5,mps,30.0,604,m3_alternative,373840296,20.0
+drift_1mps_10s_m3_alternative_seed604,m3_alternative_seed604,test,drift,drift,1 mps,1.0,mps,10.0,604,m3_alternative,373840296,20.0
+drift_1mps_30s_m3_alternative_seed604,m3_alternative_seed604,test,drift,drift,1 mps,1.0,mps,30.0,604,m3_alternative,373840296,20.0
+offset_10m_10s_m3_alternative_seed605,m3_alternative_seed605,test,offset,offset,10 m,10.0,m,10.0,605,m3_alternative,2458081420,20.0
+offset_10m_30s_m3_alternative_seed605,m3_alternative_seed605,test,offset,offset,10 m,10.0,m,30.0,605,m3_alternative,2458081420,20.0
+offset_30m_10s_m3_alternative_seed605,m3_alternative_seed605,test,offset,offset,30 m,30.0,m,10.0,605,m3_alternative,2458081420,20.0
+offset_30m_30s_m3_alternative_seed605,m3_alternative_seed605,test,offset,offset,30 m,30.0,m,30.0,605,m3_alternative,2458081420,20.0
+jump_20m_1s_m3_alternative_seed605,m3_alternative_seed605,test,jump,jump,20 m,20.0,m,1.0,605,m3_alternative,2458081420,35.0
+jump_20m_5s_m3_alternative_seed605,m3_alternative_seed605,test,jump,jump,20 m,20.0,m,5.0,605,m3_alternative,2458081420,35.0
+jump_60m_1s_m3_alternative_seed605,m3_alternative_seed605,test,jump,jump,60 m,60.0,m,1.0,605,m3_alternative,2458081420,35.0
+jump_60m_5s_m3_alternative_seed605,m3_alternative_seed605,test,jump,jump,60 m,60.0,m,5.0,605,m3_alternative,2458081420,35.0
+drift_0.5mps_10s_m3_alternative_seed605,m3_alternative_seed605,test,drift,drift,0.5 mps,0.5,mps,10.0,605,m3_alternative,2458081420,20.0
+drift_0.5mps_30s_m3_alternative_seed605,m3_alternative_seed605,test,drift,drift,0.5 mps,0.5,mps,30.0,605,m3_alternative,2458081420,20.0
+drift_1mps_10s_m3_alternative_seed605,m3_alternative_seed605,test,drift,drift,1 mps,1.0,mps,10.0,605,m3_alternative,2458081420,20.0
+drift_1mps_30s_m3_alternative_seed605,m3_alternative_seed605,test,drift,drift,1 mps,1.0,mps,30.0,605,m3_alternative,2458081420,20.0

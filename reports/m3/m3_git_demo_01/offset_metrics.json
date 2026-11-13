@@ -1,0 +1,15 @@
+{
+  "mean_error_m": 14.00468684705293,
+  "mae_m": 14.00468684705293,
+  "rmse_m": 19.252980205931696,
+  "p95_error_m": 34.67888789752633,
+  "matched_observations": 79,
+  "unmatched_observations": 0,
+  "unmatched_truth_records": 0,
+  "units": "meters",
+  "scenario": "offset",
+  "truth_file": "data/raw/truth_ev_001_20261106T041622.998504Z.csv",
+  "gps_file": "data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z.csv",
+  "labels_file": "data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z_labels.csv",
+  "active_attack_observations": 30
+}

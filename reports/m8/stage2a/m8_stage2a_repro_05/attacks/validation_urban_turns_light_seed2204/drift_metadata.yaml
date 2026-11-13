@@ -1,0 +1,17 @@
+attack_type: drift
+attack_id: validation_urban_turns_light_seed2204_drift
+seed: 1703509073
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 35.0
+duration_s: 25.0
+truth_file: reports/m8/stage2a/m8_stage2a_repro_05/trips/validation_urban_turns_light_seed2204/truth.csv
+gps_file: drift.csv
+labels_file: drift_labels.csv
+attack_parameters:
+  onset_s: 35
+  duration_s: 25
+  rate_mps: 1.0
+  direction_deg: 0.0
+  max_displacement_m: 20.0
+labels_are_not_detector_inputs: true

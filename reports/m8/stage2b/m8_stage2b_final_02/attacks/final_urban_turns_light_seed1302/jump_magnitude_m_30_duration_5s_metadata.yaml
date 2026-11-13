@@ -1,0 +1,16 @@
+attack_type: jump
+attack_id: final_urban_turns_light_seed1302_jump_magnitude_m_30_duration_5s
+seed: 2398863459
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 35.0
+duration_s: 5.0
+truth_file: reports/m8/stage2b/m8_stage2b_final_02/trips/final_urban_turns_light_seed1302/truth.csv
+gps_file: jump_magnitude_m_30_duration_5s.csv
+labels_file: jump_magnitude_m_30_duration_5s_labels.csv
+attack_parameters:
+  onset_s: 35.0
+  duration_s: 5.0
+  magnitude_m: 30.0
+  direction_deg: 45.0
+labels_are_not_detector_inputs: true

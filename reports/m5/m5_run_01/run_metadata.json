@@ -1,0 +1,72 @@
+{
+  "milestone": "M5",
+  "detector": "gps_only_temporal_threshold_rules",
+  "detector_status": "GPS-only research baseline; not certified for production safety",
+  "prediction_inputs": [
+    "time_s",
+    "vehicle_id",
+    "gps_x_m",
+    "gps_y_m",
+    "previous valid GPS fix for the same vehicle"
+  ],
+  "prediction_excludes": [
+    "ground-truth coordinates or motion",
+    "attack labels",
+    "M4 residuals",
+    "future GPS fixes"
+  ],
+  "feature_units": {
+    "elapsed_s": "s",
+    "displacement_m": "m",
+    "estimated_speed_mps": "m/s",
+    "speed_change_mps": "m/s",
+    "estimated_heading_deg": "degrees clockwise from north",
+    "heading_change_deg": "degrees"
+  },
+  "coordinate_frame": "SUMO local road-network X/Y meters; only GPS coordinate differences are used",
+  "threshold_calibration": {
+    "normal_valid_observations": 79,
+    "calibration_observations": 39,
+    "calibration_eligible_features": {
+      "estimated_speed_mps": 38,
+      "speed_change_mps": 37,
+      "heading_change_deg": 37
+    },
+    "evaluation_observations": 40,
+    "normal_quantile": 0.99,
+    "calibration_fraction": 0.5,
+    "threshold_method": "independent configured NumPy quantile per temporal feature",
+    "thresholds": {
+      "max_speed_mps": 23.472519845137263,
+      "max_speed_change_mps": 14.758371965604201,
+      "max_heading_change_deg": 69.8848509792546
+    }
+  },
+  "configuration_file": "config/experiment_config.yaml",
+  "run_id": "m5_run_01",
+  "input_manifest": {
+    "normal_gps": "data/processed/gps_normal_ev_001_20261105T035334.847823Z.csv",
+    "normal_gps_sha256": "db6659867bb614e765e5de441f40bcefa9f65eb01d41ac76767a99a741e1bae6",
+    "attacks": {
+      "offset": {
+        "gps_file": "data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z.csv",
+        "gps_sha256": "9e6dbd25743554b0d421ad7907702f089ea20f4493c098304e1f977e2c493e81",
+        "labels_file": "data/attacks/m3_git_demo_01/gps_offset_ev_001_20261106T041622.998504Z_labels.csv",
+        "labels_sha256": "75faafbaef942b9dbcde5148d9e19acd7742bcd7aa62e18f0367edbc0cdeb318"
+      },
+      "jump": {
+        "gps_file": "data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z.csv",
+        "gps_sha256": "7c2f6311eb711a82947dd14189d95ad9b5e221c411a7bbf0b37fb89885652c37",
+        "labels_file": "data/attacks/m3_git_demo_01/gps_jump_ev_001_20261106T041622.998504Z_labels.csv",
+        "labels_sha256": "bee126c027a3ce2e6443ca9ce8834fff622a3175fa9041528d3ca64338dfb6e7"
+      },
+      "drift": {
+        "gps_file": "data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z.csv",
+        "gps_sha256": "328eb0dc139e360c19d1b440c01687be627f500ed0ce435f79b8fb70b20d8642",
+        "labels_file": "data/attacks/m3_git_demo_01/gps_drift_ev_001_20261106T041622.998504Z_labels.csv",
+        "labels_sha256": "d5f16c35ba1c1db3eeb9bfceb9ab93ea78aa9b40aabfacd646f57b9ee2362084"
+      }
+    }
+  },
+  "m4_reference_metrics_dir": "reports/m4/m4_final_01"
+}

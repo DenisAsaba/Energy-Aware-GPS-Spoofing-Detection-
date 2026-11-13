@@ -1,0 +1,13 @@
+{
+  "gps_file": "reports/m6/m6_full_03/datasets/trips/m0_route_seed601/gps_normal.csv",
+  "gps_noise_std_m_per_axis": 3.0,
+  "gps_seed": 1650927483,
+  "noise_distribution": "independent zero-mean Gaussian on SUMO X/Y coordinates",
+  "route": "m0_route",
+  "route_id": "route_0",
+  "split": "calibration",
+  "step_length_s": 1.0,
+  "sumo_seed": 601,
+  "trip_id": "m0_route_seed601",
+  "truth_file": "reports/m6/m6_full_03/datasets/trips/m0_route_seed601/truth.csv"
+}

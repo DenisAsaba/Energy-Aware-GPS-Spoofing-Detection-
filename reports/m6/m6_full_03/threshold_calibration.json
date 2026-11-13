@@ -1,0 +1,23 @@
+{
+  "m4_normal_residual_observations": 374,
+  "m4_quantile": 0.95,
+  "m4_threshold_m": 7.379797203521751,
+  "m5_normal_feature_observations": {
+    "estimated_speed_mps": 370,
+    "heading_change_deg": 366,
+    "speed_change_mps": 366
+  },
+  "m5_quantile": 0.99,
+  "m5_thresholds": {
+    "max_heading_change_deg": 108.45527698501837,
+    "max_speed_change_mps": 18.029596454554305,
+    "max_speed_mps": 24.06041913028352
+  },
+  "method": "NumPy linear quantile over pooled normal calibration trips; attack/validation/test data excluded",
+  "training_trip_ids": [
+    "m0_route_seed601",
+    "m0_route_seed602",
+    "m3_alternative_seed601",
+    "m3_alternative_seed602"
+  ]
+}

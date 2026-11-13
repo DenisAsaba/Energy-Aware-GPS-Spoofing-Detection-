@@ -1,0 +1,17 @@
+attack_type: drift
+attack_id: smoke_m7_alternate_seed1201_drift
+seed: 3290047970
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 15.0
+duration_s: 20.0
+truth_file: reports/m8/m8_stage1_smoke_02/trips/smoke_m7_alternate_seed1201/truth.csv
+gps_file: gps_drift.csv
+labels_file: gps_drift_labels.csv
+attack_parameters:
+  onset_s: 15
+  duration_s: 20
+  rate_mps: 1.0
+  direction_deg: 0.0
+  max_displacement_m: 20.0
+labels_are_not_detector_inputs: true

@@ -1,0 +1,16 @@
+attack_type: jump
+attack_id: val_m3_seed1101_jump
+seed: 4053932522
+noise_std_m_per_axis: 3.0
+coordinates: SUMO road-network X/Y meters
+onset_s: 15.0
+duration_s: 5.0
+truth_file: reports/m8/m8_stage1_smoke_02/trips/val_m3_seed1101/truth.csv
+gps_file: gps_jump.csv
+labels_file: gps_jump_labels.csv
+attack_parameters:
+  onset_s: 15
+  duration_s: 5
+  magnitude_m: 60.0
+  direction_deg: 45.0
+labels_are_not_detector_inputs: true
