@@ -1,12 +1,20 @@
 # EV GPS Spoofing Detection and Energy-Aware Routing
 
-A staged, reproducible, simulation-only research project using Python, SUMO and TraCI.
+A completed M0-M9 simulation-only research project using Python, SUMO and TraCI. Committed results are inspectable, but the checkpoint is not a self-contained reproduction package.
+
+## Reproducibility status
+
+The documentation audit of commit `3f6439c004dc144dd7b1580cae76d2cf5a40220e` distinguishes committed evidence from historical reproduction. Source code, configurations, methods, and substantial result tables, predictions, and figures are tracked. Additional M4/M5 input CSVs, historical preservation prerequisites, and unique external M3 verification evidence are not included in a clean clone. The M9 frozen baseline has 509 unresolved M8 raw-byte checksum discrepancies; these are not demonstrated changes to numerical findings. Windows newline conversion also affects raw-byte hashes.
+
+Read [Reproducibility limitations and evidence inspection](docs/REPRODUCIBILITY_LIMITATIONS.md) before using any execution commands below. They are workflow examples, not a guarantee of clean-clone reproduction; tests can also generate artifacts. M9 final evaluation currently fails its preservation prerequisite. Do not bypass the checks or reuse historical output IDs.
+
+Canonical corrected M9 results are `reports/m9/m9_stage2_final_03/` and `reports/m9/m9_stage2_final_04/`, as documented in [M9 methods](docs/M9_DETECTOR_ERROR_ANALYSIS.md). Earlier `_01/_02` runs remain audit history. Inspect [the final evidence inventory](reports/final_project/final_evidence_inventory.md) for milestone-specific evidence and limitations. No numerical result is revised by this documentation correction.
 
 ## M7 Stage 1: GPS-responsive route smoke experiment
 
 M7 Stage 1 adds an isolated connected two-route network, an online GPS-driven routing controller, unchanged M5 temporal detector calls, and an explicitly oracle-assisted fallback after an M5 alert. Its paired smoke command and trust-boundary, method, result, and limitation notes are in [docs/M7_GPS_AWARE_ENERGY_ROUTING.md](docs/M7_GPS_AWARE_ENERGY_ROUTING.md). Run `python -m src.experiments.m7_energy_routing --config config/m7_energy_routing.yaml --run-id stage1_smoke_01` from the project root. Each run ID writes only to a new folder below `reports/m7/stage1_smoke/`.
 
-M7 Stage 2 runs the configured paired seed/intensity/duration matrix with frozen M5 thresholds. Reproduce the two independent runs with `python -m src.experiments.m7_matrix --config config/m7_energy_routing.yaml --run-id m7_full_02` and `--run-id m7_full_03`. Outputs are isolated under `reports/m7/full_matrix/`; the full protocol, measured results, and limits are documented in the M7 report.
+M7 Stage 2 runs the configured paired seed/intensity/duration matrix with frozen M5 thresholds. The historical independent runs are `reports/m7/full_matrix/m7_full_02/` and `reports/m7/full_matrix/m7_full_03/`. A future execution must satisfy the documented prerequisites and use a new, unused run ID with `python -m src.experiments.m7_matrix --config config/m7_energy_routing.yaml --run-id <new-unused-id>`. Outputs are isolated under `reports/m7/full_matrix/`; the full protocol, measured results, and limits are documented in the M7 report.
 
 ## M0: run the first EV simulation
 
@@ -15,7 +23,7 @@ M0 established a local 1,000 m, one-edge SUMO road and one passenger EV. SUMO ro
 Install Eclipse SUMO (including `sumo`, `sumo-gui`, `netgenerate`, and `netconvert`) and Python. The runner uses TraCI and PyYAML. With the SUMO installer as used on Windows, set and verify the paths in PowerShell:
 
 ```powershell
-$env:SUMO_HOME = 'C:\Program Files (x86)\SUMO'
+$env:SUMO_HOME = '<SUMO installation directory>' # Replace with your installation location.
 $env:Path = "$env:SUMO_HOME\bin;$env:Path"
 sumo --version
 netgenerate --version
@@ -91,7 +99,7 @@ In the verified Python 3.14.6 environment, dashboard versions were Streamlit 1.6
 
 ## Research stages
 
-Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M6 are implemented; later milestones remain gated by the task tracker.
+Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TASKS.md` before extending the staged system. M0-M9 are complete for their documented research scope, through M9 Stage 2 final held-out evaluation. The original implementation plan is a proposal roadmap; `TASKS.md` and milestone methods record actual completed work. Stop before M10 or further detector tuning.
 
 ## Planned repository directories
 `config/`, `sumo/network/`, `sumo/routes/`, `sumo/vehicles/`, `sumo/simulation/`, `src/simulation/`, `src/sensors/`, `src/attacks/`, `src/fusion/`, `src/mapping/`, `src/features/`, `src/detection/`, `src/routing/`, `src/energy/`, `tests/`, `data/raw/`, `data/processed/`, `data/attacks/`, `experiments/`, `results/figures/`, `results/tables/`, `results/metrics/`, `paper/`.
@@ -100,7 +108,7 @@ Read `AGENTS.md`, `docs/PROJECT_SPEC.md`, `docs/IMPLEMENTATION_PLAN.md`, and `TA
 The demo was run with Python 3.14.6, SUMO 1.28.0, TraCI 1.28.0, PyYAML 6.0.3, and Matplotlib 3.11.2 on Windows. Tests use `unittest`; `pytest` is optional and was not installed in the verified environment. Pandas and scikit-learn are not needed. Battery energy comes from the SUMO `Energy/unknown` EV model and battery device, not a physical vehicle.
 
 ## Status
-M0-M6 are complete for the documented simulation and offline research baseline. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals; it is not a deployable GPS-only detector. M5 is a separate temporal GPS-only baseline and also is not safety-certified. No routing controller or causal energy claim is implemented. See `TASKS.md` and the M2-M6 method documents for data provenance, results, and limitations.
+M0-M9 are complete for the documented simulation research scope. M4 is oracle-assisted because it uses ground truth to calculate GPS residuals. M5 and M8 are GPS-only motion anomaly detectors; M9 combines detector outputs, not independent sensors. M7 implements GPS-responsive routing and an oracle-assisted SUMO-state fallback, with executed-route and battery telemetry. Its final paired matrix found zero successful mitigations and zero protected-versus-unprotected outcome improvements; it does not establish real-world energy savings. See `TASKS.md`, the milestone method documents, and the reproducibility limitations above.
 
 ## M4: GPS spoofing detection
 
@@ -157,7 +165,9 @@ calibrated from distinct normal training trips only. The campaign writes a
 per-trip experiment matrix and metrics, aggregate summaries, predictions,
 configuration/seed metadata, and comparison plots to a new
 `reports/m6/<run-id>/` directory. Existing run IDs are protected. Generated M6
-reports and simulation data are excluded from Git.
+outputs are ignored by default, but selected historical M6 runs, including
+`m6_full_02` and `m6_full_03`, are already tracked. Ignored local artifacts
+also form part of the historical preservation prerequisites.
 
 Run a reduced smoke campaign first, then use a different fresh ID for the full
 matrix:
